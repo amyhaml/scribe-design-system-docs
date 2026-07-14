@@ -1,0 +1,229 @@
+/*
+ * Source-truth port for Asset Bar docs.
+ * Source files:
+ * - Scribe/src/components/shared/FullscreenTakeover.tsx
+ * - Scribe/src/pages/Feeds/SearchContentModal/index.tsx
+ * - Scribe/packages/toolkit/src/components/Toggle/Toggle.tsx
+ */
+
+.scribe-app-css-vars .scribe-asset-bar-demo-frame {
+  background: var(--background-paper);
+  overflow-x: auto;
+  padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-l);
+}
+
+.scribe-app-css-vars .scribe-asset-bar-demo-frame + .scribe-asset-bar-demo-frame {
+  border-top: var(--border);
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-wrapper {
+  background: var(--background-paper);
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-toolbar-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-toolbar {
+  align-items: center;
+  background: var(--background-paper);
+  border-bottom: var(--border);
+  display: flex;
+  gap: var(--spacing-l);
+  min-height: 4.3125rem;
+  padding: var(--spacing-s) var(--spacing-m);
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-toolbar div {
+  align-items: center;
+  display: flex;
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-toolbar button {
+  height: var(--spacing-s);
+  padding: var(--spacing-s);
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-toolbar button:first-of-type svg {
+  margin-left: 0;
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-toolbar button:not(:last-of-type) {
+  margin-right: var(--spacing-m);
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-back-button {
+  margin-left: var(--spacing-m);
+  padding-left: var(--spacing-xxs);
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-back-button:hover:not(:disabled) {
+  background-color: var(--background-disabled);
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-wrapper h2.takeover-title {
+  display: flex;
+  flex-grow: 5;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  font-size: 0.875rem;
+  font-weight: 700;
+  justify-content: center;
+  margin: 0;
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-buttons-wrapper {
+  margin: 0 var(--spacing-xl);
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-toggle-wrapper {
+  display: grid;
+  grid-template-columns: auto 5rem;
+  margin-right: var(--spacing-xl);
+  padding-bottom: var(--spacing-xxs);
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-toggle-label {
+  align-self: center;
+  color: var(--text);
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  text-align: left;
+  text-transform: capitalize;
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-toggle {
+  box-sizing: content-box;
+  display: inline-flex;
+  height: 1.75rem;
+  overflow: hidden;
+  padding: var(--spacing-xs);
+  position: relative;
+  width: 3.75rem;
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-toggle[data-disabled="true"] {
+  opacity: 0.5;
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-toggle .MuiSwitch-switchBase {
+  display: inline-flex;
+  left: 0.0625rem;
+  padding: 0.5625rem;
+  position: absolute;
+  top: 0.0625rem;
+  transition: transform 150ms;
+  z-index: 1;
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-toggle .MuiSwitch-switchBase.Mui-checked {
+  transform: translateX(2rem);
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-toggle .MuiSwitch-thumb {
+  background-color: var(--background-paper);
+  border-radius: 50%;
+  box-shadow:
+    0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 1px 3px rgba(0, 0, 0, 0.12);
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-toggle .MuiSwitch-input {
+  height: 100%;
+  left: -50%;
+  margin: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 280%;
+  z-index: 1;
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-toggle .MuiSwitch-track {
+  background-color: var(--divider);
+  border-radius: 2.5rem;
+  inset: 0;
+  opacity: 1;
+  position: relative;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-toggle .MuiSwitch-track::before,
+.scribe-app-css-vars .scribe-asset-bar-port-toggle .MuiSwitch-track::after {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  font-size: 0.75rem;
+  font-weight: 600;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  text-transform: uppercase;
+  top: 0;
+  transition: opacity 150ms;
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-toggle .MuiSwitch-track::before {
+  color: var(--background-paper);
+  content: attr(data-label-on);
+  opacity: 0;
+  padding-right: 1.375rem;
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-toggle .MuiSwitch-track::after {
+  color: var(--text-light);
+  content: attr(data-label-off);
+  opacity: 1;
+  padding-left: 1.375rem;
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-toggle[data-checked="true"] .MuiSwitch-track {
+  background-color: var(--background-checked);
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-toggle[data-checked="true"] .MuiSwitch-track::before {
+  opacity: 1;
+}
+
+.scribe-app-css-vars .scribe-asset-bar-port-toggle[data-checked="true"] .MuiSwitch-track::after {
+  opacity: 0;
+}
+
+@media (max-width: 760px) {
+  .scribe-app-css-vars .scribe-asset-bar-demo-frame {
+    padding: var(--spacing-m);
+  }
+
+  .scribe-app-css-vars .scribe-asset-bar-port-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .scribe-app-css-vars .scribe-asset-bar-port-wrapper h2.takeover-title {
+    justify-content: flex-start;
+  }
+}

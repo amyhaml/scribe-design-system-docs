@@ -1,0 +1,152 @@
+/*
+ * Source-truth port for Chip docs.
+ * Source files:
+ * - Scribe/src/components/shared/Chip/Chip.tsx
+ * - Scribe/src/components/shared/Chip/ChipBase.tsx
+ * - Scribe/src/components/shared/Chip/ChipList.tsx
+ * - Scribe/src/components/shared/Chip/ChipListBase.tsx
+ * - Scribe/packages/toolkit/src/components/Chips/*
+ * - Scribe/packages/toolkit/src/components/SvgButton/index.tsx
+ */
+
+@keyframes scribe-chip-port-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.scribe-app-css-vars .scribe-chip-demo-frame {
+  background: var(--background-paper);
+  overflow-x: visible;
+  padding: var(--spacing-xl);
+}
+
+.scribe-app-css-vars .scribe-chip-demo-stack {
+  display: grid;
+  gap: var(--spacing-l);
+  max-width: 18rem;
+}
+
+.scribe-app-css-vars .scribe-chip-demo-related {
+  display: grid;
+  gap: var(--spacing-xl);
+}
+
+.scribe-app-css-vars .scribe-chip-demo-filter-grid {
+  align-items: start;
+  display: grid;
+  gap: var(--spacing-xl);
+  grid-template-columns: repeat(2, minmax(16rem, 1fr));
+  max-width: 46rem;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-chip-demo-filter-card {
+  background: var(--background-main);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-m) var(--spacing-xl);
+  position: relative;
+}
+
+.scribe-app-css-vars .scribe-chip-demo-filter-title {
+  color: var(--text-light);
+  font-size: var(--label-font-size);
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: var(--spacing-xs);
+}
+
+.scribe-app-css-vars .scribe-chip-port-base {
+  animation: scribe-chip-port-fade-in 0.2s linear;
+  align-items: center;
+  background: var(--background-paper);
+  border-radius: var(--border-radius);
+  box-shadow:
+    0px 1px 3px rgba(0, 0, 0, 0.15),
+    0px 1px 2px rgba(0, 0, 0, 0.08),
+    0px 0px 2px rgba(0, 0, 0, 0.05);
+  color: var(--text);
+  display: inline-flex;
+  font-size: var(--label-font-size);
+  justify-content: space-between;
+  line-height: 1.0625rem;
+  margin: var(--spacing-xxs) var(--spacing-xs) var(--spacing-xxs) 0;
+  min-height: 2rem;
+  padding: 0 var(--spacing-s);
+  text-overflow: ellipsis;
+  transition: all 0.1s ease-out;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-chip-port-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.scribe-app-css-vars .scribe-chip-port-label[data-primary="true"] {
+  margin-left: var(--spacing-xxs);
+  vertical-align: super;
+}
+
+.scribe-app-css-vars .scribe-chip-port-label-layout {
+  align-items: center;
+  display: inline-flex;
+  min-width: 0;
+}
+
+.scribe-app-css-vars .scribe-chip-port-svg-button {
+  background-color: transparent;
+  cursor: pointer;
+  margin-bottom: auto;
+  margin-left: var(--spacing-xxs);
+  margin-right: calc(-1 * var(--spacing-xxs));
+  margin-top: auto;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  padding: 0;
+}
+
+.scribe-app-css-vars .scribe-chip-port-svg-button:hover svg {
+  stroke: var(--focus-color);
+}
+
+.scribe-app-css-vars .scribe-chip-port-svg-button:disabled svg {
+  cursor: not-allowed;
+  stroke: var(--text-disabled);
+}
+
+.scribe-app-css-vars .scribe-chip-list-port-wrapper {
+  border-bottom: var(--border);
+  margin-bottom: var(--spacing-xxs);
+  padding-bottom: var(--spacing-xxs);
+  position: relative;
+}
+
+.scribe-app-css-vars .scribe-chip-list-port-legend {
+  align-items: center;
+  display: flex;
+  font-size: var(--default-font-size);
+  font-weight: normal;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+@media (max-width: 760px) {
+  .scribe-app-css-vars .scribe-chip-demo-frame {
+    padding: var(--spacing-m);
+    overflow-x: hidden;
+  }
+
+  .scribe-app-css-vars .scribe-chip-demo-filter-grid {
+    grid-template-columns: minmax(16rem, 1fr);
+    max-width: 100%;
+    width: 100%;
+  }
+}

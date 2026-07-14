@@ -1,0 +1,60 @@
+---
+description: Component doc page content structure and section patterns
+globs: content/components/**/*.md
+alwaysApply: false
+---
+
+# Component page content
+
+When authoring or editing files in `content/components/`, follow [content/COMPONENT-PAGE-PATTERN.md](content/COMPONENT-PAGE-PATTERN.md).
+
+## Tracks
+
+- **Bespoke** (Button, Alert & Banner): full vault + `<!-- demo -->` + `demos/{slug}-demos.tsx`
+- **Hybrid** (all other components): vault `description` + `## Overview` (+ optional sections); Storybook stories = variation sections via `components.$slug.tsx`
+
+Scaffold hybrid pages: `npm run scaffold:components`. Refresh description/Overview: `npm run refresh:component-content`.
+
+## Page description
+
+Frontmatter `description` renders under the h1. Write **1–2 sentences** describing the component and where it is used — not ports, file paths, or technical caveats (those go in Overview or Code).
+
+## Section order
+
+1. **Overview** (required, no demo)
+2. **Variation sections** (1+, usually with demo) — bespoke: markdown + demo; hybrid: route injects Storybook iframes per story
+3. **Guidelines** (optional, no demo)
+4. **Dimensions** (optional, bullets + demo)
+5. **Typography** (optional, usually demo)
+6. **Props** (optional)
+7. **Related components** (optional, prose + demo) — last optional section
+8. **Code** (required, always last)
+
+Skip optional sections when not applicable. Do not reorder required blocks.
+
+## Variation section format (bespoke)
+
+```markdown
+## {Product-language name} {#id-if-needed}
+
+- **{Variant}** — {when/where in production}.
+
+<!-- demo -->
+```
+
+Hybrid pages: do not duplicate story sections in markdown — only list story ids in `toc`.
+
+## Demo placement
+
+- Default: bullets then demo at section end.
+- Spacing is automatic (`DocSectionStack`) — do not add blank lines for rhythm.
+
+## Markdown vs code
+
+**Bespoke:** demos in `src/components/docs/demos/{slug}-demos.tsx`.
+
+**Hybrid:** Storybook iframes + code badges in `components.$slug.tsx`. Optional vault sections (Guidelines, Related) are prose-only unless extended later.
+
+**Figma:** `component-figma-links.ts` — hybrid route reads registry automatically.
+
+Reference: `content/components/alert-bar.md`, `content/components/button.md` (bespoke); `content/components/avatar.md` (hybrid).

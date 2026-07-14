@@ -1,0 +1,159 @@
+/*
+ * Closed-state source-truth port for Datepicker docs.
+ * Source files:
+ * - Scribe/packages/toolkit/src/components/DatePicker/DatePicker.tsx
+ * - Scribe/packages/toolkit/src/components/DatePicker/DatePicker.types.ts
+ * - Scribe/packages/toolkit/src/components/FieldsetHeading/FieldsetHeading.tsx
+ * - Scribe/packages/toolkit/src/components/IconButton/IconButton.tsx
+ * - Scribe/src/components/shared/PublishPanel/PublishScheduleForm.tsx
+ */
+
+.scribe-app-css-vars .scribe-date-picker-demo-frame {
+  background: var(--background-paper);
+  padding: var(--spacing-xl);
+}
+
+.scribe-app-css-vars .scribe-date-picker-demo-stack {
+  display: grid;
+  gap: var(--spacing-xl);
+  max-width: 20rem;
+}
+
+.scribe-app-css-vars .scribe-date-picker-demo-row {
+  display: grid;
+  gap: var(--spacing-xs);
+}
+
+.scribe-app-css-vars .scribe-date-picker-calendar-demo {
+  min-height: 31rem;
+  overflow: visible;
+  position: relative;
+}
+
+.scribe-app-css-vars .scribe-date-picker-demo-label {
+  color: var(--text-light);
+  font-size: var(--label-font-size);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.scribe-app-css-vars .scribe-date-picker-port-wrapper {
+  border-bottom: var(--border);
+  margin-bottom: var(--spacing-s);
+  padding-bottom: var(--spacing-s);
+}
+
+.scribe-app-css-vars .scribe-date-picker-port-wrapper fieldset {
+  border: 0;
+  margin: 0;
+  min-inline-size: 0;
+  padding: 0;
+}
+
+.scribe-app-css-vars .scribe-date-picker-port-legend {
+  align-items: center;
+  display: flex;
+  font-size: var(--default-font-size);
+  font-weight: normal;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-date-picker-port-icon-button {
+  background-color: transparent;
+  border-radius: 100vmax;
+  color: #000000;
+  cursor: pointer;
+  font-size: 1em;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  padding: 0;
+}
+
+.scribe-app-css-vars .scribe-date-picker-port-icon-button svg {
+  height: 1em;
+  width: 1em;
+}
+
+.scribe-app-css-vars .scribe-date-picker-port-icon-button:hover svg {
+  stroke: var(--focus-color);
+}
+
+.scribe-app-css-vars .scribe-date-picker-port-icon-button:disabled svg {
+  cursor: not-allowed;
+  stroke: var(--text-disabled);
+}
+
+.scribe-app-css-vars .scribe-date-time-calendar-port {
+  max-width: 25rem;
+  position: relative;
+}
+
+.scribe-app-css-vars .scribe-date-time-calendar-port .MuiInputBase-root {
+  background: var(--background-paper);
+  color: var(--text);
+}
+
+.scribe-app-css-vars .scribe-date-time-calendar-port .MuiInputBase-input {
+  border-bottom: var(--border-width) solid var(--primary);
+  color: var(--text);
+  padding: var(--spacing-m) 0;
+}
+
+.scribe-app-css-vars .scribe-date-time-calendar-port .MuiInputLabel-root {
+  color: var(--text);
+}
+
+.scribe-app-css-vars .scribe-date-time-calendar-port .MuiPickersPopper-root {
+  z-index: 1;
+}
+
+.scribe-app-css-vars .scribe-date-time-calendar-port .MuiMultiSectionDigitalClock-root {
+  flex-shrink: 0;
+  width: max-content;
+}
+
+.scribe-app-css-vars
+  .scribe-date-time-calendar-port
+  .MuiMultiSectionDigitalClockSection-root {
+  flex: 0 0 56px;
+  width: 56px;
+}
+
+.scribe-app-css-vars .scribe-date-time-calendar-port-clock-item {
+  cursor: pointer;
+  justify-content: center;
+  margin: 2px 4px;
+  min-height: auto;
+  padding: 8px;
+  text-align: center;
+  width: 48px;
+}
+
+.scribe-app-css-vars .scribe-date-time-calendar-port-clock-item[aria-selected="true"] {
+  background-color: #f3b032;
+}
+
+.scribe-app-css-vars .scribe-date-time-calendar-port-clock-item[aria-disabled="true"] {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+@media (max-width: 760px) {
+  .scribe-app-css-vars .scribe-date-picker-demo-frame {
+    padding: var(--spacing-m);
+  }
+
+  .scribe-app-css-vars .scribe-date-picker-demo-stack {
+    max-width: 100%;
+  }
+
+  .scribe-app-css-vars .scribe-date-picker-calendar-demo {
+    min-height: 34rem;
+    overflow-x: auto;
+  }
+}

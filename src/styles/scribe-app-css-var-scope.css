@@ -1,0 +1,174 @@
+/**
+ * Scribe application CSS variable names from `Scribe/packages/styles/src/global.ts` (`:root`),
+ * aliased to documentation mirrors (`--scribe-*` in `scribe-tokens.css`).
+ *
+ * Scoped so the docs site shadcn `--primary` / `--background` tokens are unchanged.
+ * Keep keys in lockstep with `global.ts` when syncing from the app repo.
+ */
+.scribe-app-css-vars {
+  --primary: var(--scribe-primary);
+  --primary-text: var(--scribe-primary-text);
+  --primary-dark: var(--scribe-primary-dark);
+  --primary-light: var(--scribe-primary-light);
+  --primary-hover: var(--scribe-primary-hover);
+  --primary-contrast-text: var(--scribe-primary-contrast-text);
+
+  --background-checked: var(--scribe-background-checked);
+  --background-dashed: var(--scribe-background-dashed);
+  --background-main: var(--scribe-background-main);
+  --background-paper: var(--scribe-background-paper);
+  --background-disabled: var(--scribe-background-disabled);
+  --background-error: var(--scribe-background-error);
+  --background-success: var(--scribe-background-success);
+  --background-hover-overlay: var(--scribe-background-hover-overlay);
+  --background-indicator: var(--scribe-background-indicator);
+  --background-modal: var(--scribe-background-modal);
+  --background-nav: var(--scribe-background-nav);
+  --background-nav-feature: var(--scribe-background-nav-feature);
+  --background-nav-stage: var(--scribe-background-nav-stage);
+  --background-invalid: var(--scribe-background-invalid);
+  --background-warning-icon: var(--scribe-background-warning-icon);
+
+  --divider: var(--scribe-divider);
+
+  --default-font-size: var(--scribe-default-font-size);
+  --label-font-size: var(--scribe-label-font-size);
+  --heading-font-size: var(--scribe-heading-font-size);
+  --form-heading-font-size: var(--scribe-form-heading-font-size);
+  --heading-medium-font-size: var(--scribe-heading-medium-font-size);
+  --small-font-size: var(--scribe-small-font-size);
+  --xsmall-font-size: var(--scribe-xsmall-font-size);
+
+  --text: var(--scribe-text);
+  --text-light: var(--scribe-text-light);
+  --text-lighter: var(--scribe-text-lighter);
+  --text-disabled: var(--scribe-text-disabled);
+  --text-placeholder: var(--scribe-text-placeholder);
+  --text-placeholderfocus: var(--scribe-text-placeholderfocus);
+
+  --focus-color: var(--scribe-focus-color);
+  --focus-indication-thickness: var(--scribe-focus-indication-thickness);
+
+  --placeholder-image: var(--scribe-placeholder-image);
+
+  --active: var(--scribe-active);
+  --error: var(--scribe-error);
+  --error-icon: var(--scribe-error-icon);
+  --error-contrast-text: var(--scribe-error-contrast-text);
+  --deactivated: var(--scribe-deactivated);
+  --info: var(--scribe-info);
+  --locked: var(--scribe-locked);
+  --success: var(--scribe-success);
+  --success-contrast-text: var(--scribe-success-contrast-text);
+  --warning: var(--scribe-warning);
+  --warning-contrast-text: var(--scribe-warning-contrast-text);
+  --warning-icon: var(--scribe-warning-icon);
+  --warning-strong: var(--scribe-warning-strong);
+  --delete: var(--scribe-delete);
+
+  --archived: var(--scribe-archived);
+  --archived-muted: var(--scribe-archived-muted);
+  --archived-text: var(--scribe-archived-text);
+  --archived-checked: var(--scribe-archived-checked);
+  --draft: var(--scribe-draft);
+  --draft-saved: var(--scribe-draft-saved);
+  --pending: var(--scribe-pending);
+  --publish: var(--scribe-publish);
+  --published: var(--scribe-published);
+  --published-muted: var(--scribe-published-muted);
+  --published-text: var(--scribe-published-text);
+  --schedule: var(--scribe-schedule);
+  --scheduled: var(--scribe-scheduled);
+  --scheduled-muted: var(--scribe-scheduled-muted);
+  --scheduled-header-text: var(--scribe-scheduled-header-text);
+  --published-banner: var(--scribe-published-banner);
+  --published-banner-text: var(--scribe-published-banner-text);
+  --draft-indicator: var(--scribe-draft-indicator);
+  --unlockUser: var(--scribe-unlock-user);
+  --locked-user: var(--scribe-locked-user);
+
+  --border-width: var(--scribe-border-width);
+  --secondary-border-width: var(--scribe-secondary-border-width);
+  --tertiary-border-width: var(--scribe-tertiary-border-width);
+  --border: var(--scribe-border);
+  --secondary-border: var(--scribe-secondary-border);
+  --border-focus: var(--scribe-border-focus);
+  --border-primary: var(--scribe-border-primary);
+  --border-dashed: var(--scribe-border-dashed);
+  --secondary-border-dashed: var(--scribe-secondary-border-dashed);
+  --border-radius: var(--scribe-border-radius);
+  --border-error: var(--scribe-border-error);
+  --border-warning: var(--scribe-border-warning);
+
+  --balloon-tooltip-background: var(--scribe-balloon-tooltip-background);
+  --balloon-tooltip-text: var(--scribe-balloon-tooltip-text);
+
+  /* Same `spacing` export as Scribe/packages/styles/src/index.ts. */
+  --spacing-xxxs: 0.125rem;
+  --spacing-xxs: 0.25rem;
+  --spacing-xs: 0.5rem;
+  --spacing-s: 0.75rem;
+  --spacing-m: 1rem;
+  --spacing-l: 1.25rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+  --spacing-xxxl: 4rem;
+
+  /* Same stack as `defaultFontSet` in Scribe/packages/styles/src/index.ts */
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  line-height: 1.4;
+}
+
+.scribe-app-css-vars,
+.scribe-app-css-vars * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.scribe-app-css-vars h1,
+.scribe-app-css-vars h2,
+.scribe-app-css-vars h3,
+.scribe-app-css-vars h4 {
+  font-family: "Tiempos", Georgia, "Times New Roman", serif;
+  margin-block-end: 1%;
+  font-weight: normal;
+}
+
+.scribe-app-css-vars h1 {
+  font-size: 1.75rem;
+}
+
+.scribe-app-css-vars h2 {
+  font-size: 1.3125rem;
+}
+
+.scribe-app-css-vars h3 {
+  font-size: 1.125rem;
+  margin-bottom: var(--spacing-m);
+}
+
+.scribe-app-css-vars button {
+  border: none;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  line-height: normal;
+}

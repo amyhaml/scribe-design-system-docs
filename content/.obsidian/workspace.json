@@ -1,0 +1,215 @@
+{
+  "main": {
+    "id": "9d87d7edbdadcf50",
+    "type": "split",
+    "children": [
+      {
+        "id": "7adc28c2333bbbfc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b8ac1ef274f2f59c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "AGENTS.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "AGENTS"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "b2a9167fa05687a4",
+    "type": "split",
+    "children": [
+      {
+        "id": "068252234115d9f2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0fea68c00dc29caa",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "f846e372383e520a",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "c24117f60ceaf3ba",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "c7dbc1e831ad761b",
+    "type": "split",
+    "children": [
+      {
+        "id": "f96495a8b6cd5f19",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "de6ccb2d607f9983",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "AGENTS.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for AGENTS"
+            }
+          },
+          {
+            "id": "a6761ce1d7eb4c7a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "AGENTS.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from AGENTS"
+            }
+          },
+          {
+            "id": "a99461b0927dbf9c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "97cb548e8a38da2f",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "c5cd6228d30bbdc4",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "AGENTS.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of AGENTS"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "b8ac1ef274f2f59c",
+  "lastOpenFiles": [
+    "components/menu.md",
+    "components/filter.md",
+    "components/field.md",
+    "components/dropzone.md",
+    "getting-started/introduction.md",
+    "COMPONENT-PAGE-PATTERN.md",
+    "AGENTS.md",
+    "README.md",
+    "components/asset-bar.md",
+    "components/dialog.md",
+    "components/button.md",
+    "_templates/component-page-storybook.md",
+    "_templates/component-page.md",
+    "components/datepicker.md",
+    "components/chip.md",
+    "components/checkbox.md",
+    "components/card.md",
+    "components/app-bar.md",
+    "components/alert-bar.md",
+    "components/components-warningdimensionmodal.md",
+    "components/shared-videopicker.md",
+    "components/versions-listing.md",
+    "components/version-update-notification-bar.md",
+    "components/validation-error-message.md",
+    "components/tree-menu.md",
+    "components/textarea.md"
+  ]
+}

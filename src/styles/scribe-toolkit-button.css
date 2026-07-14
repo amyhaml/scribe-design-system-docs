@@ -1,0 +1,214 @@
+/**
+ * Rules copied from `Scribe/packages/toolkit/src/components/Button/Button.tsx`
+ * (`ButtonBase`, non–flexButton) + `:focus` from `Scribe/packages/styles/src/global.ts` (`button :focus`).
+ * Toolbar fills use CSS variables on the element (`--scribe-toolkit-*`) set by `ToolkitButton`.
+ * `data-bg-transparent="true"` mirrors `background === 'transparent'` for hover box-shadow.
+ *
+ * `statusColors2` + `colors` hex values are from `Scribe/packages/styles/src/index.ts` (same as toolkit imports).
+ */
+.scribe-app-css-vars .scribe-toolkit-button {
+  align-items: center;
+  background: var(--scribe-toolkit-bg, var(--primary));
+  border: var(--scribe-toolkit-border, none);
+  border-radius: var(--border-radius);
+  color: var(--scribe-toolkit-color, var(--primary-contrast-text));
+  cursor: var(--scribe-toolkit-cursor, pointer);
+  display: flex;
+  font-size: 0.75rem;
+  font-weight: 600;
+  justify-content: center;
+  min-height: 2.4375rem;
+  outline: none;
+  padding: 0 1rem;
+  text-transform: uppercase;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.scribe-app-css-vars .scribe-toolkit-button:hover:not(:disabled):not([data-bg-transparent="true"]) {
+  box-shadow:
+    0px 1px 10px rgba(0, 0, 0, 0.2),
+    0px 4px 5px rgba(0, 0, 0, 0.12),
+    0px 2px 4px rgba(0, 0, 0, 0.14);
+}
+
+.scribe-app-css-vars .scribe-toolkit-button[data-bg-transparent="true"]:hover:not(:disabled) {
+  box-shadow: none;
+}
+
+.scribe-app-css-vars .scribe-toolkit-button:disabled {
+  background-color: var(--background-disabled);
+  border: var(--scribe-toolkit-disabled-border, none);
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}
+
+.scribe-app-css-vars .scribe-toolkit-button:focus {
+  box-shadow: var(--border-focus);
+}
+
+.scribe-app-css-vars .scribe-toolkit-button > svg {
+  width: 1rem;
+  color: var(--scribe-toolkit-svg-color, var(--text));
+  flex-shrink: 0;
+}
+
+.scribe-app-css-vars .scribe-toolkit-button > svg:first-of-type {
+  margin-right: 0.5rem;
+}
+
+.scribe-app-css-vars .scribe-toolkit-button > svg:last-child {
+  margin-left: 0.5rem;
+}
+
+/* --- variantStyles (Button.tsx) — applied after base in source order --- */
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="contained"] {
+  background: var(--primary);
+  border-color: transparent;
+  color: var(--primary-contrast-text);
+}
+
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="error"] {
+  background: #aa0703;
+  border-color: transparent;
+  color: #ffebeb;
+}
+
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="info"] {
+  background: #0d08a5;
+  border-color: transparent;
+  color: #ebf1ff;
+}
+
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="outlined"]:hover,
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="outlined"]:focus,
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="outlined"]:active {
+  background-color: #d9dadd;
+}
+
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="outlined"] {
+  background-color: #ffffff;
+  border: solid 1px #555555;
+  color: #252525;
+}
+
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="primary"] {
+  background: var(--primary);
+  border-color: var(--text);
+  color: var(--primary-contrast-text);
+}
+
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="secondaryOutline"]:hover,
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="secondaryOutline"]:focus,
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="secondaryOutline"]:active {
+  background-color: #d9dadd;
+}
+
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="secondaryOutline"] {
+  background-color: #ffffff;
+  border: solid 1px #252525;
+  color: #252525;
+}
+
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="secondaryText"]:hover:not(:disabled),
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="secondaryText"]:focus:not(:disabled),
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="secondaryText"]:active:not(:disabled) {
+  box-shadow: none;
+  text-decoration: underline;
+}
+
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="secondaryText"] {
+  background: none;
+  color: #252525;
+}
+
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="success"] {
+  background: #122f26;
+  border-color: transparent;
+  color: #f5fffb;
+}
+
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="tertiaryOutline"]:hover,
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="tertiaryOutline"]:focus,
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="tertiaryOutline"]:active {
+  background-color: #ebf1ff;
+}
+
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="tertiaryOutline"] {
+  background-color: #ffffff;
+  border: solid 1px #2920da;
+  color: #0d08a5;
+}
+
+.scribe-app-css-vars .scribe-toolkit-button[data-variant="warning"] {
+  background: #7d570f;
+  border-color: transparent;
+  color: #fff7e8;
+}
+
+/* --- sizeStyles --- */
+.scribe-app-css-vars .scribe-toolkit-button[data-size="large"] {
+  font-size: 0.8125rem;
+  padding: 0.375rem 1.375rem;
+}
+
+.scribe-app-css-vars .scribe-toolkit-button[data-size="medium"] {
+  font-size: 0.75rem;
+  padding: 0.375rem 1rem;
+}
+
+.scribe-app-css-vars .scribe-toolkit-button[data-size="small"] {
+  font-size: 0.6875rem;
+  padding: 0.25rem 0.625rem;
+}
+
+/* --- flexButtonStyles --- */
+.scribe-app-css-vars .scribe-toolkit-button[data-flex-button="true"] {
+  align-items: center;
+  appearance: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.75rem;
+  font-weight: 600;
+  gap: 0.25rem;
+  justify-content: center;
+  letter-spacing: 0.02857em;
+  line-height: 2;
+  min-height: 2.25rem;
+  min-width: 4rem;
+  outline: none;
+  padding: 0 1rem;
+  text-transform: uppercase;
+  transition: box-shadow 0.2s ease-in-out;
+  vertical-align: middle;
+}
+
+.scribe-app-css-vars
+  .scribe-toolkit-button[data-flex-button="true"]:hover:not(:disabled):not(
+    [data-bg-transparent="true"]
+  ) {
+  box-shadow:
+    0px 1px 10px rgba(0, 0, 0, 0.2),
+    0px 4px 5px rgba(0, 0, 0, 0.12),
+    0px 2px 4px rgba(0, 0, 0, 0.14);
+}
+
+.scribe-app-css-vars .scribe-toolkit-button[data-flex-button="true"] > svg {
+  height: 1.125em;
+  width: 1.125em;
+}
+
+/* Split preview + share (`ToolbarButton` + `StyledShevronButton` in `ShareLinkButton.tsx`). */
+.scribe-app-css-vars .scribe-toolkit-button[data-split="start"] {
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+
+.scribe-app-css-vars .scribe-toolkit-button[data-split="end"] {
+  min-height: 2.4375rem;
+  max-width: 2rem;
+  min-width: 2rem;
+  padding: 0;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  background: var(--info);
+  color: var(--text);
+}

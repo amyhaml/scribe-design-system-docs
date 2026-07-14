@@ -1,0 +1,327 @@
+/*
+ * Source-truth visual ports for Field docs.
+ * Source files:
+ * - Scribe/packages/toolkit/src/components/FormInput/FormInput.styles.ts
+ * - Scribe/packages/toolkit/src/components/ValidationErrorMessage/ValidationErrorMessage.tsx
+ * - Scribe/packages/toolkit/src/components/Select/ReactSelectProps.ts
+ * - Scribe/src/components/shared/SearchBar.tsx
+ */
+
+.scribe-app-css-vars .scribe-field-demo-grid {
+  display: grid;
+  gap: var(--spacing-xl);
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  max-width: 54rem;
+}
+
+.scribe-app-css-vars .scribe-field-demo-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-m);
+}
+
+.scribe-app-css-vars .scribe-field-demo-heading {
+  color: var(--text-light);
+  font-size: var(--default-font-size);
+  font-weight: 700;
+  margin: 0 0 var(--spacing-xs);
+}
+
+.scribe-app-css-vars .scribe-field-demo-state {
+  color: var(--text-light);
+  font-size: var(--label-font-size);
+  font-weight: 700;
+  margin: 0;
+}
+
+.scribe-app-css-vars .scribe-field-demo-row {
+  align-items: flex-start;
+  display: grid;
+  gap: var(--spacing-m);
+  grid-template-columns: 5rem minmax(0, 22rem);
+}
+
+.scribe-app-css-vars .scribe-field-demo-row-wide {
+  grid-template-columns: 5rem minmax(0, 54rem);
+}
+
+.scribe-app-css-vars .scribe-field-search-demo-stack {
+  max-width: 64rem;
+}
+
+.scribe-app-css-vars .scribe-field-demo-row > .scribe-field-port-field,
+.scribe-app-css-vars .scribe-field-demo-row > .scribe-field-port-searchbar {
+  min-width: 0;
+}
+
+.scribe-app-css-vars .scribe-field-port-field {
+  min-width: 0;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-field-port-input-wrapper,
+.scribe-app-css-vars .scribe-field-port-select-wrapper {
+  align-items: flex-start;
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-field-port-input-wrapper[data-has-control-icon="true"] {
+  align-items: baseline;
+}
+
+.scribe-app-css-vars .scribe-field-port-input-wrapper[data-focused="true"] > .scribe-field-port-label,
+.scribe-app-css-vars .scribe-field-port-select-wrapper[data-focused="true"] > .scribe-field-port-label {
+  color: var(--focus-color);
+}
+
+.scribe-app-css-vars .scribe-field-port-input-wrapper[data-error="true"] > .scribe-field-port-label,
+.scribe-app-css-vars .scribe-field-port-select-wrapper[data-error="true"] > .scribe-field-port-label,
+.scribe-app-css-vars .scribe-field-port-label[data-error="true"] {
+  color: var(--error);
+}
+
+.scribe-app-css-vars .scribe-field-port-label {
+  align-items: center;
+  color: var(--text-light);
+  display: flex;
+  font-size: 0.8rem;
+  gap: var(--spacing-xs);
+  justify-content: space-between;
+  left: 0;
+  line-height: 1.4;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  transition: all 0.1s ease-out;
+  width: 100%;
+  z-index: 1;
+}
+
+.scribe-app-css-vars .scribe-field-port-label.empty,
+.scribe-app-css-vars .scribe-field-port-label[data-in-field="true"] {
+  font-size: var(--label-font-size);
+  top: var(--spacing-xl);
+}
+
+.scribe-app-css-vars .scribe-field-port-input {
+  background: transparent;
+  border: none;
+  border-bottom: var(--border-width) solid var(--divider);
+  color: var(--text);
+  flex-grow: 1;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
+  font-size: var(--default-font-size);
+  outline: none;
+  padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-s) 0;
+  transition:
+    background 0.2s ease-in-out,
+    border-color 0.2s ease-in-out,
+    color 0.2s ease-in-out 0s;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-field-port-input:not(:focus)::placeholder {
+  opacity: 0;
+}
+
+.scribe-app-css-vars .scribe-field-port-input:focus,
+.scribe-app-css-vars .scribe-field-port-input[data-focused="true"] {
+  border-color: var(--focus-color);
+}
+
+.scribe-app-css-vars .scribe-field-port-input[data-error="true"] {
+  border-bottom-color: var(--error);
+  color: var(--error);
+}
+
+.scribe-app-css-vars .scribe-field-port-input[readonly],
+.scribe-app-css-vars .scribe-field-port-input:disabled {
+  background-color: var(--background-disabled);
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}
+
+.scribe-app-css-vars .scribe-field-port-input:focus::placeholder {
+  color: var(--text-placeholder);
+}
+
+.scribe-app-css-vars .scribe-field-port-input[data-error="true"]:focus::placeholder {
+  color: var(--error);
+}
+
+.scribe-app-css-vars .scribe-field-port-adornments {
+  align-items: center;
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: var(--spacing-xl);
+  z-index: 1;
+}
+
+.scribe-app-css-vars .scribe-field-port-limit,
+.scribe-app-css-vars .scribe-field-port-character-count {
+  color: var(--text-light);
+  font-size: var(--xsmall-font-size);
+  padding-left: var(--spacing-xxs);
+  top: 1.75rem;
+  white-space: nowrap;
+}
+
+.scribe-app-css-vars .scribe-field-port-limit[data-error="true"] {
+  color: var(--error);
+}
+
+.scribe-app-css-vars .scribe-field-port-icon-wrapper {
+  cursor: not-allowed;
+  display: inline-flex;
+  margin-left: var(--spacing-xs);
+}
+
+.scribe-app-css-vars .scribe-field-port-icon-wrapper svg {
+  color: var(--text-light);
+  width: 1rem;
+}
+
+.scribe-app-css-vars .scribe-field-port-validation-error {
+  align-items: center;
+  color: var(--error);
+  display: flex;
+  flex: 0 0 100%;
+  font-size: var(--label-font-size);
+  margin-bottom: var(--spacing-xs);
+}
+
+.scribe-app-css-vars .scribe-field-port-validation-error svg {
+  margin-right: var(--spacing-xxs);
+  stroke: var(--error);
+}
+
+.scribe-app-css-vars .scribe-field-port-validation-icon {
+  position: relative;
+  top: 0.2rem;
+}
+
+.scribe-app-css-vars .scribe-field-port-select-wrapper {
+  display: block;
+}
+
+.scribe-app-css-vars .scribe-field-port-select-wrapper .scribe-field-port-label {
+  pointer-events: initial;
+}
+
+.scribe-app-css-vars .scribe-field-port-select-wrapper[data-error="true"] .scribe-field-port-label {
+  color: var(--error);
+}
+
+.scribe-app-css-vars .scribe-field-port-select-wrapper [class$="-control"]:hover {
+  border-bottom-color: var(--divider);
+}
+
+.scribe-app-css-vars .scribe-field-port-select-wrapper[data-error="true"] [class$="-control"]:hover {
+  border-bottom-color: var(--error);
+}
+
+.scribe-app-css-vars .scribe-field-port-select-wrapper[data-focused="true"] [class$="-control"] {
+  border-bottom-color: var(--primary) !important;
+}
+
+.scribe-app-css-vars .scribe-field-port-select-wrapper [class$="-indicatorContainer"] {
+  color: var(--text-light);
+  padding: 0;
+}
+
+.scribe-app-css-vars .scribe-field-port-select-wrapper [class$="-indicatorContainer"] svg {
+  height: 1em;
+  width: 1em;
+}
+
+.scribe-app-css-vars .scribe-field-port-searchbar {
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-field-port-searchbar-form {
+  display: flex;
+}
+
+.scribe-app-css-vars .scribe-field-port-searchbar-fieldset {
+  border: 0;
+  margin: 0;
+  margin-top: 0;
+  min-inline-size: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-field-port-searchbar-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-field-port-searchbar-button {
+  background: transparent;
+  border: 0;
+  color: var(--text-light);
+  left: var(--spacing-s);
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: calc((var(--spacing-xxl) + var(--spacing-s)) / 2);
+  z-index: 1300;
+}
+
+.scribe-app-css-vars .scribe-field-port-searchbar-icon {
+  color: var(--text-light);
+  display: block;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.scribe-app-css-vars .scribe-field-port-searchbar-input {
+  background: var(--background-paper);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  color: var(--text);
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
+  font-size: var(--default-font-size);
+  line-height: 1.4;
+  margin: var(--spacing-m) 0 var(--spacing-xl) 0;
+  outline: none;
+  padding: var(--spacing-m) 0 var(--spacing-m) var(--spacing-xxl);
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-field-port-searchbar-input::placeholder {
+  color: var(--text-placeholder);
+  opacity: 1;
+}
+
+.scribe-app-css-vars .scribe-field-port-searchbar-input:focus,
+.scribe-app-css-vars .scribe-field-port-searchbar-input[data-focused="true"] {
+  box-shadow: var(--border-focus);
+}
+
+@media (max-width: 760px) {
+  .scribe-app-css-vars .scribe-field-demo-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .scribe-app-css-vars .scribe-field-demo-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

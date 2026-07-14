@@ -1,0 +1,411 @@
+/*
+ * Source-truth ports for App Bar docs.
+ * Source files:
+ * - Scribe/src/components/Nav/styles.ts
+ * - Scribe/src/components/shared/TabbedLayout/index.tsx
+ * - Scribe/src/components/shared/TabbedLayout/TabPanel.tsx
+ * - Scribe/apps/scribe/src/components/GlobalToolbar/index.styles.ts
+ * - Scribe/apps/scribe/src/components/GlobalToolbar/Title/index.tsx
+ * - Scribe/apps/scribe/src/components/GlobalToolbar/ToolbarButton.tsx
+ */
+
+.scribe-app-css-vars .scribe-app-bar-demo-frame {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  overflow-x: auto;
+  padding: 0;
+}
+
+.scribe-app-css-vars .scribe-app-bar-demo-frame--compact {
+  padding: 0;
+}
+
+.scribe-app-css-vars .scribe-nav-port-wrapper {
+  color: var(--background-paper);
+  position: relative;
+}
+
+.scribe-app-css-vars .scribe-nav-port-nav-wrapper {
+  border-bottom: var(--secondary-border-width) solid var(--background-disabled);
+  position: relative;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.scribe-app-css-vars .scribe-nav-port-nav-wrapper svg {
+  color: var(--background-paper);
+}
+
+.scribe-app-css-vars .scribe-nav-port-content-wrapper {
+  align-items: center;
+  background: var(--background-nav-feature, rgb(60, 85, 135));
+  display: flex;
+  height: 3rem;
+  padding: 0 var(--spacing-l);
+}
+
+.scribe-app-css-vars .scribe-nav-port-logo-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 0 var(--spacing-s);
+}
+
+.scribe-app-css-vars .scribe-nav-port-logo {
+  display: none;
+  margin: 0;
+  width: 1.75rem;
+}
+
+.scribe-app-css-vars .scribe-nav-port-logo-wide {
+  display: block;
+  height: 1.25rem;
+  margin: 0;
+  object-fit: fill;
+  width: 5rem;
+}
+
+.scribe-app-css-vars .scribe-nav-port-workspace-selector-wrapper {
+  align-items: end;
+  display: flex;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.scribe-app-css-vars .scribe-nav-port-workspace-selector,
+.scribe-app-css-vars .scribe-nav-port-tenant-selector,
+.scribe-app-css-vars .scribe-nav-port-notifications,
+.scribe-app-css-vars .scribe-nav-port-user-button {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.scribe-app-css-vars .scribe-nav-port-workspace-selector {
+  text-align: left;
+}
+
+.scribe-app-css-vars .scribe-nav-port-workspace-selector svg,
+.scribe-app-css-vars .scribe-nav-port-tenant-selector svg {
+  margin-left: var(--spacing-xxs);
+}
+
+.scribe-app-css-vars .scribe-nav-port-workspace {
+  display: inline-block;
+  font-family: "Tiempos", "Tiempos Headline", Georgia, "Times New Roman", serif;
+  font-size: 1.5rem;
+  font-weight: normal;
+  margin: 0;
+}
+
+.scribe-app-css-vars .scribe-nav-port-workspace-link-anchor {
+  color: var(--background-paper);
+  min-width: 0;
+  text-decoration: none;
+}
+
+.scribe-app-css-vars .scribe-nav-port-workspace-link {
+  color: var(--background-paper);
+  display: inline;
+  font-family: "Tiempos", "Tiempos Headline", Georgia, "Times New Roman", serif;
+  font-size: 1.2rem;
+  margin: 0 0 0 var(--spacing-xs);
+  text-decoration: none;
+}
+
+.scribe-app-css-vars .scribe-nav-port-tenant-selector {
+  font-size: 0.9rem;
+  margin-right: var(--spacing-xs);
+  min-width: 0;
+}
+
+.scribe-app-css-vars .scribe-nav-port-tenant-selector span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.scribe-app-css-vars .scribe-nav-port-notifications {
+  margin-right: var(--spacing-xs);
+}
+
+.scribe-app-css-vars .scribe-nav-port-user-button {
+  height: 100%;
+  margin-right: var(--spacing-xxs);
+  padding: 0 var(--spacing-xs);
+}
+
+.scribe-app-css-vars .scribe-nav-port-avatar {
+  align-items: center;
+  background: var(--placeholder-image);
+  border-radius: 50%;
+  color: var(--primary-contrast-text);
+  display: inline-flex;
+  font-size: var(--xsmall-font-size);
+  font-weight: normal;
+  height: 1.75rem;
+  justify-content: center;
+  line-height: 1.5;
+  min-width: 1.75rem;
+  width: 1.75rem;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-tabs-container {
+  background-color: transparent;
+  padding: 0;
+  z-index: 999;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-tabs-container.hasCollapse {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-tabs {
+  align-items: center;
+  display: flex;
+  min-height: 3.5rem;
+  overflow-x: auto;
+  position: relative;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-tab {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: row;
+  font-size: var(--label-font-size);
+  height: 3rem;
+  justify-content: center;
+  margin: var(--focus-indication-thickness);
+  min-width: 6rem;
+  padding: var(--spacing-s) var(--spacing-m);
+  position: relative;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-tab:hover {
+  color: var(--text);
+  opacity: 1;
+  text-decoration: none;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-tab:focus {
+  box-shadow: var(--border-focus);
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-tab[data-selected="true"] {
+  color: var(--text);
+  font-weight: bold;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-tab[data-selected="true"]::after {
+  background: var(--primary);
+  bottom: -0.125rem;
+  content: "";
+  height: 0.19rem;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-badge {
+  align-items: center;
+  background-color: var(--error);
+  border-radius: 50%;
+  color: var(--background-paper);
+  display: flex;
+  font-size: var(--xsmall-font-size);
+  font-weight: 700;
+  height: 0.875rem;
+  justify-content: center;
+  margin-left: var(--spacing-xs);
+  min-width: 0.875rem;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-indicator {
+  background: var(--divider);
+  bottom: 0;
+  height: 0.0625rem;
+  position: absolute;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-panel[hidden] {
+  display: none;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-panel:not([hidden]) {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-right-buttons {
+  align-items: center;
+  display: flex;
+  gap: var(--spacing-xs);
+  margin-left: auto;
+  margin-right: var(--spacing-xl);
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-right-button {
+  background: var(--primary);
+  border: 0;
+  border-radius: var(--border-radius);
+  color: var(--primary-contrast-text);
+  cursor: pointer;
+  font-size: var(--label-font-size);
+  font-weight: 700;
+  min-height: 2.5rem;
+  padding: 0 var(--spacing-m);
+  text-transform: uppercase;
+}
+
+.scribe-app-css-vars .scribe-global-toolbar-port {
+  background-color: var(--background-main);
+  padding: var(--spacing-s) var(--spacing-xl) 0 var(--spacing-xl);
+  position: relative;
+  z-index: 995;
+}
+
+.scribe-app-css-vars .scribe-global-toolbar-port-title-container {
+  align-items: start;
+  display: grid;
+  gap: var(--spacing-l);
+  grid-template-columns: 1fr auto;
+}
+
+.scribe-app-css-vars .scribe-global-toolbar-port-button-wrapper {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.scribe-app-css-vars .scribe-global-toolbar-port-button-wrapper svg {
+  vertical-align: middle;
+}
+
+.scribe-app-css-vars .scribe-global-toolbar-port-title-content {
+  overflow: hidden;
+}
+
+.scribe-app-css-vars .scribe-global-toolbar-port-title-wrapper {
+  align-items: center;
+  display: flex;
+  min-width: 0;
+}
+
+.scribe-app-css-vars .scribe-global-toolbar-port-title-prefix {
+  align-items: center;
+  display: inline-flex;
+  margin-right: var(--spacing-xs);
+}
+
+.scribe-app-css-vars .scribe-global-toolbar-port-title-heading {
+  hyphens: auto;
+  margin-bottom: 0;
+  margin-top: 0;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  text-overflow: ellipsis;
+}
+
+.scribe-app-css-vars .scribe-global-toolbar-port-title-link {
+  color: var(--text);
+  overflow: hidden;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.scribe-app-css-vars .scribe-global-toolbar-port-title-button {
+  color: var(--text);
+  display: inline-flex;
+  margin-left: var(--spacing-m);
+}
+
+.scribe-app-css-vars .scribe-global-toolbar-port-date {
+  color: var(--text-light);
+  font-size: 0.625rem;
+  margin-top: 0;
+}
+
+.scribe-app-css-vars .scribe-global-toolbar-port-meta {
+  margin-right: var(--spacing-m);
+}
+
+.scribe-app-css-vars .scribe-global-toolbar-port-more-options {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: var(--text-light);
+  cursor: pointer;
+  display: inline-flex;
+  height: 2rem;
+  justify-content: center;
+  width: 2rem;
+}
+
+.scribe-app-css-vars .scribe-global-toolbar-port-share-link-button {
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  margin-left: 0.0625rem;
+  margin-right: var(--spacing-m);
+  max-width: 2rem;
+  padding: 0;
+}
+
+@media (max-width: 760px) {
+  .scribe-app-css-vars .scribe-app-bar-demo-frame {
+    padding: var(--spacing-m);
+  }
+
+  .scribe-app-css-vars .scribe-nav-port-content-wrapper {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--spacing-m);
+    height: auto;
+    padding: var(--spacing-m);
+  }
+
+  .scribe-app-css-vars .scribe-nav-port-workspace-selector-wrapper,
+  .scribe-app-css-vars .scribe-global-toolbar-port-title-container {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .scribe-app-css-vars .scribe-nav-port-logo {
+    display: block;
+  }
+
+  .scribe-app-css-vars .scribe-nav-port-logo-wide {
+    display: none;
+  }
+
+  .scribe-app-css-vars .scribe-global-toolbar-port-title-container {
+    display: grid;
+  }
+
+  .scribe-app-css-vars .scribe-global-toolbar-port-button-wrapper {
+    justify-content: flex-start;
+  }
+}

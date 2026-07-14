@@ -1,0 +1,179 @@
+/*
+ * Two layers on :root:
+ * 1) --scribe-* — mirrors Scribe `packages/styles/src/global.ts` for Foundations docs only.
+ * 2) Default shadcn-style tokens — actual docs chrome (sidebar, borders, etc.).
+ *
+ * The app UI must NOT use Scribe production nav/background tokens; only the color
+ * foundations page documents them via --scribe-*.
+ */
+
+:root {
+  /* ----- Scribe application tokens (documentation mirrors) ----- */
+  --scribe-primary: #f3b032;
+  --scribe-primary-text: #a26900;
+  --scribe-primary-dark: #cd8a0c;
+  --scribe-primary-light: #f7cc7a;
+  --scribe-primary-hover: #f9d187;
+  --scribe-primary-contrast-text: #000000;
+
+  --scribe-background-checked: #555555;
+  --scribe-background-dashed: #c9c7cc;
+  --scribe-background-main: #fafbfc;
+  --scribe-background-paper: #ffffff;
+  --scribe-background-disabled: #ecedee;
+  --scribe-background-error: #ffebeb;
+  --scribe-background-success: #f5fffb;
+  --scribe-background-hover-overlay: rgb(250 251 252 / 85%);
+  --scribe-background-indicator: #e5e5e5;
+  --scribe-background-modal: rgb(0 0 0 / 50%);
+  --scribe-background-nav: #252525;
+  --scribe-background-nav-feature: #3c5587;
+  --scribe-background-nav-stage: #893d7c;
+  --scribe-background-invalid: #fbb9b8;
+  --scribe-background-warning-icon: #fff7e8;
+
+  --scribe-divider: #d9dadd;
+
+  --scribe-default-font-size: 1rem;
+  --scribe-label-font-size: 0.875rem;
+  --scribe-heading-font-size: 1.125rem;
+  --scribe-form-heading-font-size: 1.25rem;
+  --scribe-heading-medium-font-size: 1.75rem;
+  --scribe-small-font-size: 0.75rem;
+  --scribe-xsmall-font-size: 0.625rem;
+
+  --scribe-text: #252525;
+  --scribe-text-light: #555555;
+  --scribe-text-lighter: #868587;
+  --scribe-text-disabled: #555555;
+  --scribe-text-placeholder: #868587;
+  --scribe-text-placeholderfocus: #b1b1b4;
+
+  --scribe-focus-color: #6764d1;
+  --scribe-focus-indication-thickness: 0.125rem;
+
+  --scribe-placeholder-image: #d9dadd;
+
+  --scribe-active: #245b46;
+  --scribe-error: #e21f14;
+  --scribe-error-icon: #ed4738;
+  --scribe-error-contrast-text: #ffffff;
+  --scribe-deactivated: #4e49e0;
+  --scribe-info: #b8c5f4;
+  --scribe-locked: #f88b87;
+  --scribe-success: #b9e1d1;
+  --scribe-success-contrast-text: #000000;
+  --scribe-warning: #f9d187;
+  --scribe-warning-contrast-text: #000000;
+  --scribe-warning-icon: #a26900;
+  --scribe-warning-strong: #b88119;
+  --scribe-delete: #f06a71;
+
+  --scribe-archived: #8a93e8;
+  --scribe-archived-muted: #b8c5f4;
+  --scribe-archived-text: #6764d1;
+  --scribe-archived-checked: #ebf1ff;
+  --scribe-draft: #ed93f1;
+  --scribe-draft-saved: #893d7c;
+  --scribe-pending: #7d570f;
+  --scribe-publish: #4ca97e;
+  --scribe-published: #85c3a9;
+  --scribe-published-muted: #b9e1d1;
+  --scribe-published-text: #37805d;
+  --scribe-schedule: #f9d187;
+  --scribe-scheduled: #a26900;
+  --scribe-scheduled-muted: #f9d187;
+  --scribe-scheduled-header-text: #2d2d2d;
+  --scribe-published-banner: #5da584;
+  --scribe-published-banner-text: #ffffff;
+  --scribe-draft-indicator: #ed93f1;
+  --scribe-unlock-user: #4ca97e;
+  --scribe-locked-user: #e21f14;
+
+  --scribe-balloon-tooltip-background: #252525;
+  --scribe-balloon-tooltip-text: #ffffff;
+
+  --scribe-border-width: 0.0125rem;
+  --scribe-secondary-border-width: 0.0625rem;
+  --scribe-tertiary-border-width: 0.125rem;
+  --scribe-border: var(--scribe-border-width) solid var(--scribe-divider);
+  --scribe-secondary-border: var(--scribe-secondary-border-width) solid var(--scribe-background-disabled);
+  --scribe-border-focus: 0 0 0 var(--scribe-focus-indication-thickness) var(--scribe-focus-color);
+  --scribe-border-primary: var(--scribe-border-width) solid var(--scribe-primary);
+  --scribe-border-dashed: 0.125rem dashed var(--scribe-primary);
+  --scribe-secondary-border-dashed: var(--scribe-secondary-border-width) dashed var(--scribe-background-dashed);
+  --scribe-border-radius: 0.3125rem;
+  --scribe-border-error: var(--scribe-secondary-border-width) solid var(--scribe-error);
+  --scribe-border-warning: var(--scribe-secondary-border-width) solid var(--scribe-warning);
+
+  /* ----- Docs site chrome (default shadcn-style light / dark) ----- */
+  /* Legacy base; Tailwind `@theme` in styles.css defines the radius steps. Kept as 8px (= md). */
+  --radius: 8px;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.129 0.042 264.695);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.208 0.042 265.755);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+  --secondary: oklch(0.968 0.007 247.896);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --muted: oklch(0.968 0.007 247.896);
+  --muted-foreground: oklch(0.554 0.046 257.417);
+  --accent: oklch(0.968 0.007 247.896);
+  --accent-foreground: oklch(0.208 0.042 265.755);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.929 0.013 255.508);
+  --input: oklch(0.929 0.013 255.508);
+  --ring: oklch(0.704 0.04 256.788);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
+}

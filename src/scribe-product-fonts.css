@@ -1,0 +1,35 @@
+/**
+ * Product fonts for typography foundations specimens and source-truth component ports.
+ * Binary sources: `Scribe/packages/styles/src/fonts` (same files as `packages/styles` in the app).
+ *
+ * Registered family names match `SCRIBE_FONT_FAMILIES` stacks and `@scribe/packages/styles` (`fonts.heading` uses `Tiempos`).
+ */
+@font-face {
+  font-family: "Inter";
+  font-style: oblique 0deg 10deg;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/scribe-fonts/Inter.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Tiempos Headline";
+  font-style: normal;
+  font-display: swap;
+  src: url("/scribe-fonts/tiempos-headline-web-medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Tiempos";
+  font-style: normal;
+  font-display: swap;
+  src: url("/scribe-fonts/tiempos-headline-web-medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Charter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/scribe-fonts/charter_regular.woff2") format("woff2");
+}

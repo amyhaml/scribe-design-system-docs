@@ -1,0 +1,271 @@
+/*
+ * Source-truth dialog and publish-panel docs ports.
+ * Source files:
+ * - Scribe/packages/toolkit/src/components/Dialog/Dialog.tsx
+ * - Scribe/apps/scribe/src/modals/LegacyModal.tsx
+ * - Scribe/src/components/shared/PublishPanel/PublishPanel.tsx
+ * - Scribe/src/components/shared/PublishPanel/PublishTabs.tsx
+ * - Scribe/src/components/shared/PublishPanel/PublishScheduleForm.tsx
+ * - Scribe/src/components/shared/PublishPanel/RedirectPanel.tsx
+ */
+
+.scribe-app-css-vars .scribe-dialog-demo-frame {
+  background: var(--background-paper);
+  border: var(--border);
+  overflow-x: auto;
+  padding: var(--spacing-xl);
+}
+
+.scribe-app-css-vars .scribe-dialog-demo-frame[data-overlay="true"] {
+  background: var(--background-modal);
+  border-radius: var(--border-radius);
+}
+
+.scribe-app-css-vars .scribe-dialog-demo-grid {
+  align-items: start;
+  display: grid;
+  gap: var(--spacing-xl);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 26.875rem), 1fr));
+}
+
+.scribe-app-css-vars .scribe-dialog-demo-stack {
+  display: grid;
+  gap: var(--spacing-xl);
+}
+
+.scribe-app-css-vars .scribe-dialog-demo-label {
+  color: var(--text-light);
+  font-size: var(--label-font-size);
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: var(--spacing-xs);
+}
+
+.scribe-app-css-vars .scribe-dialog-port-modal-wrapper {
+  min-height: 25vh;
+  position: relative;
+  width: 70%;
+}
+
+.scribe-app-css-vars .scribe-dialog-port-modal-wrapper[data-compact="true"] {
+  width: 28.75rem;
+}
+
+.scribe-app-css-vars .scribe-dialog-port-modal-content {
+  background: var(--background-paper);
+  border-radius: var(--border-radius);
+  box-shadow:
+    0px 1px 10px rgba(0, 0, 0, 0.2),
+    0px 4px 5px rgba(0, 0, 0, 0.12),
+    0px 2px 4px rgba(0, 0, 0, 0.14);
+  height: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-dialog-port-modal-header {
+  display: flex;
+  min-height: 2rem;
+  padding: var(--spacing-m);
+}
+
+.scribe-app-css-vars .scribe-dialog-port-modal-header[data-reduced="true"] {
+  padding: var(--spacing-m) var(--spacing-xl) 0;
+}
+
+.scribe-app-css-vars .scribe-dialog-port-modal-title {
+  margin: 0;
+  min-height: 2.5rem;
+  padding: var(--spacing-xs) 0;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-dialog-port-modal-title[data-align-center="true"] {
+  text-align: center;
+}
+
+.scribe-app-css-vars .scribe-dialog-port-modal-title[data-align-center="false"] {
+  text-align: left;
+}
+
+.scribe-app-css-vars .scribe-dialog-port-modal-body {
+  padding: var(--spacing-m) var(--spacing-xl) var(--spacing-xl);
+}
+
+.scribe-app-css-vars .scribe-dialog-port-modal-body[data-compact="true"] {
+  padding-top: var(--spacing-l);
+}
+
+.scribe-app-css-vars .scribe-dialog-port-modal-body[data-reduced="true"] {
+  padding: 0 var(--spacing-xl) var(--spacing-xl);
+}
+
+.scribe-app-css-vars .scribe-dialog-port-content {
+  display: flex;
+  justify-content: center;
+  white-space: pre-line;
+  word-break: break-word;
+}
+
+.scribe-app-css-vars .scribe-dialog-port-content[data-compact="true"] {
+  justify-content: flex-start;
+  line-height: 1.2rem;
+}
+
+.scribe-app-css-vars .scribe-dialog-port-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-xl);
+}
+
+.scribe-app-css-vars .scribe-dialog-port-buttons[data-compact="true"] {
+  justify-content: left;
+  margin-top: var(--spacing-m);
+}
+
+.scribe-app-css-vars .scribe-dialog-port-buttons .scribe-toolkit-button {
+  margin-right: var(--spacing-m);
+}
+
+.scribe-app-css-vars .scribe-dialog-port-buttons .scribe-toolkit-button:last-child {
+  margin-right: 0;
+}
+
+.scribe-app-css-vars .scribe-publish-dialog-port-wrapper {
+  background: var(--background-paper);
+  box-shadow:
+    0px 1px 10px rgba(0, 0, 0, 0.2),
+    0px 4px 5px rgba(0, 0, 0, 0.12),
+    0px 2px 4px rgba(0, 0, 0, 0.14);
+  padding: var(--spacing-m) var(--spacing-xl) var(--spacing-xl);
+  width: 26.875rem;
+}
+
+.scribe-app-css-vars .scribe-publish-dialog-port-wrapper .scribe-tabbed-layout-port {
+  display: block;
+}
+
+.scribe-app-css-vars .scribe-publish-dialog-port-wrapper .scribe-tabbed-layout-port-tabs {
+  min-height: 3rem;
+}
+
+.scribe-app-css-vars .scribe-publish-dialog-port-wrapper .scribe-tabbed-layout-port-tab {
+  min-width: auto;
+  padding: var(--spacing-s) var(--spacing-m);
+}
+
+.scribe-app-css-vars .scribe-publish-dialog-port-tab-content {
+  padding-top: var(--spacing-xl);
+}
+
+.scribe-app-css-vars .scribe-publish-dialog-port-pickers-wrapper {
+  margin: var(--spacing-xl) 0 0;
+}
+
+.scribe-app-css-vars .scribe-publish-dialog-port-tab-content > p,
+.scribe-app-css-vars .scribe-publish-dialog-port-redirect-form p {
+  margin: 0;
+}
+
+.scribe-app-css-vars .scribe-publish-dialog-port-tab-content > p:not(:first-of-type),
+.scribe-app-css-vars .scribe-publish-dialog-port-redirect-form p:not(:first-of-type) {
+  margin-top: var(--spacing-l);
+}
+
+.scribe-app-css-vars .scribe-publish-dialog-port-buttons {
+  display: flex;
+  margin: var(--spacing-xl) 0 0;
+}
+
+.scribe-app-css-vars .scribe-publish-dialog-port-buttons .scribe-toolkit-button {
+  margin-right: var(--spacing-m);
+}
+
+.scribe-app-css-vars .scribe-publish-dialog-port-buttons .scribe-toolkit-button:last-child {
+  margin-right: 0;
+}
+
+.scribe-app-css-vars .scribe-publish-dialog-port-toggle-row {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: var(--spacing-m) 0;
+  overflow: hidden;
+}
+
+.scribe-app-css-vars .scribe-publish-dialog-port-toggle-row label {
+  align-self: center;
+  color: var(--text);
+  flex-grow: 1;
+  font-size: inherit;
+}
+
+.scribe-app-css-vars .scribe-publish-dialog-port-fieldset {
+  border: 0;
+  margin: 0 0 var(--spacing-s);
+  padding: 0;
+}
+
+.scribe-app-css-vars .scribe-publish-dialog-port-input-wrapper {
+  border-bottom: var(--border);
+  margin-top: var(--spacing-l);
+  padding-bottom: var(--spacing-xs);
+}
+
+.scribe-app-css-vars .scribe-publish-dialog-port-label {
+  color: var(--text-light);
+  display: block;
+  font-size: var(--xsmall-font-size);
+  line-height: 1.4;
+  margin-bottom: var(--spacing-xxs);
+  text-transform: none;
+}
+
+.scribe-app-css-vars .scribe-publish-dialog-port-input-row {
+  align-items: center;
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.scribe-app-css-vars .scribe-publish-dialog-port-input {
+  background: transparent;
+  border: 0;
+  color: var(--text);
+  flex: 1 1 auto;
+  font: inherit;
+  min-width: 0;
+  outline: none;
+  padding: 0;
+}
+
+.scribe-app-css-vars .scribe-publish-dialog-port-input-icon {
+  align-items: center;
+  background: transparent;
+  color: var(--text-light);
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  min-height: 1rem;
+  padding: 0;
+  text-decoration: none;
+}
+
+.scribe-app-css-vars .scribe-publish-dialog-port-input-icon svg {
+  height: 1rem;
+  width: 1rem;
+}
+
+@media (max-width: 760px) {
+  .scribe-app-css-vars .scribe-dialog-demo-frame {
+    padding: var(--spacing-m);
+  }
+
+  .scribe-app-css-vars .scribe-dialog-port-modal-wrapper,
+  .scribe-app-css-vars .scribe-dialog-port-modal-wrapper[data-compact="true"],
+  .scribe-app-css-vars .scribe-publish-dialog-port-wrapper {
+    max-width: 100%;
+    width: 100%;
+  }
+}

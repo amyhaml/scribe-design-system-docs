@@ -1,0 +1,298 @@
+/*
+ * Source-truth visual styles for Menu docs.
+ * Source files:
+ * - Scribe/packages/toolkit/src/components/SlashCommandMenu/index.tsx
+ * - Scribe/packages/toolkit/src/components/PopoverSelect/PopoverSelect.tsx
+ * - Scribe/packages/toolkit/src/components/ActionMenu/index.tsx
+ * - Scribe/packages/toolkit/src/components/Select/ReactSelectProps.ts
+ */
+
+.scribe-app-css-vars .scribe-menu-demo-row {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xl);
+}
+
+.scribe-app-css-vars.scribe-menu-demo-frame {
+  display: inline-flex;
+  max-width: 100%;
+  overflow: visible;
+  padding: var(--spacing-s);
+  width: fit-content;
+}
+
+.scribe-app-css-vars .scribe-block-menu-port {
+  background: var(--background-paper);
+  border-radius: var(--border-radius);
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2), 0px 4px 5px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+  color: var(--text-light);
+  padding: 0;
+  width: 20rem;
+}
+
+.scribe-app-css-vars .scribe-block-menu-wrapper {
+  min-width: 20rem;
+  width: 20rem;
+}
+
+.scribe-app-css-vars .scribe-block-menu-port fieldset,
+.scribe-app-css-vars .scribe-dropdown-menu-port fieldset {
+  border: 0;
+  margin: 0;
+  min-inline-size: 0;
+  padding: 0;
+}
+
+.scribe-app-css-vars .scribe-block-menu-select {
+  height: 30rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.scribe-app-css-vars .scribe-block-menu-select-wrapper {
+  position: relative;
+}
+
+.scribe-app-css-vars .scribe-block-menu-search-control {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-bottom: var(--border-width) solid var(--divider);
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--text);
+  display: flex;
+  font-size: var(--default-font-size);
+  justify-content: space-between;
+  margin: calc(-1 * var(--spacing-xs)) var(--spacing-m) 0;
+  min-height: auto;
+  outline: none;
+  padding: var(--spacing-xl) 0 var(--spacing-s) 0;
+  position: relative;
+  transition:
+    background 0.2s ease-in-out,
+    border-color 0.2s ease-in-out,
+    color 0.2s ease-in-out 0s;
+  width: auto;
+}
+
+.scribe-app-css-vars .scribe-block-menu-search-control[data-focused="true"] {
+  border-color: var(--primary);
+}
+
+.scribe-app-css-vars .scribe-block-menu-value-container {
+  line-height: normal;
+  padding: 0;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-block-menu-input {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: var(--text);
+  font: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-block-menu-input::placeholder {
+  color: var(--text-light);
+  opacity: 1;
+}
+
+.scribe-app-css-vars .scribe-block-menu-indicators {
+  align-items: center;
+  bottom: 25%;
+  display: flex;
+  height: 1em;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  width: 1em;
+}
+
+.scribe-app-css-vars .scribe-block-menu-search-control svg,
+.scribe-app-css-vars .scribe-dropdown-menu-search-control svg {
+  color: var(--text-light);
+  stroke: var(--text-light);
+}
+
+.scribe-app-css-vars .scribe-block-menu-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: var(--spacing-s);
+  max-height: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0 var(--spacing-m) var(--spacing-m);
+  text-transform: capitalize;
+}
+
+.scribe-app-css-vars .scribe-block-menu-header {
+  color: var(--text);
+  display: grid;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: var(--label-font-size);
+  font-weight: 700;
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: var(--spacing-xs) 0;
+  pointer-events: none;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-block-menu-header:not(:first-child) {
+  border-top: var(--border-width) solid var(--background-disabled);
+  margin-top: var(--spacing-m);
+  padding-top: 1.5rem;
+}
+
+.scribe-app-css-vars .scribe-block-menu-option {
+  align-items: center;
+  background: var(--background-paper);
+  color: var(--text-light);
+  cursor: pointer;
+  display: flex;
+  padding: var(--spacing-xs) 0 var(--spacing-xs) var(--spacing-s);
+}
+
+.scribe-app-css-vars .scribe-block-menu-option[data-focused="true"] {
+  background: var(--background-indicator);
+  color: var(--text);
+}
+
+.scribe-app-css-vars .scribe-block-menu-option:hover {
+  background: var(--background-main);
+  color: var(--text);
+}
+
+.scribe-app-css-vars .scribe-block-menu-command-label {
+  align-items: center;
+  display: flex;
+  gap: var(--spacing-s);
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-block-menu-command-name {
+  font-size: var(--label-font-size);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.scribe-app-css-vars .scribe-block-menu-command-label svg {
+  stroke: currentColor;
+  stroke-width: 1;
+  flex: 0 0 auto;
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.scribe-app-css-vars .scribe-block-menu-command-label svg.fill-color {
+  fill: currentColor;
+  stroke: transparent;
+}
+
+.scribe-app-css-vars .scribe-popover-menu-port {
+  background: var(--background-paper);
+  border-radius: var(--border-radius);
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2), 0px 4px 5px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+  overflow: hidden;
+  width: 10rem;
+}
+
+.scribe-app-css-vars .scribe-popover-menu-port [role="menu"] {
+  padding: 0;
+}
+
+.scribe-app-css-vars .scribe-popover-menu-item-wrapper {
+  align-items: flex-start;
+  background: var(--background-paper);
+  border-bottom: var(--border);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.scribe-app-css-vars .scribe-popover-menu-item-wrapper:last-child {
+  border-bottom: 0;
+}
+
+.scribe-app-css-vars .scribe-popover-menu-title {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  padding: var(--spacing-s) var(--spacing-m);
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-popover-menu-icon {
+  align-items: center;
+  display: inline-flex;
+  min-width: 1.5rem;
+}
+
+.scribe-app-css-vars .scribe-popover-menu-icon svg {
+  stroke: var(--text);
+  width: 1rem;
+}
+
+.scribe-app-css-vars .scribe-dropdown-menu-port {
+  background: var(--background-paper);
+  border-radius: var(--border-radius);
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2), 0px 4px 5px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+  color: var(--text-light);
+  overflow: hidden;
+  width: 20rem;
+}
+
+.scribe-app-css-vars .scribe-dropdown-menu-search-control {
+  align-items: center;
+  border-bottom: var(--border-width) solid var(--divider);
+  color: var(--text-light);
+  display: flex;
+  font-size: var(--default-font-size);
+  justify-content: space-between;
+  padding: var(--spacing-m) var(--spacing-m) var(--spacing-xxs);
+}
+
+.scribe-app-css-vars .scribe-dropdown-menu-list {
+  max-height: 20rem;
+  overflow-y: auto;
+  padding: 0;
+}
+
+.scribe-app-css-vars .scribe-dropdown-menu-option-port {
+  align-items: center;
+  background: var(--background-paper);
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  font-size: var(--default-font-size);
+  min-height: 2.375rem;
+  padding: var(--spacing-xs) var(--spacing-m);
+}
+
+.scribe-app-css-vars .scribe-dropdown-menu-option-port[data-focused="true"],
+.scribe-app-css-vars .scribe-dropdown-menu-option-port:hover {
+  background: var(--background-main);
+  color: var(--text);
+}
+
+@media (max-width: 720px) {
+  .scribe-app-css-vars .scribe-block-menu-list {
+    grid-template-columns: 1fr;
+  }
+
+  .scribe-app-css-vars .scribe-menu-demo-row {
+    flex-direction: column;
+  }
+
+  .scribe-app-css-vars.scribe-menu-demo-frame {
+    overflow-x: auto;
+  }
+}

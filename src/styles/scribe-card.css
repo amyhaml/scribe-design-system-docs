@@ -1,0 +1,342 @@
+/*
+ * Source-truth port for Card docs.
+ * Source files:
+ * - Scribe/src/components/shared/Card/index.tsx
+ * - Scribe/src/components/shared/Card/shared/CardImage.tsx
+ * - Scribe/src/components/shared/StatusIndicator.tsx
+ * - Scribe/src/components/shared/Meta.tsx
+ * - Scribe/src/components/shared/Separator.tsx
+ * - Scribe/src/components/shared/MoreOptionsMenu.tsx
+ * - Scribe/packages/toolkit/src/components/SvgButton/index.tsx
+ */
+
+.scribe-app-css-vars .scribe-card-demo-frame {
+  background: var(--background-paper);
+  overflow-x: auto;
+  padding: var(--spacing-xl);
+}
+
+.scribe-app-css-vars .scribe-card-demo-list-stack,
+.scribe-app-css-vars .scribe-card-demo-grid-stack {
+  display: grid;
+  gap: var(--spacing-xl);
+}
+
+.scribe-app-css-vars .scribe-card-demo-list-stack {
+  min-width: 50rem;
+}
+
+.scribe-app-css-vars .scribe-card-demo-grid-stack {
+  max-width: 25rem;
+}
+
+.scribe-app-css-vars .scribe-card-port-meta {
+  font-size: var(--xsmall-font-size);
+  line-height: 1.5;
+}
+
+.scribe-app-css-vars .scribe-card-port-status-indicator {
+  background: var(--scribe-card-status-background, transparent);
+  border: var(--scribe-card-status-border, none);
+  border-radius: var(--border-radius);
+  color: var(--scribe-card-status-color, var(--primary-contrast-text));
+  padding: 0 var(--spacing-xxs);
+  text-transform: capitalize;
+}
+
+.scribe-app-css-vars .scribe-card-port-separator {
+  background: var(--divider);
+  display: inline-block;
+  height: var(--spacing-l);
+  margin: 0 var(--spacing-xs);
+  width: var(--border-width);
+}
+
+.scribe-app-css-vars .scribe-card-port-article {
+  align-items: baseline;
+  background: var(--background-paper);
+  border-radius: var(--border-radius);
+  box-shadow:
+    0px 1px 3px rgba(0, 0, 0, 0.15),
+    0px 1px 2px rgba(0, 0, 0, 0.08),
+    0px 0px 2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  display: block;
+  flex-direction: row;
+  overflow: hidden;
+  position: relative;
+  transition: box-shadow 0.2s ease-in-out;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-card-port-article[data-list-view="true"] {
+  align-items: center;
+  display: flex;
+}
+
+.scribe-app-css-vars .scribe-card-port-article[data-selected="true"] {
+  outline: var(--tertiary-border-width) solid var(--focus-color);
+}
+
+.scribe-app-css-vars .scribe-card-port-article.disable-text-selection {
+  user-select: none;
+}
+
+.scribe-app-css-vars .scribe-card-port-article:hover {
+  box-shadow:
+    0px 1px 10px rgba(0, 0, 0, 0.2),
+    0px 4px 5px rgba(0, 0, 0, 0.12),
+    0px 2px 4px rgba(0, 0, 0, 0.14);
+}
+
+.scribe-app-css-vars .scribe-card-port-article:hover a {
+  text-decoration: none;
+}
+
+.scribe-app-css-vars .scribe-card-port-article img {
+  display: block;
+}
+
+.scribe-app-css-vars .scribe-card-port-article a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.scribe-app-css-vars .scribe-card-port-image-wrapper {
+  align-items: center;
+  background: var(--placeholder-image);
+  display: flex;
+  height: auto;
+  justify-content: center;
+  position: relative;
+  width: auto;
+}
+
+.scribe-app-css-vars .scribe-card-port-image-wrapper[data-list-view="true"] {
+  height: 9rem;
+  width: 9rem;
+}
+
+.scribe-app-css-vars .scribe-card-port-image-wrapper::before {
+  content: "";
+  display: block;
+  padding-bottom: 50%;
+}
+
+.scribe-app-css-vars .scribe-card-port-image {
+  margin: 0 auto;
+  max-height: 15rem;
+  object-fit: cover;
+}
+
+.scribe-app-css-vars .scribe-card-port-image[data-list-view="true"] {
+  height: 9rem;
+  max-height: none;
+  width: 9rem;
+}
+
+.scribe-app-css-vars .scribe-card-port-no-image {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-card-port-no-image svg {
+  stroke: var(--text-disabled);
+}
+
+.scribe-app-css-vars .scribe-card-port-info {
+  min-height: 10rem;
+  padding: var(--spacing-xs) var(--spacing-s);
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-card-port-info[data-list-view="true"] {
+  min-height: auto;
+  padding: var(--spacing-xs) var(--spacing-m);
+}
+
+.scribe-app-css-vars .scribe-card-port-action-menu {
+  position: absolute;
+  right: 0;
+}
+
+.scribe-app-css-vars .scribe-card-port-toolbar-wrapper {
+  cursor: pointer;
+  direction: rtl;
+}
+
+.scribe-app-css-vars .scribe-card-port-svg-button {
+  background-color: transparent;
+  border: 0;
+  color: var(--text);
+  cursor: pointer;
+  margin-bottom: auto;
+  margin-top: auto;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  padding: 0;
+}
+
+.scribe-app-css-vars .scribe-card-port-svg-button:hover svg {
+  stroke: var(--focus-color);
+}
+
+.scribe-app-css-vars .scribe-card-port-svg-button:disabled {
+  cursor: not-allowed;
+}
+
+.scribe-app-css-vars .scribe-card-port-svg-button:disabled svg {
+  cursor: not-allowed;
+  stroke: var(--text-disabled);
+}
+
+.scribe-app-css-vars .scribe-card-port-metadata {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  text-transform: uppercase;
+  width: 92%;
+  word-break: break-word;
+}
+
+.scribe-app-css-vars .scribe-card-port-metadata[data-list-view="true"] {
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-card-port-secondary-metadata {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  transition: opacity 0.2s ease-out;
+}
+
+.scribe-app-css-vars .scribe-card-port-secondary-metadata[data-list-view="true"] {
+  display: flex;
+}
+
+.scribe-app-css-vars .scribe-card-port-title-wrapper {
+  display: flex;
+}
+
+.scribe-app-css-vars .scribe-card-port-link-wrapper {
+  flex-grow: 1;
+}
+
+.scribe-app-css-vars .scribe-card-port-title {
+  font-size: var(--label-font-size);
+  font-weight: 500;
+  margin-bottom: var(--spacing-s);
+  margin-top: var(--spacing-s);
+  width: 88%;
+  word-break: break-word;
+}
+
+.scribe-app-css-vars .scribe-card-port-title[data-list-view="true"] {
+  font-size: inherit;
+}
+
+.scribe-app-css-vars .scribe-card-port-title:focus {
+  color: var(--focus-color);
+  outline: none;
+}
+
+.scribe-app-css-vars .scribe-card-port-description {
+  color: var(--text-light);
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  margin: 0 0 var(--spacing-xs) 0;
+  word-break: break-word;
+}
+
+.scribe-app-css-vars .scribe-card-port-description:empty {
+  margin: 0;
+}
+
+.scribe-app-css-vars .scribe-card-port-author-date-container {
+  align-items: center;
+  display: block;
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-xs);
+}
+
+.scribe-app-css-vars .scribe-card-port-author-date-container[data-list-view="true"] {
+  display: flex;
+  margin-bottom: 0;
+}
+
+.scribe-app-css-vars .scribe-card-port-avatar-photo,
+.scribe-app-css-vars .scribe-card-port-avatar-initials {
+  border-radius: 50%;
+  display: flex;
+  height: 1.75rem;
+  width: 1.75rem;
+}
+
+.scribe-app-css-vars .scribe-card-port-avatar-photo,
+.scribe-app-css-vars .scribe-card-port-avatar-initials {
+  margin-right: var(--spacing-xs);
+}
+
+.scribe-app-css-vars .scribe-card-port-avatar-initials {
+  align-items: center;
+  background-color: var(--placeholder-image);
+  justify-content: center;
+  min-width: 1.75rem;
+}
+
+.scribe-app-css-vars .scribe-card-port-avatar-initials legend {
+  color: var(--primary-contrast-text);
+}
+
+.scribe-app-css-vars .scribe-card-port-ellipsis-text,
+.scribe-app-css-vars .scribe-card-port-ellipsis-time {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.scribe-app-css-vars .scribe-card-port-ellipsis-time {
+  display: block;
+}
+
+.scribe-app-css-vars .scribe-card-port-row {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 760px) {
+  .scribe-app-css-vars .scribe-card-demo-frame {
+    padding: var(--spacing-m);
+  }
+
+  .scribe-app-css-vars .scribe-card-demo-list-stack {
+    min-width: 0;
+  }
+
+  .scribe-app-css-vars .scribe-card-port-article[data-list-view="true"] {
+    align-items: baseline;
+    display: block;
+  }
+
+  .scribe-app-css-vars .scribe-card-port-image-wrapper[data-list-view="true"],
+  .scribe-app-css-vars .scribe-card-port-image[data-list-view="true"] {
+    height: auto;
+    width: auto;
+  }
+
+  .scribe-app-css-vars .scribe-card-port-image[data-list-view="true"] {
+    max-height: 15rem;
+  }
+}

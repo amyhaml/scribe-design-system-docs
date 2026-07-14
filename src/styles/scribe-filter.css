@@ -1,0 +1,328 @@
+/*
+ * Source-truth styles for Filter docs ports.
+ * Source files:
+ * - Scribe/src/components/shared/FilterPanel.tsx
+ * - Scribe/src/components/Filters/FilterHeading.tsx
+ * - Scribe/src/components/shared/FilterSidebar/index.tsx
+ * - Scribe/src/components/ListFilters/FilterToggle.tsx
+ * - Scribe/src/components/ListFilters/FilterSelect.tsx
+ * - Scribe/src/components/ListFilters/FilterGroupLabel.tsx
+ * - Scribe/src/components/shared/Chip/ChipCheckbox.tsx
+ * - Scribe/src/components/shared/Chip/ChipBase.tsx
+ */
+
+.scribe-app-css-vars .scribe-filter-demo-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  max-width: 64rem;
+}
+
+.scribe-app-css-vars .scribe-filter-demo-sidebar-slice,
+.scribe-app-css-vars .scribe-filter-demo-variant-stack {
+  max-width: 22rem;
+  min-width: 0;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-filter-demo-variant-stack {
+  display: grid;
+  gap: var(--spacing-m);
+}
+
+.scribe-app-css-vars .scribe-filter-demo-grid {
+  display: grid;
+  gap: var(--spacing-xl);
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  max-width: 64rem;
+}
+
+.scribe-app-css-vars .scribe-filter-demo-column {
+  min-width: 0;
+}
+
+.scribe-app-css-vars .scribe-filter-demo-heading {
+  color: var(--text-light);
+  font-size: var(--default-font-size);
+  font-weight: 700;
+  margin: 0 0 var(--spacing-s);
+}
+
+.scribe-app-css-vars .scribe-filter-demo-row {
+  align-items: start;
+  display: grid;
+  gap: var(--spacing-m);
+  grid-template-columns: 5rem minmax(0, 16rem);
+}
+
+.scribe-app-css-vars .scribe-filter-demo-state {
+  color: var(--text-light);
+  font-size: var(--label-font-size);
+  font-weight: 700;
+  margin: var(--spacing-s) 0 0;
+}
+
+.scribe-app-css-vars .scribe-filter-port-heading-fieldset {
+  border: 0;
+  margin: 0;
+  min-inline-size: 0;
+  padding: 0;
+}
+
+.scribe-app-css-vars .scribe-filter-port-legend {
+  align-items: center;
+  border-bottom: var(--border);
+  color: var(--text);
+  display: flex;
+  font-size: var(--label-font-size);
+  font-weight: bold;
+  justify-content: space-between;
+  line-height: 1.4;
+  padding: 0 0 var(--spacing-xs);
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-filter-port-collapse-button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+.scribe-app-css-vars .scribe-filter-port-collapse-button svg {
+  display: block;
+}
+
+.scribe-app-css-vars .scribe-filter-port-collapsible-form {
+  margin-bottom: var(--spacing-m);
+  margin-top: var(--spacing-xxs);
+}
+
+.scribe-app-css-vars .scribe-filter-port-collapsible-form[data-collapsed="true"] {
+  display: none;
+}
+
+.scribe-app-css-vars .scribe-filter-port-collapsible-form[data-flush-top="true"] {
+  margin-top: 0;
+}
+
+.scribe-app-css-vars .scribe-filter-chip-checkbox-port {
+  align-items: center;
+  animation: scribe-chip-port-fade-in 0.2s linear;
+  background: var(--background-main);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  box-shadow: none;
+  color: var(--text-disabled);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: var(--label-font-size);
+  justify-content: space-between;
+  line-height: 1.0625rem;
+  margin: var(--spacing-xxs) var(--spacing-xs) var(--spacing-xxs) 0;
+  max-width: 100%;
+  min-height: 2rem;
+  padding: 0 var(--spacing-s);
+  transition: all 0.1s ease-out;
+  width: max-content;
+}
+
+.scribe-app-css-vars .scribe-filter-chip-checkbox-port[aria-checked="true"] {
+  background: var(--background-paper);
+  border-color: transparent;
+  box-shadow:
+    0px 1px 3px rgba(0, 0, 0, 0.15),
+    0px 1px 2px rgba(0, 0, 0, 0.08),
+    0px 0px 2px rgba(0, 0, 0, 0.05);
+  color: var(--text);
+}
+
+.scribe-app-css-vars .scribe-filter-chip-checkbox-port:not([data-show-remove-button="true"])[aria-checked="true"] {
+  background: var(--background-checked);
+  color: var(--error-contrast-text);
+}
+
+.scribe-app-css-vars .scribe-filter-chip-checkbox-port .close {
+  color: var(--text);
+  margin-left: var(--spacing-xs);
+  width: 1rem;
+}
+
+.scribe-app-css-vars .scribe-filter-chip-checkbox-port:not([aria-checked="true"]) .close {
+  display: none;
+}
+
+.scribe-app-css-vars .scribe-filter-chip-checkboxes-row {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.scribe-app-css-vars .scribe-filter-toggle-row-port {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xxs);
+}
+
+.scribe-app-css-vars .scribe-filter-toggle-row-port-label {
+  align-items: center;
+  color: var(--text);
+  display: flex;
+  font-size: var(--default-font-size);
+  font-weight: normal;
+  gap: var(--spacing-xs);
+}
+
+.scribe-app-css-vars .scribe-filter-demo-avatar {
+  align-items: center;
+  background: var(--background-paper);
+  border-radius: 50%;
+  color: var(--text-light);
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: 0.625rem;
+  height: 1.5rem;
+  justify-content: center;
+  width: 1.5rem;
+}
+
+.scribe-app-css-vars .scribe-filter-select-row-port {
+  margin-bottom: var(--spacing-xs);
+  margin-top: var(--spacing-xs);
+}
+
+.scribe-app-css-vars .scribe-filter-select-row-port .scribe-field-port-select-wrapper [class$="-control"] {
+  padding-bottom: var(--spacing-xxs) !important;
+  padding-top: var(--spacing-l) !important;
+}
+
+.scribe-app-css-vars .scribe-filter-chip-list-row-port .scribe-chip-list-port-wrapper {
+  border-bottom: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-filter-chip-list-row-port .scribe-chip-list-port-wrapper > fieldset {
+  min-width: 0;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-filter-chip-list-row-port .scribe-chip-list-port-wrapper > fieldset > legend {
+  box-sizing: border-box;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-filter-chip-list-row-port .scribe-chip-list-port-wrapper > fieldset ~ div {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxs);
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-filter-chip-list-row-port .scribe-chip-list-port-wrapper > fieldset ~ div > span {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
+  width: 100%;
+}
+
+.scribe-app-css-vars
+  .scribe-filter-chip-list-row-port[data-chip-layout="condensed"]
+  .scribe-chip-list-port-wrapper
+  > fieldset
+  ~ div
+  > span {
+  width: max-content;
+}
+
+.scribe-app-css-vars .scribe-filter-group-label-port {
+  color: var(--text-light);
+  font-size: var(--label-font-size);
+  font-weight: bold;
+  line-height: 1.4;
+  margin-bottom: var(--spacing-xs);
+  margin-top: var(--spacing-xl);
+}
+
+.scribe-app-css-vars .scribe-filter-date-row-port-sub-label {
+  color: var(--text-light);
+  display: block;
+  font-size: var(--label-font-size);
+  line-height: 1.4;
+  margin-bottom: calc(-1 * var(--spacing-s));
+}
+
+.scribe-app-css-vars .scribe-filter-selected-date-range-port {
+  display: grid;
+  gap: var(--spacing-xs);
+}
+
+.scribe-app-css-vars .scribe-filter-set-demo-grid {
+  display: grid;
+  gap: var(--spacing-xl);
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  max-width: 64rem;
+}
+
+.scribe-app-css-vars .scribe-filter-set-port {
+  background: var(--background-main);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  min-width: 0;
+  padding: var(--spacing-l);
+}
+
+.scribe-app-css-vars .scribe-filter-set-port-title {
+  color: var(--text-light);
+  font-size: var(--default-font-size);
+  font-weight: 700;
+  margin: 0 0 var(--spacing-l);
+}
+
+.scribe-app-css-vars .scribe-filter-set-port-scrollable {
+  max-height: calc(100vh - 12rem);
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0 var(--spacing-m) 0 0;
+}
+
+.scribe-app-css-vars .scribe-filter-set-port-scrollable legend {
+  text-transform: none;
+}
+
+.scribe-app-css-vars .scribe-filter-set-port-apply-bar {
+  align-items: center;
+  border-top: var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-s);
+  margin: var(--spacing-l) var(--spacing-s) 0 0;
+  padding-top: var(--spacing-l);
+  text-align: center;
+}
+
+.scribe-app-css-vars .scribe-filter-set-port-apply-bar .filter-sidebar-clear-all {
+  border-radius: var(--border-radius);
+  box-shadow: none;
+  min-height: 2.5rem;
+  min-width: 5.625rem;
+  padding: 0 var(--spacing-s);
+}
+
+.scribe-app-css-vars .scribe-filter-related-preview-port {
+  display: grid;
+  gap: var(--spacing-l);
+  max-width: 36rem;
+}
+
+@media (max-width: 760px) {
+  .scribe-app-css-vars .scribe-filter-demo-row,
+  .scribe-app-css-vars .scribe-filter-demo-row-wide {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

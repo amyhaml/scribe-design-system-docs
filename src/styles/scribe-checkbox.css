@@ -1,0 +1,143 @@
+/*
+ * Source-truth port for Checkbox docs.
+ * Source files:
+ * - Scribe/src/components/shared/Checkbox.tsx
+ * - Scribe/src/components/shared/Label.tsx
+ * - Scribe/src/pages/Feeds/SearchContentModal/SelectedItemsToolbar.tsx
+ * - Scribe/src/components/LandingPages/Collections/SelectedItemsToolbar/SelectionControls.tsx
+ */
+
+.scribe-app-css-vars .scribe-checkbox-demo-frame {
+  background: var(--background-paper);
+  overflow-x: auto;
+  padding: var(--spacing-xl);
+}
+
+.scribe-app-css-vars .scribe-checkbox-matrix {
+  align-items: center;
+  display: grid;
+  gap: var(--spacing-l);
+  grid-template-columns: max-content repeat(3, max-content);
+  width: max-content;
+}
+
+.scribe-app-css-vars .scribe-checkbox-matrix-heading,
+.scribe-app-css-vars .scribe-checkbox-matrix-row-label {
+  color: var(--text-lighter);
+  font-size: var(--label-font-size);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.scribe-app-css-vars .scribe-checkbox-demo-related {
+  display: grid;
+  gap: var(--spacing-xl);
+}
+
+.scribe-app-css-vars .scribe-checkbox-switch-preview {
+  align-items: center;
+  background: var(--background-main);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: space-between;
+  max-width: 26.5rem;
+  padding: var(--spacing-m) var(--spacing-xl);
+}
+
+.scribe-app-css-vars .scribe-checkbox-switch-preview-label {
+  font-size: var(--heading-font-size);
+}
+
+.scribe-app-css-vars .scribe-checkbox-port-container {
+  align-items: center;
+  color: var(--text);
+  cursor: pointer;
+  display: inline-flex;
+  flex-flow: row nowrap;
+  font-size: var(--label-font-size);
+  justify-content: center;
+  margin-bottom: var(--spacing-xs);
+  pointer-events: initial;
+  position: initial;
+  transition: all 0.1s ease-out;
+  user-select: none;
+}
+
+.scribe-app-css-vars .scribe-checkbox-port-container:focus-within {
+  box-shadow: var(--border-focus);
+}
+
+.scribe-app-css-vars .scribe-checkbox-port-container[data-disabled="true"] {
+  color: #555555;
+  cursor: not-allowed;
+}
+
+.scribe-app-css-vars .scribe-checkbox-port-container[data-disabled="true"] label {
+  cursor: not-allowed;
+}
+
+.scribe-app-css-vars .scribe-checkbox-port-hidden-input {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 0;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 0;
+}
+
+.scribe-app-css-vars .scribe-checkbox-port-checkmark-svg path {
+  stroke: var(--background-paper);
+  stroke-linecap: round;
+  stroke-width: 0.0938rem;
+}
+
+.scribe-app-css-vars .scribe-checkbox-port-box {
+  align-items: center;
+  background-color: var(--background-paper);
+  border: var(--border-width) solid #2d2d2d;
+  border-radius: 0.125rem;
+  display: inline-flex;
+  height: 0.875rem;
+  justify-content: center;
+  transition:
+    border-color 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0s,
+    background-color 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0s;
+  width: 0.875rem;
+}
+
+.scribe-app-css-vars .scribe-checkbox-port-box[data-checked="true"] {
+  background-color: var(--background-checked);
+}
+
+.scribe-app-css-vars .scribe-checkbox-port-box .scribe-checkbox-port-checkmark-svg {
+  opacity: 0;
+  transition: opacity 0.1s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0s;
+}
+
+.scribe-app-css-vars .scribe-checkbox-port-box[data-checked="true"] .scribe-checkbox-port-checkmark-svg {
+  opacity: 100%;
+}
+
+.scribe-app-css-vars .scribe-checkbox-port-label {
+  margin-left: var(--spacing-xs);
+}
+
+@media (max-width: 760px) {
+  .scribe-app-css-vars .scribe-checkbox-demo-frame {
+    padding: var(--spacing-m);
+  }
+
+  .scribe-app-css-vars .scribe-checkbox-matrix {
+    gap: var(--spacing-m);
+  }
+
+  .scribe-app-css-vars .scribe-checkbox-switch-preview {
+    max-width: 100%;
+    padding: var(--spacing-m);
+  }
+}

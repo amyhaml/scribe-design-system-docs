@@ -65,14 +65,18 @@ function FigmaLibraryIcon({ className }: { className?: string }) {
     <svg
       className={className}
       viewBox="0 0 24 24"
-      fill="currentColor"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       aria-hidden
     >
-      <path d="M8 2a4 4 0 0 0 0 8h4V2H8Z" />
-      <path d="M12 2h4a4 4 0 0 1 0 8h-4V2Z" />
-      <path d="M12 10h4a4 4 0 1 1-4 4v-4Z" />
-      <path d="M4 14a4 4 0 0 1 4-4h4v8H8a4 4 0 0 1-4-4Z" />
-      <path d="M4 22a4 4 0 0 1 4-4h4v2a4 4 0 1 1-8 2Z" />
+      <path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5Z" />
+      <path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2Z" />
+      <path d="M12 9h3.5a3.5 3.5 0 1 1 0 7H12V9Z" />
+      <path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5Z" />
+      <path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0Z" />
     </svg>
   );
 }

@@ -3,6 +3,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 
 import { DocsShell, DocsSection } from "@/components/docs/DocsShell";
 import { ScribeIconsGallery } from "@/components/docs/ScribeIconsGallery";
+import { ScribeLogoGallery } from "@/components/docs/ScribeLogoGallery";
 import { MarkdownProse } from "@/components/docs/MarkdownProse";
 import { typographyTokenAnchorId } from "@/data/component-typography-slots";
 import {
@@ -511,6 +512,9 @@ const FOUNDATIONS: Record<string, Foundation> = {
   },
   icons: {
     render: () => <ScribeIconsGallery />,
+  },
+  logo: {
+    render: () => <ScribeLogoGallery />,
   },
 };
 

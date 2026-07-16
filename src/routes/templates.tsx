@@ -1,6 +1,7 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { ExternalLink, X } from "lucide-react";
+import type { KeyboardEvent, MouseEvent } from "react";
 import { useMemo, useState } from "react";
 
 import { DocsShell } from "@/components/docs/DocsShell";
@@ -141,30 +142,53 @@ function TemplatePreviewCard({
   onPreview: (template: DocsTemplate) => void;
 }) {
   const previewLabel = `Preview ${template.title}`;
+  const hasSelectedText = () => Boolean(window.getSelection()?.toString().trim());
+  const handleCardClick = () => {
+    if (!hasSelectedText()) onPreview(template);
+  };
+  const handleCardKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.target !== event.currentTarget) return;
+    if (event.key !== "Enter" && event.key !== " ") return;
+
+    event.preventDefault();
+    onPreview(template);
+  };
+  const stopActionPropagation = (event: MouseEvent<HTMLElement>) => {
+    event.stopPropagation();
+  };
 
   return (
     <article className="group relative">
-      <div className="relative">
-        <button
-          type="button"
-          onClick={() => onPreview(template)}
+      <div
+        role="button"
+        tabIndex={0}
+        onClick={handleCardClick}
+        onKeyDown={handleCardKeyDown}
+        className="relative cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        aria-label={previewLabel}
+      >
+        <div
           className="relative block aspect-[1.6] w-full cursor-pointer overflow-hidden rounded-2xl border border-border bg-muted/40 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-          aria-label={previewLabel}
         >
           <div className="absolute left-1/2 top-1/2 h-[319px] w-[521px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl border bg-white shadow-sm">
             <TemplatePreviewSurface template={template} mode="card" />
           </div>
-        </button>
+        </div>
         <div className="pointer-events-none absolute inset-0 flex flex-col justify-end rounded-2xl bg-slate-950/0 p-5 opacity-0 transition-all duration-200 group-hover:bg-slate-950/72 group-hover:opacity-100 group-focus-within:bg-slate-950/72 group-focus-within:opacity-100">
           <div className="pointer-events-auto">
-            <h2 className="text-xl font-semibold text-white">{template.title}</h2>
-            <p className="mt-1 max-w-md text-sm leading-relaxed text-white/90">
+            <h2 className="cursor-text select-text text-xl font-semibold text-white">
+              {template.title}
+            </h2>
+            <p className="mt-1 max-w-md cursor-text select-text text-sm leading-relaxed text-white/90">
               {template.description}
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
               <button
                 type="button"
-                onClick={() => onPreview(template)}
+                onClick={(event) => {
+                  stopActionPropagation(event);
+                  onPreview(template);
+                }}
                 className="inline-flex h-9 cursor-pointer items-center justify-center rounded-full bg-white/18 px-4 text-sm font-medium text-white transition-colors hover:bg-white/26 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
                 Preview
@@ -174,6 +198,7 @@ function TemplatePreviewCard({
                   href={template.figmaUrl}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={stopActionPropagation}
                   className="inline-flex h-9 items-center justify-center rounded-full bg-white/18 px-4 text-sm font-medium text-white transition-colors hover:bg-white/26 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
                   <ExternalLink className="mr-2 h-3.5 w-3.5" />
@@ -182,8 +207,9 @@ function TemplatePreviewCard({
               ) : (
                 <button
                   type="button"
-                  disabled
-                  className="inline-flex h-9 items-center justify-center rounded-full bg-white/12 px-4 text-sm font-medium text-white/58"
+                  aria-disabled="true"
+                  onClick={stopActionPropagation}
+                  className="inline-flex h-9 cursor-default items-center justify-center rounded-full bg-white/12 px-4 text-sm font-medium text-white/58"
                 >
                   <ExternalLink className="mr-2 h-3.5 w-3.5" />
                   View Figma designs

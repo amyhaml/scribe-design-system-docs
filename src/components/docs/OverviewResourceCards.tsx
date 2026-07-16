@@ -63,7 +63,9 @@ function ResourceCardVisual({ card }: { card: OverviewResourceCard }) {
 export function OverviewResourceCards() {
   return (
     <section aria-label="Scribe resources" className="space-y-5">
-      <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">QUICKLINKS</p>
+      <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+        RESOURCES
+      </p>
       <div className="grid gap-4 md:grid-cols-3">
         {resourceCards.map((card) => (
           <a

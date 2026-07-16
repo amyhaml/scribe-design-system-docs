@@ -12,7 +12,8 @@ export type FoundationSlug =
   | "spacing"
   | "radius"
   | "elevation"
-  | "icons";
+  | "icons"
+  | "logo";
 
 export type FoundationNavEntry = {
   slug: FoundationSlug;
@@ -49,6 +50,7 @@ export const FOUNDATION_NAV_ENTRIES: FoundationNavEntry[] = [
   { slug: "radius", label: "Radius" },
   { slug: "elevation", label: "Elevation" },
   { slug: "icons", label: "Icons" },
+  { slug: "logo", label: "Logo" },
 ];
 
 export const DOCS_NAV_ENTRIES: DocsComponentNavEntry[] = [

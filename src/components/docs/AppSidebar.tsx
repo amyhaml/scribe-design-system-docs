@@ -1,5 +1,5 @@
 import { Link, getRouteApi, useRouterState } from "@tanstack/react-router";
-import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState, type ComponentType } from "react";
 import {
   Search,
   Palette,
@@ -36,7 +36,23 @@ const rootRoute = getRouteApi("__root__");
 
 const SIDEBAR_SCROLL_STORAGE_KEY = "scribe-docs-sidebar-scroll-top";
 
-const foundationIcons: Record<FoundationSlug, LucideIcon> = {
+type FoundationIcon = LucideIcon | ComponentType<{ className?: string }>;
+
+function ScribeLetterSidebarIcon({ className }: { className?: string }) {
+  return (
+    <span
+      className={className}
+      style={{
+        backgroundColor: "currentColor",
+        WebkitMask: "url('/brand/logo-letter-icon.svg') center / contain no-repeat",
+        mask: "url('/brand/logo-letter-icon.svg') center / contain no-repeat",
+      }}
+      aria-hidden
+    />
+  );
+}
+
+const foundationIcons: Record<FoundationSlug, FoundationIcon> = {
   palette: Palette,
   color: Droplets,
   typography: Type,
@@ -44,6 +60,7 @@ const foundationIcons: Record<FoundationSlug, LucideIcon> = {
   radius: Square,
   elevation: Layers,
   icons: Sparkles,
+  logo: ScribeLetterSidebarIcon,
 };
 
 export function AppSidebar() {
@@ -165,7 +182,7 @@ export function AppSidebar() {
                         className="flex items-center gap-2"
                         onClick={saveCurrentSidebarScroll}
                       >
-                        <Icon className="h-3.5 w-3.5" />
+                        <Icon className={f.slug === "logo" ? "h-[18px] w-[18px]" : "h-3.5 w-3.5"} />
                         <span>{f.label}</span>
                       </Link>
                     </SidebarMenuButton>

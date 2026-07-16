@@ -21,8 +21,8 @@ import { cn } from "@/lib/utils";
 import { buildDocsSearchGroups, type DocsSearchItem } from "@/lib/docs/navigation";
 import type { StorybookIndex } from "@/lib/storybook";
 
-const GITHUB_REPO_URL = "https://github.com/Media-Platforms/scribe";
-const FIGMA_LIBRARY_URL =
+export const GITHUB_REPO_URL = "https://github.com/amyhaml/scribe-design-system-docs";
+export const FIGMA_LIBRARY_URL =
   "https://www.figma.com/design/j9rEb1JK8RdH7bs1Q74qJK/Scribe-Component-Library?node-id=0-1&p=f&t=qxkyYWkYPUXaJ9Gg-0";
 
 function AstryxSearchIcon({ className }: { className?: string }) {
@@ -43,7 +43,7 @@ function AstryxSearchIcon({ className }: { className?: string }) {
   );
 }
 
-function AstryxGithubIcon({ className }: { className?: string }) {
+export function AstryxGithubIcon({ className }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -60,7 +60,7 @@ function AstryxGithubIcon({ className }: { className?: string }) {
   );
 }
 
-function FigmaLibraryIcon({ className }: { className?: string }) {
+export function FigmaLibraryIcon({ className }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -310,14 +310,14 @@ export function DocsGlobalNav({ storybookIndex }: { storybookIndex: StorybookInd
                   href={GITHUB_REPO_URL}
                   target="_blank"
                   rel="noreferrer"
-                  aria-label="Open Scribe GitHub repository"
+                  aria-label="Docs repo"
                   className="docs-global-nav-interactive inline-flex h-8 w-8 items-center justify-center rounded-full text-slate-950 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
                 >
                   <AstryxGithubIcon className="h-5 w-5" />
                 </a>
               </TooltipTrigger>
               <TooltipContent side="bottom" className="rounded-full bg-slate-950 px-3 py-1.5 text-xs text-white">
-                GitHub
+                Docs repo
               </TooltipContent>
             </Tooltip>
           </nav>

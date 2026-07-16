@@ -115,10 +115,10 @@ export function AppSidebar() {
         <Link
           to="/"
           aria-label="Scribe Design System, home"
-          className="flex w-full min-w-0 flex-row items-center gap-2 px-2 py-1.5 group-data-[collapsible=icon]:justify-center"
+          className="flex w-full min-w-0 flex-row items-end gap-3 px-2 py-1.5 group-data-[collapsible=icon]:justify-center"
         >
           <ScribeLogoWideBlack className="min-w-0 shrink" />
-          <span className="shrink-0 pt-1 text-[11px] leading-tight text-muted-foreground group-data-[collapsible=icon]:hidden">
+          <span className="shrink-0 text-[11px] leading-tight text-muted-foreground group-data-[collapsible=icon]:hidden">
             Design System
           </span>
         </Link>

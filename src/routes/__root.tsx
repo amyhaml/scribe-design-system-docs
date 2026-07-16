@@ -36,6 +36,7 @@ import scribeTooltipCss from "../styles/scribe-tooltip.css?raw";
 import scribeTreeMenuCss from "../styles/scribe-tree-menu.css?raw";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { AppSidebar } from "@/components/docs/AppSidebar";
+import { DocsFooter } from "@/components/docs/DocsFooter";
 import { DocsGlobalNav } from "@/components/docs/DocsTopNav";
 import { storybookIndexQuery, EMPTY_STORYBOOK_INDEX, type StorybookIndex } from "@/lib/storybook";
 import { SidebarProvider } from "@/components/ui/sidebar";
@@ -182,6 +183,7 @@ function RootComponent() {
             <main className="min-w-0 flex-1">
               <Outlet />
             </main>
+            <DocsFooter />
           </div>
         </div>
       </SidebarProvider>

@@ -21,16 +21,16 @@ const resourceCards: OverviewResourceCard[] = [
     visual: "image",
   },
   {
-    description: "Design files and workflows related to Scribe",
+    description: "Figma hub with design files and workflows related to Scribe",
     href: FIGMA_HUB_URL,
     image: "/overview/scribe-hub.png",
-    title: "Design Hub",
+    title: "Design Figma Files",
     visual: "image",
   },
   {
     description: "Scribe github repository",
     href: GITHUB_REPO_URL,
-    title: "Github Repo",
+    title: "Scribe Repo",
     visual: "github",
   },
 ];

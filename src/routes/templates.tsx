@@ -353,7 +353,7 @@ function TemplatesPage() {
               "rounded-full px-3 py-1.5 text-sm font-normal text-muted-foreground transition-colors",
               activeCategory === category
                 ? "bg-sidebar-accent font-medium text-sidebar-accent-foreground"
-                : "hover:bg-slate-100",
+                : "docs-global-nav-interactive",
             )}
           >
             {category}

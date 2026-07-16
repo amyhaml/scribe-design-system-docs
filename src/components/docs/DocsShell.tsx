@@ -34,6 +34,7 @@ export function DocsShell({
   children,
   toc,
   tocPlacement = "sidebar",
+  headerAlign = "left",
 }: {
   breadcrumbs?: { label: string; to?: string }[];
   title: string;
@@ -44,6 +45,7 @@ export function DocsShell({
   toc?: { id: string; label: string }[];
   /** `header`: full-width article; compact “On this page” beside the title. `sidebar`: right rail (component docs). */
   tocPlacement?: "header" | "sidebar";
+  headerAlign?: "left" | "center";
 }) {
   const hasToc = toc && toc.length > 0;
   const headerToc = hasToc && tocPlacement === "header";
@@ -93,14 +95,24 @@ export function DocsShell({
             </div>
           ) : (
             <>
-              <div className="flex min-w-0 flex-wrap items-center gap-3">
+              <div
+                className={cn(
+                  "flex min-w-0 flex-wrap items-center gap-3",
+                  headerAlign === "center" && "justify-center text-center",
+                )}
+              >
                 <h1 className="min-w-0 text-3xl font-semibold tracking-tight text-foreground">
                   {title}
                 </h1>
                 {headerExtra}
               </div>
               {description && (
-                <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted-foreground">
+                <p
+                  className={cn(
+                    "mt-3 max-w-2xl text-base leading-relaxed text-muted-foreground",
+                    headerAlign === "center" && "mx-auto text-center",
+                  )}
+                >
                   {description}
                 </p>
               )}

@@ -211,30 +211,6 @@ export function buildDocsSearchGroups(
 
   const groups: Array<{ group: DocsSearchItem["group"]; items: DocsSearchItem[] }> = [
     {
-      group: "Getting Started",
-      items: [
-        {
-          id: "getting-started-overview",
-          label: "Overview",
-          group: "Getting Started",
-          keywords: ["getting started", "home", "introduction"],
-          route: { kind: "home" },
-        },
-      ],
-    },
-    {
-      group: "Templates",
-      items: [
-        {
-          id: "templates",
-          label: "Templates",
-          group: "Templates",
-          keywords: ["templates", "page templates", "workflow templates"],
-          route: { kind: "templates" },
-        },
-      ],
-    },
-    {
       group: "Foundations",
       items: FOUNDATION_NAV_ENTRIES.map((item) => ({
         id: `foundation-${item.slug}`,

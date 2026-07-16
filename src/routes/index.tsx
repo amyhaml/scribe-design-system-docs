@@ -26,7 +26,11 @@ function IndexPage() {
   return (
     // Overview is a custom component index, so `content/getting-started/overview.md`
     // intentionally stays frontmatter-only instead of supplying markdown sections.
-    <DocsShell title={doc.frontmatter.title} description={doc.frontmatter.description}>
+    <DocsShell
+      title={doc.frontmatter.title}
+      description={doc.frontmatter.description}
+      headerAlign="center"
+    >
       <OverviewResourceCards />
       <div className="border-t" aria-hidden />
       <ComponentOverviewGrid />

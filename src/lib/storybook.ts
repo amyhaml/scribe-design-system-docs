@@ -2,8 +2,19 @@ import { queryOptions } from "@tanstack/react-query";
 
 export const STORYBOOK_PROXY_BASE = "/api/sb";
 
-/** Must match `src/routes/api/sb.$.ts`. Used for SSR: Node `fetch` cannot use relative `/api/...` URLs. */
-export const STORYBOOK_UPSTREAM_BASE = "https://scribe.kubefeature.hearstapps.net/storybook";
+const DEFAULT_STORYBOOK_UPSTREAM_BASE = "https://scribe.kubefeature.hearstapps.net/storybook";
+
+function normalizeStorybookBase(base: string) {
+  return base.replace(/\/+$/, "");
+}
+
+/**
+ * Must match `src/routes/api/sb.$.ts`. Used for SSR: Node `fetch` cannot use relative `/api/...` URLs.
+ * Set `VITE_SCRIBE_STORYBOOK_BASE_URL=http://127.0.0.1:9010` to test stories before they deploy.
+ */
+export const STORYBOOK_UPSTREAM_BASE = normalizeStorybookBase(
+  import.meta.env.VITE_SCRIBE_STORYBOOK_BASE_URL || DEFAULT_STORYBOOK_UPSTREAM_BASE,
+);
 
 export type StoryEntry = {
   type: "story" | "docs";

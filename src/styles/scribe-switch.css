@@ -1,0 +1,65 @@
+/*
+ * Demo layout for the Switch docs page.
+ * Switch visuals come from ScribeTogglePort + scribe-toggle.css.
+ */
+
+.scribe-app-css-vars .scribe-switch-demo-frame {
+  display: inline-flex;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: var(--spacing-m);
+}
+
+.scribe-app-css-vars .scribe-switch-state-matrix {
+  align-items: center;
+  display: grid;
+  gap: var(--spacing-l);
+  grid-template-columns: max-content max-content max-content;
+}
+
+.scribe-app-css-vars .scribe-switch-matrix-heading,
+.scribe-app-css-vars .scribe-switch-row-label {
+  color: var(--text-light);
+  font-size: var(--label-font-size);
+  font-weight: 700;
+}
+
+.scribe-app-css-vars .scribe-switch-matrix-heading {
+  justify-self: center;
+}
+
+.scribe-app-css-vars .scribe-switch-row-label {
+  justify-self: end;
+}
+
+.scribe-app-css-vars .scribe-switch-size-list {
+  display: grid;
+  gap: var(--spacing-m);
+}
+
+.scribe-app-css-vars .scribe-switch-size-row {
+  align-items: center;
+  display: grid;
+  gap: var(--spacing-l);
+  grid-template-columns: 6rem max-content;
+}
+
+.scribe-app-css-vars .scribe-switch-related-preview {
+  align-items: center;
+  border: var(--secondary-border);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xl);
+  padding: var(--spacing-m);
+}
+
+@media (max-width: 640px) {
+  .scribe-app-css-vars .scribe-switch-demo-frame {
+    padding-inline: 0;
+  }
+
+  .scribe-app-css-vars .scribe-switch-state-matrix {
+    gap: var(--spacing-m);
+  }
+}

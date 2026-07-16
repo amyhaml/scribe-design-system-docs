@@ -339,9 +339,3 @@
   margin-right: 0.25rem;
   flex-shrink: 0;
 }
-
-/* --- Snackbar preview (docs placeholder until Snackbar page ports SnackbarWithProps) --- */
-.scribe-app-css-vars .scribe-snackbar-preview {
-  background: var(--primary);
-  color: var(--primary-contrast-text);
-}

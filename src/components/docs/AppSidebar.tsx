@@ -1,6 +1,16 @@
 import { Link, getRouteApi, useRouterState } from "@tanstack/react-router";
 import { useLayoutEffect, useMemo, useRef, useState } from "react";
-import { Search, Palette, Droplets, Type, Ruler, Square, Layers, Sparkles } from "lucide-react";
+import {
+  Search,
+  Palette,
+  Droplets,
+  Type,
+  Ruler,
+  Square,
+  Layers,
+  Sparkles,
+  type LucideIcon,
+} from "lucide-react";
 
 import { ScribeLogoWideBlack } from "@/components/brand/ScribeLogo";
 import {
@@ -15,93 +25,26 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Input } from "@/components/ui/input";
-import { buildComponentList, groupComponents, type ComponentDoc } from "@/lib/storybook";
+import {
+  FOUNDATION_NAV_ENTRIES,
+  getSidebarComponentGroups,
+  isDocsNavEntry,
+  type FoundationSlug,
+} from "@/lib/docs/navigation";
 
 const rootRoute = getRouteApi("__root__");
 
-/** Docs-only nav rows (not from Storybook index). */
-type DocsNavButton = {
-  _docsButton: true;
-  id: string;
-  label: string;
-  to:
-    | "/components/button"
-    | "/components/alert-bar"
-    | "/components/app-bar"
-    | "/components/asset-bar"
-    | "/components/card"
-    | "/components/checkbox"
-    | "/components/chip"
-    | "/components/datepicker"
-    | "/components/dialog"
-    | "/components/dropzone"
-    | "/components/field"
-    | "/components/filter"
-    | "/components/menu";
-};
-
-type SidebarComponentEntry = ComponentDoc | DocsNavButton;
-
-function isDocsButton(item: SidebarComponentEntry): item is DocsNavButton {
-  return "_docsButton" in item && item._docsButton === true;
-}
-
-const DOCS_NAV_ENTRIES: DocsNavButton[] = [
-  { _docsButton: true, id: "app-bar", label: "App Bar", to: "/components/app-bar" },
-  { _docsButton: true, id: "asset-bar", label: "Asset Bar", to: "/components/asset-bar" },
-  { _docsButton: true, id: "alert-bar", label: "Alert & Banner", to: "/components/alert-bar" },
-  { _docsButton: true, id: "button", label: "Button", to: "/components/button" },
-  { _docsButton: true, id: "card", label: "Card", to: "/components/card" },
-  { _docsButton: true, id: "checkbox", label: "Checkbox", to: "/components/checkbox" },
-  { _docsButton: true, id: "chip", label: "Chip", to: "/components/chip" },
-  { _docsButton: true, id: "datepicker", label: "Datepicker", to: "/components/datepicker" },
-  { _docsButton: true, id: "dialog", label: "Dialog", to: "/components/dialog" },
-  { _docsButton: true, id: "dropzone", label: "Dropzone", to: "/components/dropzone" },
-  { _docsButton: true, id: "field", label: "Field", to: "/components/field" },
-  { _docsButton: true, id: "filter", label: "Filter", to: "/components/filter" },
-  { _docsButton: true, id: "menu", label: "Menu", to: "/components/menu" },
-];
-
 const SIDEBAR_SCROLL_STORAGE_KEY = "scribe-docs-sidebar-scroll-top";
-const HIDDEN_STORYBOOK_GROUPS = new Set(["Can Use", "Icons"]);
-const HIDDEN_STORYBOOK_SLUGS = new Set(["drawer"]);
 
-function sidebarSortLabel(item: SidebarComponentEntry): string {
-  return isDocsButton(item) ? item.label : item.displayName;
-}
-
-function mergeDocsNavIntoComponentsGroup(
-  groups: { group: string; items: ComponentDoc[] }[],
-  pinnedDocs: DocsNavButton[],
-): { group: string; items: SidebarComponentEntry[] }[] {
-  const pinnedIds = new Set(pinnedDocs.map((d) => d.id));
-  const storybookItems = groups
-    .flatMap((group) => group.items)
-    .filter((item) => !pinnedIds.has(item.slug))
-    .sort((a, b) => a.displayName.localeCompare(b.displayName));
-  const sortedPinned = [...pinnedDocs].sort((a, b) => a.label.localeCompare(b.label));
-  const next: { group: string; items: SidebarComponentEntry[] }[] = [];
-
-  if (sortedPinned.length > 0) {
-    next.push({ group: "Components", items: sortedPinned });
-  }
-
-  if (storybookItems.length > 0) {
-    next.push({ group: "Storybook Components", items: storybookItems });
-  }
-
-  return next;
-}
-
-const foundations = [
-  { slug: "palette", label: "Palette", icon: Palette },
-  { slug: "color", label: "Color", icon: Droplets },
-  { slug: "typography", label: "Typography", icon: Type },
-  { slug: "spacing", label: "Spacing", icon: Ruler },
-  { slug: "radius", label: "Radius", icon: Square },
-  { slug: "elevation", label: "Elevation", icon: Layers },
-  { slug: "icons", label: "Icons", icon: Sparkles },
-];
+const foundationIcons: Record<FoundationSlug, LucideIcon> = {
+  palette: Palette,
+  color: Droplets,
+  typography: Type,
+  spacing: Ruler,
+  radius: Square,
+  elevation: Layers,
+  icons: Sparkles,
+};
 
 export function AppSidebar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -117,35 +60,7 @@ export function AppSidebar() {
 
   const grouped = useMemo(() => {
     if (!storybookIndex) return [];
-    const all = buildComponentList(storybookIndex).filter(
-      (component) => !HIDDEN_STORYBOOK_SLUGS.has(component.slug),
-    );
-    const q = query.trim().toLowerCase();
-    const filtered = q ? all.filter((c) => c.displayName.toLowerCase().includes(q)) : all;
-    const storyGroups = groupComponents(filtered).filter((group) => !HIDDEN_STORYBOOK_GROUPS.has(group.group));
-    const pinnedDocs = q
-      ? DOCS_NAV_ENTRIES.filter(
-          (d) =>
-            d.label.toLowerCase().includes(q) ||
-            d.id.includes(q) ||
-            "app bar".includes(q) ||
-            "asset bar".includes(q) ||
-            "alert".includes(q) ||
-            "banner".includes(q) ||
-            "card".includes(q) ||
-            "checkbox".includes(q) ||
-            "chip".includes(q) ||
-            "datepicker".includes(q) ||
-            "date picker".includes(q) ||
-            "dialog".includes(q) ||
-            "dropzone".includes(q) ||
-            "drop zone".includes(q) ||
-            "field".includes(q) ||
-            "filter".includes(q) ||
-            "menu".includes(q),
-        )
-      : DOCS_NAV_ENTRIES;
-    return mergeDocsNavIntoComponentsGroup(storyGroups, pinnedDocs);
+    return getSidebarComponentGroups(storybookIndex, query);
   }, [storybookIndex, query]);
 
   const isActive = (path: string) => pathname === path;
@@ -226,7 +141,7 @@ export function AppSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton asChild isActive={isActive("/")}>
                   <Link to="/" onClick={saveCurrentSidebarScroll}>
-                    Introduction
+                    Overview
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -238,21 +153,25 @@ export function AppSidebar() {
           <SidebarGroupLabel>Foundations</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {foundations.map((f) => (
-                <SidebarMenuItem key={f.slug}>
-                  <SidebarMenuButton asChild isActive={isActive(`/foundations/${f.slug}`)}>
-                    <Link
-                      to="/foundations/$token"
-                      params={{ token: f.slug }}
-                      className="flex items-center gap-2"
-                      onClick={saveCurrentSidebarScroll}
-                    >
-                      <f.icon className="h-3.5 w-3.5" />
-                      <span>{f.label}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {FOUNDATION_NAV_ENTRIES.map((f) => {
+                const Icon = foundationIcons[f.slug];
+
+                return (
+                  <SidebarMenuItem key={f.slug}>
+                    <SidebarMenuButton asChild isActive={isActive(`/foundations/${f.slug}`)}>
+                      <Link
+                        to="/foundations/$token"
+                        params={{ token: f.slug }}
+                        className="flex items-center gap-2"
+                        onClick={saveCurrentSidebarScroll}
+                      >
+                        <Icon className="h-3.5 w-3.5" />
+                        <span>{f.label}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -263,17 +182,21 @@ export function AppSidebar() {
             <SidebarGroupContent>
               <SidebarMenu>
                 {g.items.map((item) => (
-                  <SidebarMenuItem key={isDocsButton(item) ? `__docs-${item.id}__` : item.slug}>
+                  <SidebarMenuItem key={isDocsNavEntry(item) ? `__docs-${item.id}__` : item.slug}>
                     <SidebarMenuButton
                       asChild
                       isActive={
-                        isDocsButton(item)
-                          ? isActive(item.to)
+                        isDocsNavEntry(item)
+                          ? isActive(item.path)
                           : isActive(`/components/${item.slug}`)
                       }
                     >
-                      {isDocsButton(item) ? (
-                        <Link to={item.to} onClick={saveCurrentSidebarScroll}>
+                      {isDocsNavEntry(item) ? (
+                        <Link
+                          to="/components/$slug"
+                          params={{ slug: item.id }}
+                          onClick={saveCurrentSidebarScroll}
+                        >
                           {item.label}
                         </Link>
                       ) : (

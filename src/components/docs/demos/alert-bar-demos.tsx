@@ -6,7 +6,8 @@ import {
   ScribePublishedStatusBar,
   ScribeScheduledStatusBar,
   ScribeSettingsDisclaimer,
-  ScribeSnackbarPreview,
+  SCRIBE_SNACKBAR_STATUS,
+  ScribeSnackbarPort,
   ScribeToolkitValidationErrorMessage,
   ScribeUseTargetDateChipApplied,
   ScribeValidationErrorMessage,
@@ -119,7 +120,7 @@ export const alertBarDemos = {
   ],
   related: (
     <div className="scribe-app-css-vars flex justify-center rounded-xl border bg-card p-6">
-      <ScribeSnackbarPreview message="Content page saved" />
+      <ScribeSnackbarPort message="Content page saved" status={SCRIBE_SNACKBAR_STATUS.success} />
     </div>
   ),
 };

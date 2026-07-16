@@ -1,0 +1,72 @@
+/**
+ * Source-truth style scope for:
+ * - Scribe/src/components/shared/Table.tsx
+ * - Scribe/src/components/Videos/AssetsFieldset.tsx table action cell
+ */
+
+.scribe-app-css-vars .scribe-table-port {
+  background-color: var(--background-paper);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  border-spacing: 0;
+  margin-bottom: var(--spacing-xl);
+  text-align: left;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-table-port th {
+  background-color: var(--background-main);
+  font-size: var(--default-font-size);
+  padding: var(--spacing-l) var(--spacing-xl);
+}
+
+.scribe-app-css-vars .scribe-table-port tbody tr.hightlight-selected td,
+.scribe-app-css-vars .scribe-table-port tbody tr:hover td {
+  background-color: var(--background-disabled);
+}
+
+.scribe-app-css-vars .scribe-table-port tbody td {
+  border-top: var(--border);
+  font-size: var(--label-font-size);
+  padding: var(--spacing-l) var(--spacing-xl);
+  position: relative;
+}
+
+.scribe-app-css-vars .scribe-table-port button {
+  margin-right: 0;
+}
+
+.scribe-app-css-vars .scribe-table-port-action {
+  background: none;
+  border-right: var(--border);
+  color: inherit;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: var(--spacing-xxs);
+  padding: 0 var(--spacing-xs) 0 0;
+}
+
+.scribe-app-css-vars .scribe-table-port-action:last-child {
+  border-right: none;
+}
+
+.scribe-app-css-vars .scribe-table-demo-frame {
+  max-width: 48rem;
+  overflow-x: auto;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-table-demo-frame .scribe-table-port {
+  min-width: 38rem;
+}
+
+.scribe-app-css-vars .scribe-table-demo-size-cell {
+  align-items: center;
+  display: inline-flex;
+  gap: var(--spacing-s);
+  white-space: nowrap;
+}
+
+.scribe-app-css-vars .scribe-table-demo-size-separator {
+  color: var(--text-light);
+}

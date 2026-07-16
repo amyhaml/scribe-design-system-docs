@@ -1,0 +1,83 @@
+/*
+ * Source-truth port for Radio Button docs.
+ * Source files:
+ * - Scribe/src/components/shared/RadioInput/RadioInput.tsx
+ * - Scribe/src/components/shared/RadioInput/RadioInputButton.tsx
+ */
+
+.scribe-app-css-vars .scribe-radio-input-demo-frame {
+  background: var(--background-paper);
+  overflow-x: auto;
+  padding: var(--spacing-xl);
+}
+
+.scribe-app-css-vars .scribe-radio-input-matrix {
+  align-items: center;
+  display: grid;
+  gap: var(--spacing-l);
+  grid-template-columns: max-content repeat(2, max-content);
+  width: max-content;
+}
+
+.scribe-app-css-vars .scribe-radio-input-matrix-heading,
+.scribe-app-css-vars .scribe-radio-input-matrix-row-label {
+  color: var(--text-lighter);
+  font-size: var(--label-font-size);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.scribe-app-css-vars .scribe-radio-input-port-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.scribe-app-css-vars .scribe-radio-input-port-wrapper[data-direction="bottom"],
+.scribe-app-css-vars .scribe-radio-input-port-wrapper[data-direction="top"] {
+  flex-direction: column;
+}
+
+.scribe-app-css-vars .scribe-radio-input-port-label {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.scribe-app-css-vars .scribe-radio-input-port-label[data-direction="right"] {
+  flex-direction: row;
+}
+
+.scribe-app-css-vars .scribe-radio-input-port-label[data-direction="bottom"],
+.scribe-app-css-vars .scribe-radio-input-port-label[data-direction="top"] {
+  flex-direction: column;
+}
+
+.scribe-app-css-vars .scribe-radio-input-port-wrapper[data-disabled="true"] input {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}
+
+.scribe-app-css-vars .scribe-radio-input-port-wrapper:not([data-disabled="true"]) input {
+  color: var(--text);
+  cursor: pointer;
+}
+
+.scribe-app-css-vars .scribe-radio-input-port-label input {
+  margin: 0 var(--spacing-xs) 0 var(--spacing-l);
+}
+
+.scribe-app-css-vars .scribe-radio-input-port-label input:focus {
+  box-shadow: var(--border-focus);
+}
+
+@media (max-width: 760px) {
+  .scribe-app-css-vars .scribe-radio-input-demo-frame {
+    padding: var(--spacing-m);
+  }
+
+  .scribe-app-css-vars .scribe-radio-input-matrix {
+    gap: var(--spacing-m);
+  }
+}

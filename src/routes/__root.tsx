@@ -15,10 +15,12 @@ import scribeTokenCss from "../scribe-tokens.css?raw";
 import scribeAppVarScopeCss from "../styles/scribe-app-css-var-scope.css?raw";
 import scribeToolkitButtonCss from "../styles/scribe-toolkit-button.css?raw";
 import scribeAlertComponentsCss from "../styles/scribe-alert-components.css?raw";
+import scribeTabbedLayoutCss from "../styles/scribe-tabbed-layout.css?raw";
 import scribeAppBarCss from "../styles/scribe-app-bar.css?raw";
 import scribeAssetBarCss from "../styles/scribe-asset-bar.css?raw";
 import scribeCardCss from "../styles/scribe-card.css?raw";
 import scribeCheckboxCss from "../styles/scribe-checkbox.css?raw";
+import scribeRadioInputCss from "../styles/scribe-radio-input.css?raw";
 import scribeToggleCss from "../styles/scribe-toggle.css?raw";
 import scribeChipCss from "../styles/scribe-chip.css?raw";
 import scribeDatepickerCss from "../styles/scribe-datepicker.css?raw";
@@ -27,8 +29,14 @@ import scribeDropzoneCss from "../styles/scribe-dropzone.css?raw";
 import scribeFieldCss from "../styles/scribe-field.css?raw";
 import scribeFilterCss from "../styles/scribe-filter.css?raw";
 import scribeMenuCss from "../styles/scribe-menu.css?raw";
+import scribeSnackbarCss from "../styles/scribe-snackbar.css?raw";
+import scribeSwitchCss from "../styles/scribe-switch.css?raw";
+import scribeTableCss from "../styles/scribe-table.css?raw";
+import scribeTooltipCss from "../styles/scribe-tooltip.css?raw";
+import scribeTreeMenuCss from "../styles/scribe-tree-menu.css?raw";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { AppSidebar } from "@/components/docs/AppSidebar";
+import { DocsGlobalNav } from "@/components/docs/DocsTopNav";
 import { storybookIndexQuery, EMPTY_STORYBOOK_INDEX, type StorybookIndex } from "@/lib/storybook";
 import { SidebarProvider } from "@/components/ui/sidebar";
 
@@ -147,7 +155,7 @@ function RootShell({ children }: { children: ReactNode }) {
         <style
           data-scribe-toolkit-button
           dangerouslySetInnerHTML={{
-            __html: `${scribeAppVarScopeCss}\n${scribeToolkitButtonCss}\n${scribeAlertComponentsCss}\n${scribeAppBarCss}\n${scribeAssetBarCss}\n${scribeCardCss}\n${scribeCheckboxCss}\n${scribeToggleCss}\n${scribeChipCss}\n${scribeDatepickerCss}\n${scribeDialogCss}\n${scribeDropzoneCss}\n${scribeFieldCss}\n${scribeFilterCss}\n${scribeMenuCss}`,
+            __html: `${scribeAppVarScopeCss}\n${scribeToolkitButtonCss}\n${scribeAlertComponentsCss}\n${scribeTabbedLayoutCss}\n${scribeAppBarCss}\n${scribeAssetBarCss}\n${scribeCardCss}\n${scribeCheckboxCss}\n${scribeRadioInputCss}\n${scribeToggleCss}\n${scribeTableCss}\n${scribeTooltipCss}\n${scribeTreeMenuCss}\n${scribeChipCss}\n${scribeDatepickerCss}\n${scribeDialogCss}\n${scribeDropzoneCss}\n${scribeFieldCss}\n${scribeFilterCss}\n${scribeMenuCss}\n${scribeSnackbarCss}\n${scribeSwitchCss}`,
           }}
         />
         <HeadContent />
@@ -162,6 +170,7 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const { storybookIndex } = Route.useLoaderData();
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -169,6 +178,7 @@ function RootComponent() {
         <div className="flex min-h-screen w-full bg-background">
           <AppSidebar />
           <div className="flex min-w-0 flex-1 flex-col">
+            <DocsGlobalNav storybookIndex={storybookIndex} />
             <main className="min-w-0 flex-1">
               <Outlet />
             </main>

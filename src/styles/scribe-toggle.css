@@ -50,7 +50,7 @@
   background-color: var(--divider);
   border-radius: 2.5rem;
   inset: 0;
-  opacity: 1;
+  opacity: 1 !important;
   position: relative;
   width: 100%;
 }
@@ -100,10 +100,6 @@
   box-shadow: var(--border-focus);
 }
 
-.scribe-app-css-vars .scribe-toggle-port .Mui-disabled + .MuiSwitch-track {
-  opacity: 0.24;
-}
-
 .scribe-app-css-vars .scribe-toggle-port[data-checked="true"] .MuiSwitch-track {
   background-color: var(--background-checked);
 }
@@ -129,6 +125,7 @@
 
 .scribe-app-css-vars .scribe-toggle-port.MuiSwitch-sizeSmall .MuiSwitch-switchBase {
   left: 0.125rem;
+  padding: var(--spacing-xxs);
   top: 0.125rem;
 }
 

@@ -9,8 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TemplatesRouteImport } from './routes/templates'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as FoundationsTokenRouteImport } from './routes/foundations.$token'
+import { Route as ComponentsTreeMenuRouteImport } from './routes/components.tree-menu'
+import { Route as ComponentsTooltipRouteImport } from './routes/components.tooltip'
+import { Route as ComponentsTableRouteImport } from './routes/components.table'
+import { Route as ComponentsTabbedLayoutRouteImport } from './routes/components.tabbed-layout'
+import { Route as ComponentsSwitchRouteImport } from './routes/components.switch'
+import { Route as ComponentsSnackbarRouteImport } from './routes/components.snackbar'
+import { Route as ComponentsRadioInputRouteImport } from './routes/components.radio-input'
 import { Route as ComponentsMenuRouteImport } from './routes/components.menu'
 import { Route as ComponentsFilterRouteImport } from './routes/components.filter'
 import { Route as ComponentsFieldRouteImport } from './routes/components.field'
@@ -27,6 +35,11 @@ import { Route as ComponentsAlertBarRouteImport } from './routes/components.aler
 import { Route as ComponentsSlugRouteImport } from './routes/components.$slug'
 import { Route as ApiSbSplatRouteImport } from './routes/api/sb.$'
 
+const TemplatesRoute = TemplatesRouteImport.update({
+  id: '/templates',
+  path: '/templates',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -35,6 +48,41 @@ const IndexRoute = IndexRouteImport.update({
 const FoundationsTokenRoute = FoundationsTokenRouteImport.update({
   id: '/foundations/$token',
   path: '/foundations/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsTreeMenuRoute = ComponentsTreeMenuRouteImport.update({
+  id: '/components/tree-menu',
+  path: '/components/tree-menu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsTooltipRoute = ComponentsTooltipRouteImport.update({
+  id: '/components/tooltip',
+  path: '/components/tooltip',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsTableRoute = ComponentsTableRouteImport.update({
+  id: '/components/table',
+  path: '/components/table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsTabbedLayoutRoute = ComponentsTabbedLayoutRouteImport.update({
+  id: '/components/tabbed-layout',
+  path: '/components/tabbed-layout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsSwitchRoute = ComponentsSwitchRouteImport.update({
+  id: '/components/switch',
+  path: '/components/switch',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsSnackbarRoute = ComponentsSnackbarRouteImport.update({
+  id: '/components/snackbar',
+  path: '/components/snackbar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsRadioInputRoute = ComponentsRadioInputRouteImport.update({
+  id: '/components/radio-input',
+  path: '/components/radio-input',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ComponentsMenuRoute = ComponentsMenuRouteImport.update({
@@ -115,6 +163,7 @@ const ApiSbSplatRoute = ApiSbSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/templates': typeof TemplatesRoute
   '/components/$slug': typeof ComponentsSlugRoute
   '/components/alert-bar': typeof ComponentsAlertBarRoute
   '/components/app-bar': typeof ComponentsAppBarRoute
@@ -129,11 +178,19 @@ export interface FileRoutesByFullPath {
   '/components/field': typeof ComponentsFieldRoute
   '/components/filter': typeof ComponentsFilterRoute
   '/components/menu': typeof ComponentsMenuRoute
+  '/components/radio-input': typeof ComponentsRadioInputRoute
+  '/components/snackbar': typeof ComponentsSnackbarRoute
+  '/components/switch': typeof ComponentsSwitchRoute
+  '/components/tabbed-layout': typeof ComponentsTabbedLayoutRoute
+  '/components/table': typeof ComponentsTableRoute
+  '/components/tooltip': typeof ComponentsTooltipRoute
+  '/components/tree-menu': typeof ComponentsTreeMenuRoute
   '/foundations/$token': typeof FoundationsTokenRoute
   '/api/sb/$': typeof ApiSbSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/templates': typeof TemplatesRoute
   '/components/$slug': typeof ComponentsSlugRoute
   '/components/alert-bar': typeof ComponentsAlertBarRoute
   '/components/app-bar': typeof ComponentsAppBarRoute
@@ -148,12 +205,20 @@ export interface FileRoutesByTo {
   '/components/field': typeof ComponentsFieldRoute
   '/components/filter': typeof ComponentsFilterRoute
   '/components/menu': typeof ComponentsMenuRoute
+  '/components/radio-input': typeof ComponentsRadioInputRoute
+  '/components/snackbar': typeof ComponentsSnackbarRoute
+  '/components/switch': typeof ComponentsSwitchRoute
+  '/components/tabbed-layout': typeof ComponentsTabbedLayoutRoute
+  '/components/table': typeof ComponentsTableRoute
+  '/components/tooltip': typeof ComponentsTooltipRoute
+  '/components/tree-menu': typeof ComponentsTreeMenuRoute
   '/foundations/$token': typeof FoundationsTokenRoute
   '/api/sb/$': typeof ApiSbSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/templates': typeof TemplatesRoute
   '/components/$slug': typeof ComponentsSlugRoute
   '/components/alert-bar': typeof ComponentsAlertBarRoute
   '/components/app-bar': typeof ComponentsAppBarRoute
@@ -168,6 +233,13 @@ export interface FileRoutesById {
   '/components/field': typeof ComponentsFieldRoute
   '/components/filter': typeof ComponentsFilterRoute
   '/components/menu': typeof ComponentsMenuRoute
+  '/components/radio-input': typeof ComponentsRadioInputRoute
+  '/components/snackbar': typeof ComponentsSnackbarRoute
+  '/components/switch': typeof ComponentsSwitchRoute
+  '/components/tabbed-layout': typeof ComponentsTabbedLayoutRoute
+  '/components/table': typeof ComponentsTableRoute
+  '/components/tooltip': typeof ComponentsTooltipRoute
+  '/components/tree-menu': typeof ComponentsTreeMenuRoute
   '/foundations/$token': typeof FoundationsTokenRoute
   '/api/sb/$': typeof ApiSbSplatRoute
 }
@@ -175,6 +247,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/templates'
     | '/components/$slug'
     | '/components/alert-bar'
     | '/components/app-bar'
@@ -189,11 +262,19 @@ export interface FileRouteTypes {
     | '/components/field'
     | '/components/filter'
     | '/components/menu'
+    | '/components/radio-input'
+    | '/components/snackbar'
+    | '/components/switch'
+    | '/components/tabbed-layout'
+    | '/components/table'
+    | '/components/tooltip'
+    | '/components/tree-menu'
     | '/foundations/$token'
     | '/api/sb/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/templates'
     | '/components/$slug'
     | '/components/alert-bar'
     | '/components/app-bar'
@@ -208,11 +289,19 @@ export interface FileRouteTypes {
     | '/components/field'
     | '/components/filter'
     | '/components/menu'
+    | '/components/radio-input'
+    | '/components/snackbar'
+    | '/components/switch'
+    | '/components/tabbed-layout'
+    | '/components/table'
+    | '/components/tooltip'
+    | '/components/tree-menu'
     | '/foundations/$token'
     | '/api/sb/$'
   id:
     | '__root__'
     | '/'
+    | '/templates'
     | '/components/$slug'
     | '/components/alert-bar'
     | '/components/app-bar'
@@ -227,12 +316,20 @@ export interface FileRouteTypes {
     | '/components/field'
     | '/components/filter'
     | '/components/menu'
+    | '/components/radio-input'
+    | '/components/snackbar'
+    | '/components/switch'
+    | '/components/tabbed-layout'
+    | '/components/table'
+    | '/components/tooltip'
+    | '/components/tree-menu'
     | '/foundations/$token'
     | '/api/sb/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  TemplatesRoute: typeof TemplatesRoute
   ComponentsSlugRoute: typeof ComponentsSlugRoute
   ComponentsAlertBarRoute: typeof ComponentsAlertBarRoute
   ComponentsAppBarRoute: typeof ComponentsAppBarRoute
@@ -247,12 +344,26 @@ export interface RootRouteChildren {
   ComponentsFieldRoute: typeof ComponentsFieldRoute
   ComponentsFilterRoute: typeof ComponentsFilterRoute
   ComponentsMenuRoute: typeof ComponentsMenuRoute
+  ComponentsRadioInputRoute: typeof ComponentsRadioInputRoute
+  ComponentsSnackbarRoute: typeof ComponentsSnackbarRoute
+  ComponentsSwitchRoute: typeof ComponentsSwitchRoute
+  ComponentsTabbedLayoutRoute: typeof ComponentsTabbedLayoutRoute
+  ComponentsTableRoute: typeof ComponentsTableRoute
+  ComponentsTooltipRoute: typeof ComponentsTooltipRoute
+  ComponentsTreeMenuRoute: typeof ComponentsTreeMenuRoute
   FoundationsTokenRoute: typeof FoundationsTokenRoute
   ApiSbSplatRoute: typeof ApiSbSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/templates': {
+      id: '/templates'
+      path: '/templates'
+      fullPath: '/templates'
+      preLoaderRoute: typeof TemplatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -265,6 +376,55 @@ declare module '@tanstack/react-router' {
       path: '/foundations/$token'
       fullPath: '/foundations/$token'
       preLoaderRoute: typeof FoundationsTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/tree-menu': {
+      id: '/components/tree-menu'
+      path: '/components/tree-menu'
+      fullPath: '/components/tree-menu'
+      preLoaderRoute: typeof ComponentsTreeMenuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/tooltip': {
+      id: '/components/tooltip'
+      path: '/components/tooltip'
+      fullPath: '/components/tooltip'
+      preLoaderRoute: typeof ComponentsTooltipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/table': {
+      id: '/components/table'
+      path: '/components/table'
+      fullPath: '/components/table'
+      preLoaderRoute: typeof ComponentsTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/tabbed-layout': {
+      id: '/components/tabbed-layout'
+      path: '/components/tabbed-layout'
+      fullPath: '/components/tabbed-layout'
+      preLoaderRoute: typeof ComponentsTabbedLayoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/switch': {
+      id: '/components/switch'
+      path: '/components/switch'
+      fullPath: '/components/switch'
+      preLoaderRoute: typeof ComponentsSwitchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/snackbar': {
+      id: '/components/snackbar'
+      path: '/components/snackbar'
+      fullPath: '/components/snackbar'
+      preLoaderRoute: typeof ComponentsSnackbarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/radio-input': {
+      id: '/components/radio-input'
+      path: '/components/radio-input'
+      fullPath: '/components/radio-input'
+      preLoaderRoute: typeof ComponentsRadioInputRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/components/menu': {
@@ -377,6 +537,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  TemplatesRoute: TemplatesRoute,
   ComponentsSlugRoute: ComponentsSlugRoute,
   ComponentsAlertBarRoute: ComponentsAlertBarRoute,
   ComponentsAppBarRoute: ComponentsAppBarRoute,
@@ -391,6 +552,13 @@ const rootRouteChildren: RootRouteChildren = {
   ComponentsFieldRoute: ComponentsFieldRoute,
   ComponentsFilterRoute: ComponentsFilterRoute,
   ComponentsMenuRoute: ComponentsMenuRoute,
+  ComponentsRadioInputRoute: ComponentsRadioInputRoute,
+  ComponentsSnackbarRoute: ComponentsSnackbarRoute,
+  ComponentsSwitchRoute: ComponentsSwitchRoute,
+  ComponentsTabbedLayoutRoute: ComponentsTabbedLayoutRoute,
+  ComponentsTableRoute: ComponentsTableRoute,
+  ComponentsTooltipRoute: ComponentsTooltipRoute,
+  ComponentsTreeMenuRoute: ComponentsTreeMenuRoute,
   FoundationsTokenRoute: FoundationsTokenRoute,
   ApiSbSplatRoute: ApiSbSplatRoute,
 }

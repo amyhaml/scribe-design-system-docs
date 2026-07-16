@@ -45,6 +45,20 @@ const FIGMA_NODE_ID_BY_DOC_SLUG: Partial<Record<string, string>> = {
   filter: "11723-88468",
   /** Menu — [Scribe Component Library](https://www.figma.com/design/j9rEb1JK8RdH7bs1Q74qJK/Scribe-Component-Library?node-id=11715-88417) */
   menu: "11715-88417",
+  /** Radio Button — [Scribe Component Library](https://www.figma.com/design/j9rEb1JK8RdH7bs1Q74qJK/Scribe-Component-Library?node-id=11723-88469) */
+  "radio-input": "11723-88469",
+  /** Snackbar — [Scribe Component Library](https://www.figma.com/design/j9rEb1JK8RdH7bs1Q74qJK/Scribe-Component-Library?node-id=11715-88321) */
+  snackbar: "11715-88321",
+  /** Switch — [Scribe Component Library](https://www.figma.com/design/j9rEb1JK8RdH7bs1Q74qJK/Scribe-Component-Library?node-id=11723-88472) */
+  switch: "11723-88472",
+  /** Table — [Scribe Component Library](https://www.figma.com/design/j9rEb1JK8RdH7bs1Q74qJK/Scribe-Component-Library?node-id=945-0) */
+  table: "945-0",
+  /** Tabs — [Scribe Component Library](https://www.figma.com/design/j9rEb1JK8RdH7bs1Q74qJK/Scribe-Component-Library?node-id=11715-88416) */
+  "tabbed-layout": "11715-88416",
+  /** Tooltip — [Scribe Component Library](https://www.figma.com/design/j9rEb1JK8RdH7bs1Q74qJK/Scribe-Component-Library?node-id=11715-88268) */
+  tooltip: "11715-88268",
+  /** Tree — [Scribe Component Library](https://www.figma.com/design/j9rEb1JK8RdH7bs1Q74qJK/Scribe-Component-Library?node-id=14890-8682) */
+  "tree-menu": "14890-8682",
 };
 
 export function getFigmaUrlForDocSlug(slug: string): string | undefined {

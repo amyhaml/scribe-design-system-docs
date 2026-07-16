@@ -140,8 +140,8 @@ function PrimitiveColorFamilies() {
 
   return (
     <div className="space-y-8">
-      <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-        Primitives (<code className="text-xs">packages/styles</code> → colors)
+      <p className="text-sm font-semibold tracking-wide text-muted-foreground">
+        PRIMITIVE COLORS
       </p>
 
       {corePairs.length > 0 ? (
@@ -202,8 +202,8 @@ function SemanticCssVariables() {
   const groups = [...new Set(SCRIBE_CSS_COLOR_VARS.map((v) => v.group))];
   return (
     <div className="space-y-8">
-      <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-        Semantic tokens (<code className="text-xs">--scribe-*</code>)
+      <p className="text-sm font-semibold tracking-wide text-muted-foreground">
+        SEMANTIC COLORS
       </p>
       {groups.map((group) => (
         <div key={group} id={colorGroupAnchorId(group)} className="scroll-mt-20">

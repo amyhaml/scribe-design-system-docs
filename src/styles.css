@@ -71,3 +71,108 @@
     color: var(--color-foreground);
   }
 }
+
+@keyframes docs-search-overlay-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes docs-search-overlay-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes docs-search-dialog-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes docs-search-dialog-out {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.985);
+  }
+}
+
+.docs-search-overlay {
+  background-color: #01122866;
+  background-color: light-dark(#01122866, #11111299);
+}
+
+@media (prefers-color-scheme: dark) {
+  .docs-search-overlay {
+    background-color: #11111299;
+    background-color: light-dark(#01122866, #11111299);
+  }
+}
+
+.docs-search-overlay[data-state="open"] {
+  animation: docs-search-overlay-in 150ms ease-out;
+}
+
+.docs-search-overlay[data-state="closed"] {
+  animation: docs-search-overlay-out 120ms ease-in;
+}
+
+.docs-search-dialog-content {
+  transform: translate(-50%, -50%) scale(1);
+  /* Mirrors Astryx command dialog elevation: a tight base shadow plus a broad soft drop. */
+  box-shadow:
+    0 2px 2px rgb(0 0 0 / 10%),
+    0 8px 24px rgb(0 0 0 / 10%);
+}
+
+.docs-search-dialog-content[data-state="open"] {
+  animation: docs-search-dialog-in 150ms ease-out;
+}
+
+.docs-search-dialog-content[data-state="closed"] {
+  animation: docs-search-dialog-out 120ms ease-in;
+}
+
+.docs-global-nav {
+  position: sticky;
+  isolation: isolate;
+}
+
+.docs-global-nav-glass {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background: color-mix(in oklab, var(--background) 78%, transparent);
+  mask-image: linear-gradient(#000 0% 90%, #0000 100%);
+  -webkit-mask-image: linear-gradient(#000 0% 90%, #0000 100%);
+}
+
+.docs-global-nav-interactive:hover,
+.docs-global-nav-interactive:focus-visible {
+  /* Matches Tailwind slate-100 while staying translucent over the glass nav. */
+  background: rgb(241 245 249 / 82%);
+}
+
+.component-overview-tile:hover .component-overview-tile-label {
+  color: var(--foreground) !important;
+}

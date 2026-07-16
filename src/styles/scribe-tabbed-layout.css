@@ -1,0 +1,198 @@
+/**
+ * Source-truth style scope for:
+ * - Scribe/src/components/shared/TabbedLayout/index.tsx
+ * - Scribe/src/components/shared/TabbedLayout/TabPanel.tsx
+ */
+
+.scribe-app-css-vars .scribe-tabbed-layout-port {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-tabs-container {
+  background-color: transparent;
+  padding: 0;
+  position: relative;
+  z-index: 999;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-tabs-container.hasCollapse {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-tabs {
+  min-height: 3.5rem;
+  overflow-x: auto;
+  position: relative;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-tabs .MuiTabs-flexContainer {
+  min-height: 3.5rem;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-tab.MuiTab-root {
+  color: rgba(0, 0, 0, 0.6);
+  flex-direction: row;
+  font-family: var(--font-family);
+  font-size: var(--label-font-size);
+  height: 3rem;
+  margin: var(--focus-indication-thickness);
+  min-height: 3rem;
+  min-width: 6rem;
+  padding: var(--spacing-s) var(--spacing-m);
+  text-transform: none;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-tab.MuiTab-root:hover {
+  color: var(--text);
+  opacity: 1;
+  text-decoration: none;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-tab.MuiTab-root:focus {
+  box-shadow: var(--border-focus);
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-tab.MuiTab-root.Mui-selected,
+.scribe-app-css-vars .scribe-tabbed-layout-port-tab.MuiTab-root[data-selected="true"] {
+  color: var(--text);
+  font-weight: bold;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-tab.MuiTab-root.Mui-selected:not(.Mui-focusVisible):focus {
+  box-shadow: none;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-tab.MuiTab-root.Mui-disabled {
+  color: var(--text-disabled);
+  opacity: 1;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-badge {
+  align-items: center;
+  background-color: var(--error);
+  border-radius: 50%;
+  color: var(--background-paper);
+  display: flex;
+  font-size: var(--xsmall-font-size);
+  font-weight: 700;
+  height: 0.875rem;
+  justify-content: center;
+  margin-left: var(--spacing-xs);
+  min-width: 0.875rem;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-indicator {
+  background: var(--divider);
+  bottom: 0;
+  height: 0.0625rem;
+  position: absolute;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-panel[hidden] {
+  display: none;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-panel:not([hidden]) {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-right-buttons {
+  align-items: center;
+  display: flex;
+  gap: var(--spacing-xs);
+  margin-left: auto;
+  margin-right: var(--spacing-xl);
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-collapse-button {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: var(--text-placeholder);
+  cursor: pointer;
+  display: inline-flex;
+  height: 1.5rem;
+  justify-content: center;
+  margin: auto var(--spacing-m) auto 0;
+  min-height: unset;
+  min-width: unset;
+  padding: 0;
+  transition: background 0.2s ease-in-out;
+  width: 1.5rem;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-collapse-button:hover,
+.scribe-app-css-vars .scribe-tabbed-layout-port-collapse-button:focus {
+  background-color: var(--background-disabled);
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-collapse-button:hover > .icon,
+.scribe-app-css-vars .scribe-tabbed-layout-port-collapse-button:focus > .icon {
+  stroke: var(--text-placeholder);
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-collapse-button:active > .icon {
+  stroke: var(--focus-color);
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port-collapse-button > .icon {
+  color: var(--text-placeholder);
+  transition: all 0.2s ease-in-out;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port--secondary {
+  position: relative;
+  z-index: 994;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port--secondary .scribe-tabbed-layout-port-tabs {
+  border-bottom: var(--border);
+  border-top: var(--border);
+  min-height: auto;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port--secondary .scribe-tabbed-layout-port-tabs .MuiTabs-flexContainer {
+  margin-top: var(--spacing-xs);
+  min-height: auto;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port--secondary .MuiTabs-indicator,
+.scribe-app-css-vars .scribe-tabbed-layout-port--secondary .scribe-tabbed-layout-port-indicator {
+  display: none;
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port--secondary .scribe-tabbed-layout-port-tab.MuiTab-root {
+  font-size: var(--small-font-size);
+  min-height: 1.75rem;
+  min-width: 0;
+  padding: var(--spacing-xxs) var(--spacing-xs);
+}
+
+.scribe-app-css-vars .scribe-tabbed-layout-port--secondary .scribe-tabbed-layout-port-tab.MuiTab-root.Mui-selected,
+.scribe-app-css-vars .scribe-tabbed-layout-port--secondary .scribe-tabbed-layout-port-tab.MuiTab-root[data-selected="true"] {
+  background: var(--background-checked);
+  border-radius: var(--border-radius);
+  color: var(--background-paper);
+}
+
+.scribe-app-css-vars .scribe-tabs-demo-frame {
+  border: var(--border);
+  max-width: 100%;
+  overflow-x: auto;
+  width: 100%;
+}
+
+.scribe-app-css-vars .scribe-tabs-demo-panel {
+  color: var(--text-light);
+  font-size: var(--label-font-size);
+  min-height: 4rem;
+  padding: var(--spacing-m);
+}

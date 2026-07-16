@@ -36,7 +36,7 @@ Checkboxes can be empty, filled, or indeterminate. Each state can also be disabl
 
 ## Related components {#related}
 
-[Switches](/components/toggle) toggle the state of a single setting on or off.
+[Switches](/components/switch) toggle the state of a single setting on or off.
 
 <!-- demo -->
 

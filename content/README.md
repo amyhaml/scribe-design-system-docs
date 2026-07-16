@@ -6,7 +6,7 @@ This folder is the **single source of truth** for documentation prose. Open it a
 
 | Path | Route |
 |------|-------|
-| `getting-started/introduction.md` | `/` |
+| `getting-started/overview.md` | `/` |
 | `foundations/{token}.md` | `/foundations/{token}` |
 | `components/{slug}.md` | `/components/{slug}` (bespoke + hybrid Storybook pages) |
 

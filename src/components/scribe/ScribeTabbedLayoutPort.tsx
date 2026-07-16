@@ -1,4 +1,15 @@
-import { useEffect, useRef, useState, type ReactNode, type SyntheticEvent } from "react";
+import MuiTab from "@mui/material/Tab";
+import MuiTabs from "@mui/material/Tabs";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ComponentType,
+  type ReactNode,
+  type SyntheticEvent,
+} from "react";
+
+import { ToolkitButton } from "./ToolkitButton";
 
 export type ScribeTabItemPort = {
   content: ReactNode;
@@ -10,6 +21,7 @@ export type ScribeTabItemPort = {
   missingFieldsCount?: number;
   missingFieldsCountBackgroundColor?: string;
   missingFieldsCountTextColor?: string;
+  component?: ComponentType<any>;
 };
 
 export type ScribeRightButtonPort = {
@@ -27,10 +39,14 @@ export type ScribeTabbedLayoutPortProps = {
   onChange?: (event: SyntheticEvent, newValue?: number) => void;
   onCollapse?: () => void;
   rightButtons?: ScribeRightButtonPort[];
+  stickyTop?: string;
+  tabsContainerRef?: (node: HTMLDivElement | null) => void;
   tabs: ScribeTabItemPort[];
   testId?: string;
   uniqueId?: string;
   unmountOnHide?: boolean;
+  preserveState?: boolean;
+  variant?: "primary" | "secondary";
 };
 
 const DEFAULT_UNIQUE_ID = "scribe-tabs";
@@ -51,9 +67,6 @@ function getKey(prefix: string, tab: ScribeTabItemPort) {
  * Source-truth port of:
  * - Scribe/src/components/shared/TabbedLayout/index.tsx
  * - Scribe/src/components/shared/TabbedLayout/TabPanel.tsx
- *
- * Docs-only difference: MUI Tabs/Tab are represented with equivalent button markup because
- * this docs repo does not install @mui/material.
  */
 export function ScribeTabbedLayoutPort({
   activeTab = 0,
@@ -64,10 +77,14 @@ export function ScribeTabbedLayoutPort({
   onChange,
   onCollapse,
   rightButtons,
+  stickyTop,
+  tabsContainerRef,
   tabs,
   testId = "tab-layout-container",
   uniqueId: defaultUniqueId = DEFAULT_UNIQUE_ID,
   unmountOnHide = true,
+  preserveState = false,
+  variant = "primary",
 }: ScribeTabbedLayoutPortProps) {
   const [tabValue, setTabValue] = useState(activeTab);
   const uniqueId = defaultUniqueId;
@@ -100,12 +117,18 @@ export function ScribeTabbedLayoutPort({
   const hasRightElements = Boolean(onCollapse || (rightButtons && rightButtons.length > 0));
 
   return (
-    <div className="scribe-tabbed-layout-port" data-testid={testId}>
+    <div
+      className={`scribe-tabbed-layout-port ${
+        variant === "secondary" ? "scribe-tabbed-layout-port--secondary" : ""
+      }`}
+      data-testid={testId}
+    >
       <div
         className={`scribe-tabbed-layout-port-tabs-container tabs-collapse-container ${
           hasRightElements ? "hasCollapse" : ""
         }`}
-        style={{ backgroundColor }}
+        ref={tabsContainerRef}
+        style={{ backgroundColor, top: stickyTop, position: stickyTop ? "sticky" : undefined }}
       >
         {onCollapse ? (
           <button
@@ -138,44 +161,34 @@ export function ScribeTabbedLayoutPort({
         {hasRightElements ? (
           <div className="scribe-tabbed-layout-port-right-buttons" data-testid="right-buttons-container">
             {rightButtons?.map((button, index) => (
-              <button
+              <ToolkitButton
                 key={button.id}
                 className="scribe-tabbed-layout-port-right-button"
                 data-testid={`right-button-${index}`}
                 onClick={button.onClick}
-                type="button"
+                variant="primary"
               >
                 {button.label}
-              </button>
+              </ToolkitButton>
             ))}
           </div>
         ) : null}
-        <div
+        <MuiTabs
           aria-label="Tabs"
           className={`scribe-tabbed-layout-port-tabs ${className}`}
-          role="tablist"
+          onChange={handleChange}
+          TabIndicatorProps={{
+            style: {
+              background: "var(--primary)",
+              height: "0.19rem",
+            },
+          }}
+          value={tabValue}
         >
           {tabs.map((tab, index) => {
             const isSelected = tabValue === index;
-            return (
-              <button
-                key={getKey("tab", tab)}
-                aria-controls={getTabPanelId(index, uniqueId)}
-                aria-selected={isSelected}
-                className="scribe-tabbed-layout-port-tab MuiButtonBase-root MuiTab-root"
-                data-selected={isSelected ? "true" : "false"}
-                data-testid={`tab-${index}`}
-                disabled={tab.isDisabled}
-                hidden={tab.isHidden}
-                id={getTabId(index, uniqueId)}
-                onClick={(event) => {
-                  tab.onClick?.();
-                  handleChange(event, index);
-                }}
-                role="tab"
-                tabIndex={0}
-                type="button"
-              >
+            const tabLabel = (
+              <>
                 <span>{tab.label}</span>
                 {tab.missingFieldsCount && tab.missingFieldsCount > 0 ? (
                   <span
@@ -193,15 +206,34 @@ export function ScribeTabbedLayoutPort({
                     {tab.missingFieldsCount}
                   </span>
                 ) : null}
-              </button>
+              </>
+            );
+            return (
+              <MuiTab
+                key={getKey("tab", tab)}
+                aria-controls={getTabPanelId(index, uniqueId)}
+                aria-selected={isSelected}
+                className="scribe-tabbed-layout-port-tab MuiButtonBase-root MuiTab-root"
+                component={tab.component}
+                data-selected={isSelected ? "true" : "false"}
+                data-testid={`tab-${index}`}
+                disabled={tab.isDisabled}
+                hidden={tab.isHidden}
+                id={getTabId(index, uniqueId)}
+                label={tabLabel}
+                onClick={(event) => {
+                  tab.onClick?.();
+                }}
+                role="tab"
+              />
             );
           })}
-          <span className="scribe-tabbed-layout-port-indicator tab-indicator" />
-        </div>
+        </MuiTabs>
+        <span className="scribe-tabbed-layout-port-indicator tab-indicator" />
       </div>
       {tabs.map((tab, index) => {
         const isActive = tabValue === index;
-        const shouldRender = unmountOnHide ? isActive : true;
+        const shouldRender = preserveState || unmountOnHide ? isActive || preserveState : true;
         return (
           <div
             aria-labelledby={getTabId(index, uniqueId)}

@@ -377,11 +377,14 @@ function TemplatesPage() {
             key={category}
             type="button"
             onClick={() => {
-              setActiveCategory(category);
+              const nextCategory =
+                category !== "All" && activeCategory === category ? "All" : category;
+
+              setActiveCategory(nextCategory);
               void navigate({
                 search: (prev) => ({
                   ...prev,
-                  category: category === "All" ? undefined : category,
+                  category: nextCategory === "All" ? undefined : nextCategory,
                 }),
               });
             }}

@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/tooltip";
 
 const SCRIBE_FEATURE_URL = "https://scribe.kubefeature.hearstapps.net/creation/content";
+const SCRIBE_REPO_URL = "https://github.com/Media-Platforms/scribe";
 
 function FooterIconLink({
   href,
@@ -73,6 +74,22 @@ export function DocsFooter() {
             className="hover:underline"
           >
             Scribe feature
+          </a>
+          <a
+            href={SCRIBE_REPO_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="hover:underline"
+          >
+            Scribe repo
+          </a>
+          <a
+            href={GITHUB_REPO_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="hover:underline"
+          >
+            Docs repo
           </a>
         </nav>
 

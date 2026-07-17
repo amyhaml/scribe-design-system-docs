@@ -2,6 +2,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { ArrowRight, Download, ExternalLink, Figma, Github } from "lucide-react";
 
 import { SCRIBE_COLOR_PRIMITIVES } from "@/data/scribe-color-tokens";
+import type { ResourceCardCopy, ResourceCardDefinition } from "@/lib/docs/resource-card-content";
 import { cn } from "@/lib/utils";
 
 const FIGMA_BRAND_GUIDELINES_URL =
@@ -12,8 +13,34 @@ const LOGO_WORDMARK_ASSET = "/brand/logo-wordmark.svg";
 const LOGO_BASE_ASSET = "/brand/logo-base.svg";
 const LOGO_LETTER_ASSET = "/brand/logo-letter-icon.svg";
 const LOGO_SOCIAL_ASSET = "/brand/logo-social-icon.svg";
+const LOGO_SOCIAL_DARK_ASSET = "/brand/logo-social-icon-dark.svg";
 const LOGO_ZIP_ASSET = "/brand/scribe-logos.zip";
 const LOGO_PREVIEW_BACKGROUND = "#444444";
+
+type LogoResourceCardDefinition = ResourceCardDefinition & {
+  download?: boolean;
+  href: string;
+  icon: "download" | "figma" | "github";
+};
+
+export const LOGO_RESOURCE_CARD_DEFINITIONS: readonly LogoResourceCardDefinition[] = [
+  {
+    id: "figma-brand-guidelines",
+    href: FIGMA_BRAND_GUIDELINES_URL,
+    icon: "figma",
+  },
+  {
+    id: "github-logo-files",
+    href: GITHUB_LOGO_FILES_URL,
+    icon: "github",
+  },
+  {
+    id: "download-svg-files",
+    download: true,
+    href: LOGO_ZIP_ASSET,
+    icon: "download",
+  },
+];
 
 type WordmarkTone = "black" | "white";
 
@@ -150,7 +177,11 @@ function IconStep({
   );
 }
 
-export function ScribeLogoGallery() {
+export function ScribeLogoGallery({ resources }: { resources: readonly ResourceCardCopy[] }) {
+  const definitionsById = new Map(
+    LOGO_RESOURCE_CARD_DEFINITIONS.map((definition) => [definition.id, definition]),
+  );
+
   return (
     <div className="space-y-12">
       <section id="logo-resources" className="scroll-mt-24 space-y-5">
@@ -158,25 +189,10 @@ export function ScribeLogoGallery() {
           Resources
         </p>
         <div className="grid gap-4 md:grid-cols-3">
-          <ResourceLinkCard
-            title="Figma Brand Guidelines"
-            description="Design file and explorations of the Scribe logo"
-            href={FIGMA_BRAND_GUIDELINES_URL}
-            icon="figma"
-          />
-          <ResourceLinkCard
-            title="GitHub Logo Files"
-            description="Production logo files in the Scribe public asset folder."
-            href={GITHUB_LOGO_FILES_URL}
-            icon="github"
-          />
-          <ResourceLinkCard
-            title="Download SVG Files"
-            description="Download optimized SVG logo files"
-            href={LOGO_ZIP_ASSET}
-            icon="download"
-            download
-          />
+          {resources.map((copy) => {
+            const definition = definitionsById.get(copy.id)!;
+            return <ResourceLinkCard key={copy.id} {...copy} {...definition} />;
+          })}
         </div>
       </section>
 
@@ -188,9 +204,7 @@ export function ScribeLogoGallery() {
           <LogoAssetCard label="Social icon">
             <div className="flex items-center gap-8">
               <img src={LOGO_SOCIAL_ASSET} alt="" className="h-16 w-16" />
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-black">
-                <img src={LOGO_SOCIAL_ASSET} alt="" className="h-12 w-12 invert" />
-              </div>
+              <img src={LOGO_SOCIAL_DARK_ASSET} alt="" className="h-16 w-16" />
             </div>
           </LogoAssetCard>
           <LogoAssetCard label="Wordmark">
@@ -205,9 +219,7 @@ export function ScribeLogoGallery() {
           </LogoAssetCard>
           <LogoAssetCard label="Letter icon">
             <div className="flex items-center gap-8">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-black">
-                <img src={LOGO_LETTER_ASSET} alt="" className="h-12 w-12" />
-              </div>
+              <img src={LOGO_LETTER_ASSET} alt="" className="h-16 w-16" />
               <img src={LOGO_LETTER_ASSET} alt="" className="h-16 w-16 invert" />
             </div>
           </LogoAssetCard>
@@ -261,9 +273,7 @@ export function ScribeLogoGallery() {
               <img src={LOGO_SOCIAL_ASSET} alt="" className="h-16 w-16" />
             </IconStep>
             <IconStep label="Dark">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-black">
-                <img src={LOGO_SOCIAL_ASSET} alt="" className="h-12 w-12 invert" />
-              </div>
+              <img src={LOGO_SOCIAL_DARK_ASSET} alt="" className="h-16 w-16" />
             </IconStep>
             <ArrowRight className="h-6 w-6 text-white/80" aria-hidden />
             <IconStep label="Favicon preview">

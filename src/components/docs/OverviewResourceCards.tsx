@@ -1,36 +1,33 @@
+import type { ResourceCardCopy, ResourceCardDefinition } from "@/lib/docs/resource-card-content";
+
 const GITHUB_REPO_URL = "https://github.com/Media-Platforms/scribe";
 const FIGMA_HUB_URL =
   "https://www.figma.com/files/808763229014323054/project/7007200?fuid=808767909425642877";
 const FIGMA_COMPONENT_LIBRARY_URL =
   "https://www.figma.com/design/j9rEb1JK8RdH7bs1Q74qJK/Scribe-Component-Library?node-id=0-1&p=f&t=qxkyYWkYPUXaJ9Gg-0";
 
-type OverviewResourceCard = {
-  description: string;
+type OverviewResourceCard = ResourceCardDefinition & {
   href: string;
   image?: string;
-  title: string;
   visual: "github" | "image";
 };
 
-const resourceCards: OverviewResourceCard[] = [
+export const OVERVIEW_RESOURCE_CARD_DEFINITIONS: readonly OverviewResourceCard[] = [
   {
-    description: "Library of reusable Scribe components for designers",
+    id: "figma-component-library",
     href: FIGMA_COMPONENT_LIBRARY_URL,
     image: "/overview/component-library-cover.png",
-    title: "Figma Component Library",
     visual: "image",
   },
   {
-    description: "Figma hub with design files and workflows related to Scribe",
+    id: "design-figma-files",
     href: FIGMA_HUB_URL,
     image: "/overview/scribe-hub.png",
-    title: "Design Figma Files",
     visual: "image",
   },
   {
-    description: "Scribe github repository",
+    id: "scribe-repo",
     href: GITHUB_REPO_URL,
-    title: "Scribe Repo",
     visual: "github",
   },
 ];
@@ -60,16 +57,24 @@ function ResourceCardVisual({ card }: { card: OverviewResourceCard }) {
   return <img src={card.image} alt="" className="h-full w-full object-cover" loading="lazy" />;
 }
 
-export function OverviewResourceCards() {
+export function OverviewResourceCards({ cards }: { cards: readonly ResourceCardCopy[] }) {
+  const definitionsById = new Map(
+    OVERVIEW_RESOURCE_CARD_DEFINITIONS.map((definition) => [definition.id, definition]),
+  );
+
   return (
     <section aria-label="Scribe resources" className="space-y-5">
       <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
         RESOURCES
       </p>
       <div className="grid gap-4 md:grid-cols-3">
-        {resourceCards.map((card) => (
+        {cards.map((copy) => {
+          const definition = definitionsById.get(copy.id)!;
+          const card = { ...definition, ...copy };
+
+          return (
           <a
-            key={card.title}
+            key={card.id}
             href={card.href}
             target="_blank"
             rel="noreferrer"
@@ -88,7 +93,8 @@ export function OverviewResourceCards() {
               </div>
             </div>
           </a>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

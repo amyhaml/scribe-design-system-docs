@@ -7,8 +7,10 @@ This folder is the **single source of truth** for documentation prose. Open it a
 | Path | Route |
 |------|-------|
 | `getting-started/overview.md` | `/` |
+| `templates.md` | `/templates` page headline/dek and template card copy |
 | `foundations/{token}.md` | `/foundations/{token}` |
 | `components/{slug}.md` | `/components/{slug}` (bespoke + hybrid Storybook pages) |
+| `_templates/template-gallery-entry.md` | Source scaffold for `/templates` gallery entries |
 
 ## Frontmatter
 
@@ -76,6 +78,21 @@ Follow [`COMPONENT-PAGE-PATTERN.md`](COMPONENT-PAGE-PATTERN.md).
 1. Run `npm run scaffold:components` to create `components/{slug}.md` from Storybook (or copy `_templates/component-page-storybook.md`).
 2. Refine `description` and `## Overview`; run `npm run refresh:component-content` for a metadata baseline.
 3. Register Figma `node-id` in `component-figma-links.ts` when available (Open in Figma appears automatically).
+
+## Adding a template gallery entry
+
+Follow [`TEMPLATE-GALLERY-PATTERN.md`](TEMPLATE-GALLERY-PATTERN.md) before adding or revising an entry in `/templates`.
+
+1. Copy `_templates/template-gallery-entry.md` and complete the source details.
+2. Add the card title and description as a `## Title {#id}` section in `templates.md`.
+3. Add the approved local preview snapshot at `public/templates/<id>-preview.png`.
+4. Register categories, URLs, and preview metadata in `src/data/templates.ts`; standard feature-url entries inherit cards, filtering, modal previews, and Scribe/Figma actions from the shared Templates route.
+
+`templates.md` is the editable source for reader-facing Templates copy. Its normal Markdown sections are intentionally used instead of a frontmatter array so the card text is easy to edit in Obsidian. `src/data/templates.ts` deliberately excludes titles and descriptions, and the build fails if section IDs do not match exactly.
+
+## Resource card copy
+
+Overview and Logo resource-card titles and descriptions are also vault-owned. Edit their readable `## Title {#id}` Markdown sections in `getting-started/overview.md` and `foundations/logo.md`; TypeScript retains the destinations, icons, images, and download behavior. Their section IDs must match the corresponding code-owned card definitions exactly.
 
 ## What stays in code
 

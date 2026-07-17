@@ -10,7 +10,23 @@ Before creating a new documentation page, component page, or substantial content
 - `COMPONENT-PAGE-PATTERN.md`
 - The relevant template in `_templates/`
 
+Before adding or revising an entry in the `/templates` gallery, read `TEMPLATE-GALLERY-PATTERN.md` and `_templates/template-gallery-entry.md` instead of rediscovering the shared route behavior.
+
 Use `_templates/component-page.md` for bespoke component pages with ported React demos. Use `_templates/component-page-storybook.md` for hybrid Storybook-backed component pages.
+
+## Template Gallery Rules
+
+- Use `TEMPLATE-GALLERY-PATTERN.md` as the source of truth for normal `/templates` entries.
+- Treat `templates.md` as the source of truth for the Templates page headline/dek and every card title/description. Use a readable `## Title {#id}` Markdown section for each card, and keep only categories, preview assets, and Scribe/Figma runtime metadata in `src/data/templates.ts`; add matching IDs to both files.
+- Keep standard template work to approved preview assets plus matching vault and registry metadata; do not add one-off card, filter, or modal behavior when the shared gallery already supports the entry.
+- Use an existing template category where possible. Add a category only by updating both the registry type and the shared category list.
+- Preserve native raster preview resolution in the modal and reuse the shared muted preview canvas, top crop, centered alignment, and accessible query-param behavior.
+
+## Vault-Driven Resource Cards
+
+- Keep reader-facing resource-card titles and descriptions in readable `## Title {#id}` Markdown sections, not TypeScript constants or opaque frontmatter arrays.
+- For Overview and Logo, edit `getting-started/overview.md` and `foundations/logo.md`; their card IDs must exactly match the code-owned definitions.
+- Keep runtime destinations, external links, icons, images, downloads, and layout behavior in code. The build must fail for missing, duplicate, unknown, or blank resource-card copy.
 
 ## Component Page Rules
 
@@ -58,6 +74,7 @@ Before coding a bespoke source-truth component page:
 - Port source-shaped components under `src/components/scribe` without inventing markup, renaming behavior, restyling, simplifying structure, or replacing production behavior with an approximation.
 - Keep docs-only fixture props, providers, demo frames, and CSS scopes separate from the ported component. Label those differences in code comments or docs when they are necessary.
 - Before adding docs-only colors, hover states, active states, card treatments, preview canvases, or demo wrappers, scan for and reuse existing project patterns, tokens, and utility classes where possible. Prefer established treatments such as sidebar hover/active states, Overview preview canvases, and top nav/action interactions over one-off visual variants.
+- For raster template snapshots, preserve the asset's native resolution in modal previews. Do not share `w-full` thumbnail sizing with modal images: leave unused canvas space visible, but cap an asset at the preview container width whenever its native width would overflow. Do not upscale smaller assets.
 - Mirror the required Scribe runtime context instead of patching visuals by eye. This can include CSS variable aliases, spacing aliases, local font files, production `@font-face` family names, global line-height, heading resets, button resets, font smoothing, logos/assets, and Material or production class assumptions.
 - When porting components that wrap third-party UI libraries such as MUI or React Select, treat Scribe's styled wrapper as the source of truth over the library default. Do not carry forward default library states such as disabled opacity, focus rings, track opacity, menu shadows, or input spacing unless the Scribe source keeps them.
 - For disabled, focused, selected, active, error, and read-only states, verify every nested selector and override from the production styled component. Pay special attention to compounded opacity and state selectors such as `.Mui-disabled + .MuiSwitch-track`; if production overrides a library default, the docs port must preserve that override.

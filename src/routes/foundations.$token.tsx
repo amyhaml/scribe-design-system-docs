@@ -3,7 +3,10 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 
 import { DocsShell, DocsSection } from "@/components/docs/DocsShell";
 import { ScribeIconsGallery } from "@/components/docs/ScribeIconsGallery";
-import { ScribeLogoGallery } from "@/components/docs/ScribeLogoGallery";
+import {
+  LOGO_RESOURCE_CARD_DEFINITIONS,
+  ScribeLogoGallery,
+} from "@/components/docs/ScribeLogoGallery";
 import { MarkdownProse } from "@/components/docs/MarkdownProse";
 import { typographyTokenAnchorId } from "@/data/component-typography-slots";
 import {
@@ -24,7 +27,8 @@ import {
 } from "@/data/scribe-spacing-tokens";
 import { storybookIndexQuery } from "@/lib/storybook";
 import { getDocOptional } from "@/lib/docs/load-doc";
-import { getTocFromDoc } from "@/lib/docs/parse-doc";
+import { getTocFromDoc, type ParsedDoc } from "@/lib/docs/parse-doc";
+import { resolveResourceCardCopy } from "@/lib/docs/resource-card-content";
 
 function spacingRemToPxLabel(remStr: string): string {
   const m = remStr.trim().match(/^([\d.]+)\s*rem$/i);
@@ -33,7 +37,7 @@ function spacingRemToPxLabel(remStr: string): string {
 }
 
 type Foundation = {
-  render: () => ReactNode;
+  render: (doc: ParsedDoc) => ReactNode;
 };
 
 function colorGroupAnchorId(group: string): string {
@@ -514,7 +518,15 @@ const FOUNDATIONS: Record<string, Foundation> = {
     render: () => <ScribeIconsGallery />,
   },
   logo: {
-    render: () => <ScribeLogoGallery />,
+    render: (doc) => (
+      <ScribeLogoGallery
+        resources={resolveResourceCardCopy(
+          doc,
+          LOGO_RESOURCE_CARD_DEFINITIONS,
+          "content/foundations/logo.md",
+        )}
+      />
+    ),
   },
 };
 
@@ -568,12 +580,13 @@ function FoundationPage() {
       toc={getTocFromDoc(doc).length ? getTocFromDoc(doc) : undefined}
       tocPlacement={doc.frontmatter.toc?.length ? "header" : undefined}
     >
-      {intro?.content.trim() ? (
+      {/* Logo's Markdown sections are resource-card copy, not standalone prose. */}
+      {token !== "logo" && intro?.content.trim() ? (
         <DocsSection>
           <MarkdownProse content={intro.content} />
         </DocsSection>
       ) : null}
-      {foundation.render()}
+      {foundation.render(doc)}
     </DocsShell>
   );
 }

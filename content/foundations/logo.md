@@ -13,3 +13,15 @@ toc:
   - id: logo-icon-construction
     label: Icon construction
 ---
+
+## Figma Logo File {#figma-brand-guidelines}
+
+Design file and explorations of the Scribe logo.
+
+## GitHub Logo Files {#github-logo-files}
+
+Logo files in the Scribe repo.
+
+## Download SVG Files {#download-svg-files}
+
+Download optimized SVG logo files.

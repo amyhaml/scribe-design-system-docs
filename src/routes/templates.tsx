@@ -6,7 +6,12 @@ import { useMemo, useState } from "react";
 
 import { DocsShell } from "@/components/docs/DocsShell";
 import { Button } from "@/components/ui/button";
-import { DOCS_TEMPLATES, TEMPLATE_CATEGORIES, type DocsTemplate } from "@/data/templates";
+import { DOCS_TEMPLATES, TEMPLATE_CATEGORIES } from "@/data/templates";
+import { getDoc } from "@/lib/docs/load-doc";
+import {
+  resolveTemplateGalleryContent,
+  type ResolvedDocsTemplate,
+} from "@/lib/docs/templates-content";
 import { storyIframeSrc, upstreamStorybookStoryUrl } from "@/lib/storybook";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +22,7 @@ type TemplatesSearch = {
 
 const ENABLE_FEATURE_IFRAME_PREVIEWS =
   import.meta.env.VITE_ENABLE_FEATURE_IFRAME_PREVIEWS === "true";
+const templateGallery = resolveTemplateGalleryContent(getDoc("templates"), DOCS_TEMPLATES);
 
 export const Route = createFileRoute("/templates")({
   validateSearch: (search: Record<string, unknown>): TemplatesSearch => ({
@@ -25,17 +31,23 @@ export const Route = createFileRoute("/templates")({
   }),
   head: () => ({
     meta: [
-      { title: "Templates | Scribe Design System" },
+      { title: `${templateGallery.title} | Scribe Design System` },
       {
         name: "description",
-        content: "Reusable Scribe templates for page and workflow patterns.",
+        content: templateGallery.description,
       },
     ],
   }),
   component: TemplatesPage,
 });
 
-function TemplateIframe({ template, mode }: { template: DocsTemplate; mode: "card" | "modal" }) {
+function TemplateIframe({
+  template,
+  mode,
+}: {
+  template: ResolvedDocsTemplate;
+  mode: "card" | "modal";
+}) {
   const isCard = mode === "card";
   const src =
     template.preview.kind === "storybook"
@@ -57,7 +69,13 @@ function TemplateIframe({ template, mode }: { template: DocsTemplate; mode: "car
   );
 }
 
-function FeatureUrlPreview({ template, mode }: { template: DocsTemplate; mode: "card" | "modal" }) {
+function FeatureUrlPreview({
+  template,
+  mode,
+}: {
+  template: ResolvedDocsTemplate;
+  mode: "card" | "modal";
+}) {
   const isCard = mode === "card";
   const isFeatureUrl = template.preview.kind === "feature-url";
 
@@ -67,13 +85,19 @@ function FeatureUrlPreview({ template, mode }: { template: DocsTemplate; mode: "
 
   if (isFeatureUrl && template.preview.image) {
     return (
-      <div className={cn("h-full w-full", isCard ? "bg-white" : "bg-muted/40")}>
+      <div
+        className={cn(
+          "h-full w-full overflow-hidden",
+          isCard ? "bg-white" : "flex items-center justify-center bg-muted/40",
+        )}
+      >
         <img
           src={template.preview.image}
           alt=""
           className={cn(
-            "h-full w-full",
-            isCard ? "object-cover object-top" : "object-contain object-top",
+            isCard
+              ? "h-full w-full object-cover object-top"
+              : "block h-auto w-auto max-h-full max-w-full",
           )}
         />
       </div>
@@ -124,7 +148,7 @@ function TemplatePreviewSurface({
   template,
   mode,
 }: {
-  template: DocsTemplate;
+  template: ResolvedDocsTemplate;
   mode: "card" | "modal";
 }) {
   if (template.preview.kind === "storybook") {
@@ -138,8 +162,8 @@ function TemplatePreviewCard({
   template,
   onPreview,
 }: {
-  template: DocsTemplate;
-  onPreview: (template: DocsTemplate) => void;
+  template: ResolvedDocsTemplate;
+  onPreview: (template: ResolvedDocsTemplate) => void;
 }) {
   const previewLabel = `Preview ${template.title}`;
   const hasSelectedText = () => Boolean(window.getSelection()?.toString().trim());
@@ -229,7 +253,7 @@ function TemplatePreviewDialog({
   open,
   onOpenChange,
 }: {
-  template?: DocsTemplate;
+  template?: ResolvedDocsTemplate;
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
@@ -244,8 +268,8 @@ function TemplatePreviewDialog({
   return (
     <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
       <DialogPrimitive.Portal>
-        <DialogPrimitive.Overlay className="fixed inset-0 z-[10000] bg-slate-950/38 backdrop-blur-[2px]" />
-        <DialogPrimitive.Content className="fixed left-1/2 top-1/2 z-[10001] flex h-[min(82vh,58rem)] w-[calc(100vw-4rem)] max-w-[88rem] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-3xl border border-white/70 bg-background p-4 shadow-[0_2px_2px_rgb(0_0_0_/_10%),0_18px_54px_rgb(0_0_0_/_18%)] outline-none">
+        <DialogPrimitive.Overlay className="docs-template-preview-overlay fixed inset-0 z-[10000] bg-slate-950/38 backdrop-blur-[2px]" />
+        <DialogPrimitive.Content className="docs-template-preview-dialog fixed left-1/2 top-1/2 z-[10001] flex max-h-[calc(100dvh-2rem)] w-[calc(100vw-4rem)] max-w-[88rem] flex-col overflow-hidden rounded-3xl border border-white/70 bg-background p-4 shadow-[0_2px_2px_rgb(0_0_0_/_10%),0_18px_54px_rgb(0_0_0_/_18%)] outline-none">
           <div className="flex items-start justify-between gap-4 px-2 pb-4">
             <div className="min-w-0">
               <DialogPrimitive.Title className="text-xl font-semibold text-foreground">
@@ -288,7 +312,7 @@ function TemplatePreviewDialog({
               </DialogPrimitive.Close>
             </div>
           </div>
-          <div className="min-h-0 flex-1 overflow-hidden rounded-2xl border bg-muted/40">
+          <div className="h-[min(824px,calc(100dvh-10rem))] flex-none overflow-hidden rounded-2xl border bg-muted/40">
             <TemplatePreviewSurface template={template} mode="modal" />
           </div>
         </DialogPrimitive.Content>
@@ -302,20 +326,21 @@ function TemplatesPage() {
   const search = Route.useSearch();
   const [activeCategory, setActiveCategory] = useState(search.category ?? "All");
   const activeTemplate = useMemo(
-    () => DOCS_TEMPLATES.find((template) => template.id === search.preview),
+    () => templateGallery.templates.find((template) => template.id === search.preview),
     [search.preview],
   );
   const visibleTemplates = useMemo(
     () =>
-      DOCS_TEMPLATES.filter(
+      templateGallery.templates.filter(
         (template) => activeCategory === "All" || template.category === activeCategory,
       ),
     [activeCategory],
   );
 
-  const openPreview = (template: DocsTemplate) => {
+  const openPreview = (template: ResolvedDocsTemplate) => {
     void navigate({
       search: (prev) => ({ ...prev, preview: template.id }),
+      resetScroll: false,
     });
   };
 
@@ -326,13 +351,14 @@ function TemplatesPage() {
         delete next.preview;
         return next;
       },
+      resetScroll: false,
     });
   };
 
   return (
     <DocsShell
-      title="Templates"
-      description="Source-backed page templates for Scribe workflows."
+      title={templateGallery.title}
+      description={templateGallery.description}
       headerAlign="center"
     >
       <div className="mx-auto flex flex-wrap justify-center gap-2">

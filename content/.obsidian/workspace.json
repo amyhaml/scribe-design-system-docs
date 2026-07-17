@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "components/tooltip.md",
+                "file": "templates.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "tooltip"
+              "title": "templates"
             }
           }
         ]
@@ -185,19 +185,25 @@
   },
   "active": "1c3bd54d7f919f73",
   "lastOpenFiles": [
+    "getting-started/overview.md",
     "foundations/logo.md",
+    "templates.md",
+    "TEMPLATE-GALLERY-PATTERN.md",
+    "README.md",
+    "COMPONENT-PAGE-PATTERN.md",
+    "_templates/template-gallery-entry.md",
+    "_templates/component-page-storybook.md",
+    "_templates/component-page.md",
+    "components/tooltip.md",
     "components/table.md",
     "foundations/marieclaire.tokens.json",
     "components/alert-bar.md",
-    "COMPONENT-PAGE-PATTERN.md",
     "AGENTS.md",
     "components/asset-bar.md",
     "components/asset-preview.md",
     "components/avatar.md",
     "foundations/color.md",
     "foundations/typography.md",
-    "getting-started/overview.md",
-    "components/tooltip.md",
     "components/switch.md",
     "components/snackbar.md",
     "components/radio-input.md",
@@ -205,12 +211,6 @@
     "components/filter.md",
     "components/field.md",
     "components/dropzone.md",
-    "getting-started/introduction.md",
-    "README.md",
-    "components/dialog.md",
-    "components/button.md",
-    "_templates/component-page-storybook.md",
-    "_templates/component-page.md",
-    "components/datepicker.md"
+    "getting-started/introduction.md"
   ]
 }

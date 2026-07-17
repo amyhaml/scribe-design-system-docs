@@ -116,6 +116,30 @@
   }
 }
 
+@keyframes docs-template-preview-dialog-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes docs-template-preview-dialog-out {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%);
+  }
+}
+
 .docs-search-overlay {
   background-color: #01122866;
   background-color: light-dark(#01122866, #11111299);
@@ -128,16 +152,25 @@
   }
 }
 
-.docs-search-overlay[data-state="open"] {
+.docs-search-overlay[data-state="open"],
+.docs-template-preview-overlay[data-state="open"] {
   animation: docs-search-overlay-in 150ms ease-out;
 }
 
-.docs-search-overlay[data-state="closed"] {
+.docs-search-overlay[data-state="closed"],
+.docs-template-preview-overlay[data-state="closed"] {
   animation: docs-search-overlay-out 120ms ease-in;
 }
 
 .docs-search-dialog-content {
   transform: translate(-50%, -50%) scale(1);
+}
+
+.docs-template-preview-dialog {
+  transform: translate(-50%, -50%);
+}
+
+.docs-search-dialog-content {
   /* Mirrors Astryx command dialog elevation: a tight base shadow plus a broad soft drop. */
   box-shadow:
     0 2px 2px rgb(0 0 0 / 10%),
@@ -150,6 +183,14 @@
 
 .docs-search-dialog-content[data-state="closed"] {
   animation: docs-search-dialog-out 120ms ease-in;
+}
+
+.docs-template-preview-dialog[data-state="open"] {
+  animation: docs-template-preview-dialog-in 150ms ease-out;
+}
+
+.docs-template-preview-dialog[data-state="closed"] {
+  animation: docs-template-preview-dialog-out 120ms ease-in;
 }
 
 .docs-global-nav {

@@ -2,7 +2,7 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { ExternalLink, X } from "lucide-react";
 import type { KeyboardEvent, MouseEvent } from "react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { DocsShell } from "@/components/docs/DocsShell";
 import { Button } from "@/components/ui/button";
@@ -329,6 +329,16 @@ function TemplatesPage() {
     () => templateGallery.templates.find((template) => template.id === search.preview),
     [search.preview],
   );
+  const [lastActiveTemplate, setLastActiveTemplate] = useState(activeTemplate);
+
+  useEffect(() => {
+    if (activeTemplate) {
+      setLastActiveTemplate(activeTemplate);
+    }
+  }, [activeTemplate]);
+
+  // Keep the dialog mounted during Radix's closed-state animation after its URL state clears.
+  const dialogTemplate = activeTemplate ?? lastActiveTemplate;
   const visibleTemplates = useMemo(
     () =>
       templateGallery.templates.filter(
@@ -394,7 +404,7 @@ function TemplatesPage() {
       </section>
 
       <TemplatePreviewDialog
-        template={activeTemplate}
+        template={dialogTemplate}
         open={Boolean(activeTemplate)}
         onOpenChange={(nextOpen) => {
           if (!nextOpen) closePreview();

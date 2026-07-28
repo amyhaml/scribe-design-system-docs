@@ -3,7 +3,8 @@ import { CheckCircle2, Sparkles } from "lucide-react";
 import { CodeBlock } from "@/components/docs/CodeBlock";
 import type { DocSectionCopy } from "@/lib/docs/resource-card-content";
 
-const INSTALL_COMMAND = "node skills/scribe-design-guidance/scripts/install-skill.mjs";
+const INSTALL_COMMAND =
+  "npx skills add amyhaml/scribe-design-system-docs --skill scribe-design-guidance";
 
 export function OverviewSkillGuidance({ copy }: { copy: DocSectionCopy }) {
   return (
@@ -26,8 +27,8 @@ export function OverviewSkillGuidance({ copy }: { copy: DocSectionCopy }) {
             <div>
               <h3 className="text-base font-semibold text-foreground">Install once</h3>
               <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                Run this from a clone of the Scribe Design System Docs repository. The skill
-                installs to your local Codex skills directory, not the Scribe checkout.
+                Run this from the Scribe repository or any local terminal. The skill installs to
+                your local Codex skills directory, not the Scribe checkout.
               </p>
             </div>
           </div>

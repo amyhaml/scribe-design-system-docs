@@ -187,6 +187,37 @@ test("allows only guidance Markdown and rejects implementation paths", () => {
   assert.doesNotMatch(sanitizeGuidance("## Code\n```tsx\nimport x from 'y';\n```"), /import|Code/);
 });
 
+test("keeps the authoritative guide when a referenced visual foundation has no Markdown prose", async () => {
+  const cacheDirectory = await mkdtemp(path.join(os.tmpdir(), "scribe-guidance-"));
+  const visualFoundationDocuments = {
+    ...automaticUiDocuments,
+    "foundations/typography.md": "---\ntitle: Typography\n---\n",
+    "foundations/spacing.md": "---\ntitle: Spacing\n---\n",
+  };
+
+  try {
+    const result = await resolveGuidance({
+      query: "Design a content-management form",
+      cacheDirectory,
+      fetchImpl: mockGithub("visual-foundation-revision", visualFoundationDocuments),
+      repository: "owner/repo",
+    });
+
+    assert.equal(result.source, "remote");
+    assert.equal(result.revision, "visual-foundation-revision");
+    assert.ok(result.documents.some((document) => document.path === "AI-DESIGN-GUIDE.md"));
+    assert.ok(
+      result.documents.every(
+        (document) =>
+          document.path !== "foundations/typography.md" &&
+          document.path !== "foundations/spacing.md",
+      ),
+    );
+  } finally {
+    await rm(cacheDirectory, { recursive: true, force: true });
+  }
+});
+
 test("resolves current approved guidance for ordinary Scribe UI prompts", async () => {
   const cacheDirectory = await mkdtemp(path.join(os.tmpdir(), "scribe-guidance-"));
   const cases = [

@@ -187,12 +187,12 @@ async function writeCache(cacheDirectory, cache) {
 }
 
 function documentsForPaths(documentsByPath, sourcePaths) {
-  const missing = sourcePaths.filter((sourcePath) => !documentsByPath[sourcePath]);
+  const missing = sourcePaths.filter((sourcePath) => documentsByPath[sourcePath] === undefined);
   if (missing.length) throw new Error(`Guidance is unavailable for: ${missing.join(", ")}.`);
-  return sourcePaths.map((sourcePath) => ({
-    path: sourcePath,
-    content: documentsByPath[sourcePath],
-  }));
+  return sourcePaths.flatMap((sourcePath) => {
+    const content = documentsByPath[sourcePath].trim();
+    return content ? [{ path: sourcePath, content }] : [];
+  });
 }
 
 async function loadRemoteGuidance(fetchImpl, repository, branch, headers, query, topicIds) {

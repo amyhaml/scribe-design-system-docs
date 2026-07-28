@@ -17,7 +17,7 @@ Run the resolver before answering or implementing a substantive Scribe UI reques
 node "${CODEX_HOME:-$HOME/.codex}/skills/scribe-design-guidance/scripts/resolve-guidance.mjs" --query "<user question>"
 ```
 
-For a specific authored topic, add `--topic <topic-id>`. The resolver reads only the published, allowlisted Markdown guidance in `amyhaml/scribe-design-system-docs` on `main`, and prints the Git revision, source status, and relevant documents as JSON.
+For a specific authored topic, add `--topic <topic-id>`. The resolver reads only the published, allowlisted Markdown guidance in `amyhaml/scribe-design-system-docs` on `main`, and prints the Git revision, source status, and relevant documents as JSON. Some foundation pages are visual token references with frontmatter only; the resolver safely omits those empty Markdown bodies while retaining the AI decision guide and any applicable authored prose.
 
 For a private repository, use existing GitHub CLI authentication or set `SCRIBE_DESIGN_GUIDANCE_TOKEN`, `GH_TOKEN`, or `GITHUB_TOKEN`. For a public repository, the resolver uses unauthenticated GitHub API reads and automatically retries without a locally configured token if that token is rejected.
 

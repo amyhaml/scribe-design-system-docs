@@ -12,6 +12,8 @@ Before creating a new documentation page, component page, or substantial content
 
 Before adding or revising an entry in the `/templates` gallery, read `TEMPLATE-GALLERY-PATTERN.md` and `_templates/template-gallery-entry.md` instead of rediscovering the shared route behavior.
 
+Before creating or revising guidance intended for AI-assisted Scribe design work, read `AI-DESIGN-GUIDE.md`. Keep component-choice comparisons, foundation usage rules, and accessibility constraints in that readable vault document; do not turn docs-only ports, imports, or code paths into design guidance.
+
 Use `_templates/component-page.md` for bespoke component pages with ported React demos. Use `_templates/component-page-storybook.md` for hybrid Storybook-backed component pages.
 
 ## Template Gallery Rules

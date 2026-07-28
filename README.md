@@ -82,6 +82,20 @@ The vault includes:
 
 For vault-specific details, read [content/README.md](content/README.md).
 
+## Live Design Guidance Skill
+
+The `scribe-design-guidance` Codex skill is the design-decision layer for Scribe UI work. After one local installation, Codex can apply it automatically to normal requests that create, change, review, or propose Scribe interfaces. It retrieves the latest pushed guidance from this repository's `main` branch for component choice, typography, semantic color, spacing, and accessibility decisions; it never recommends documentation ports or imports.
+
+Install it from a clone of this repository:
+
+```sh
+node skills/scribe-design-guidance/scripts/install-skill.mjs
+```
+
+The installation lives in the designer's `~/.codex/skills` directory, not in a Scribe checkout. For private-repository access, authenticate GitHub CLI with `gh auth login` or set `SCRIBE_DESIGN_GUIDANCE_TOKEN`. The skill caches the last successful revision and discloses when it must answer from that cache.
+
+Designers can work normally in a Scribe checkout. For requests that clearly concern Scribe UI, Codex can load the skill implicitly; for vague requests or a deterministic check, invoke `$scribe-design-guidance` explicitly. Update [content/AI-DESIGN-GUIDE.md](content/AI-DESIGN-GUIDE.md) and the referenced vault pages, then push to `main`; designers do not need to reinstall the skill.
+
 ## Creating Or Updating Component Pages
 
 Before creating or editing component documentation, read:
@@ -119,4 +133,3 @@ npm run build
 ```
 
 Use focused browser checks for visual changes. For source-truth component pages, compare against production Scribe source and live Scribe behavior rather than patching visual drift with screenshot-only CSS.
-

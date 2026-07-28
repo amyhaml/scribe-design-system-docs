@@ -8,6 +8,7 @@ This folder is the **single source of truth** for documentation prose. Open it a
 |------|-------|
 | `getting-started/overview.md` | `/` |
 | `templates.md` | `/templates` page headline/dek and template card copy |
+| `AI-DESIGN-GUIDE.md` | Published AI-facing component-choice and foundation guidance |
 | `foundations/{token}.md` | `/foundations/{token}` |
 | `components/{slug}.md` | `/components/{slug}` (bespoke + hybrid Storybook pages) |
 | `_templates/template-gallery-entry.md` | Source scaffold for `/templates` gallery entries |
@@ -100,3 +101,11 @@ Overview and Logo resource-card titles and descriptions are also vault-owned. Ed
 - Token swatches, spacing bars, elevation visuals
 - Live Scribe component ports (bespoke demos in `src/components/docs/demos/`)
 - Data tables driven by `src/data/`
+
+## AI design guidance
+
+[`AI-DESIGN-GUIDE.md`](AI-DESIGN-GUIDE.md) is the readable, published decision guide consumed by the installable `scribe-design-guidance` skill. The skill is intended to activate for normal Scribe UI creation, modification, review, and design-decision prompts. Update the guide when a component comparison, typography, semantic-color, spacing, or accessibility rule needs to guide AI-assisted Scribe design work.
+
+Keep it design-focused: component purpose, decision criteria, and foundation usage belong there. Imports, implementation details, source paths, docs-only ports, and `## Code` content must stay out of the guide.
+
+The skill is installed per designer in `~/.codex/skills`, never in `Media-Platforms/scribe`. Implicit activation is best-effort; `$scribe-design-guidance` remains the deterministic fallback for vague prompts.

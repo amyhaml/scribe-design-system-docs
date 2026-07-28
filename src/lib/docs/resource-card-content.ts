@@ -10,6 +10,8 @@ export type ResourceCardCopy = {
   description: string;
 };
 
+export type DocSectionCopy = ResourceCardCopy;
+
 function invalidResourceCardContent(source: string, message: string): never {
   throw new Error(`Invalid ${source}: ${message}`);
 }
@@ -26,6 +28,7 @@ export function resolveResourceCardCopy(
   doc: ParsedDoc,
   definitions: readonly ResourceCardDefinition[],
   source: string,
+  options: { allowedSectionIds?: readonly string[] } = {},
 ): ResourceCardCopy[] {
   const definitionIds = new Set<string>();
 
@@ -55,12 +58,20 @@ export function resolveResourceCardCopy(
     return { id, title, description };
   });
 
-  const unknownIds = copies.filter((copy) => !definitionIds.has(copy.id)).map((copy) => copy.id);
+  const allowedSectionIds = new Set(options.allowedSectionIds ?? []);
+  const unknownIds = copies
+    .filter((copy) => !definitionIds.has(copy.id) && !allowedSectionIds.has(copy.id))
+    .map((copy) => copy.id);
   const copiesById = new Map(copies.map((copy) => [copy.id, copy]));
-  const missingIds = definitions.filter((definition) => !copiesById.has(definition.id)).map(({ id }) => id);
+  const missingIds = definitions
+    .filter((definition) => !copiesById.has(definition.id))
+    .map(({ id }) => id);
 
   if (unknownIds.length) {
-    invalidResourceCardContent(source, `contains unknown resource card section id(s): ${unknownIds.join(", ")}.`);
+    invalidResourceCardContent(
+      source,
+      `contains unknown resource card section id(s): ${unknownIds.join(", ")}.`,
+    );
   }
 
   if (missingIds.length) {
@@ -71,4 +82,24 @@ export function resolveResourceCardCopy(
   }
 
   return definitions.map((definition) => copiesById.get(definition.id)!);
+}
+
+export function resolveDocSectionCopy(doc: ParsedDoc, id: string, source: string): DocSectionCopy {
+  const sectionId = requireText(source, id, "section id");
+  const sections = doc.sections.filter((section) => section.id === sectionId);
+
+  if (sections.length === 0) {
+    invalidResourceCardContent(source, `is missing section "${sectionId}".`);
+  }
+
+  if (sections.length > 1) {
+    invalidResourceCardContent(source, `contains duplicate section id "${sectionId}".`);
+  }
+
+  const [section] = sections;
+  return {
+    id: sectionId,
+    title: requireText(source, section.title, `section "${sectionId}" title`),
+    description: requireText(source, section.proseBefore, `section "${sectionId}" description`),
+  };
 }

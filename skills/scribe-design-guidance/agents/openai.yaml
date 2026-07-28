@@ -1,0 +1,6 @@
+interface:
+  display_name: "Scribe Design Guidance"
+  short_description: "Default design-decision guidance for Scribe UI work."
+  default_prompt: "Use $scribe-design-guidance before creating, changing, or reviewing Scribe UI so the work follows the latest published Scribe design guidance."
+policy:
+  allow_implicit_invocation: true

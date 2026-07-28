@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "test": "vitest run",
+    "test": "vitest run && npm run test:design-skill",
+    "test:design-skill": "node --test skills/scribe-design-guidance/scripts/guidance-loader.test.mjs",
     "audit:icons": "node scripts/audit-feather-icons.mjs",
     "scaffold:components": "node scripts/scaffold-component-pages.mjs",
     "refresh:component-content": "node scripts/refresh-component-content.mjs"

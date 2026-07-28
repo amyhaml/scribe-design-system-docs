@@ -19,7 +19,7 @@ node "${CODEX_HOME:-$HOME/.codex}/skills/scribe-design-guidance/scripts/resolve-
 
 For a specific authored topic, add `--topic <topic-id>`. The resolver reads only the published, allowlisted Markdown guidance in `amyhaml/scribe-design-system-docs` on `main`, and prints the Git revision, source status, and relevant documents as JSON.
 
-For the private repository, use existing GitHub CLI authentication or set `SCRIBE_DESIGN_GUIDANCE_TOKEN`, `GH_TOKEN`, or `GITHUB_TOKEN`. If the repository is made public, the resolver falls back to unauthenticated GitHub API reads.
+For a private repository, use existing GitHub CLI authentication or set `SCRIBE_DESIGN_GUIDANCE_TOKEN`, `GH_TOKEN`, or `GITHUB_TOKEN`. For a public repository, the resolver uses unauthenticated GitHub API reads and automatically retries without a locally configured token if that token is rejected.
 
 If remote retrieval fails, it may return the last successful cached revision. State clearly that the answer uses cached guidance and include that revision. If no relevant cached guidance exists, say that current guidance could not be retrieved instead of guessing.
 

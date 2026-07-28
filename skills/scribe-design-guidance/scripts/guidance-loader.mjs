@@ -153,7 +153,11 @@ function apiHeaders(token) {
 
 async function fetchJson(fetchImpl, url, headers) {
   const response = await fetchImpl(url, { headers });
-  if (!response.ok) throw new Error(`GitHub request failed (${response.status}) for ${url}.`);
+  if (!response.ok) {
+    const error = new Error(`GitHub request failed (${response.status}) for ${url}.`);
+    error.status = response.status;
+    throw error;
+  }
   return response.json();
 }
 
@@ -191,6 +195,31 @@ function documentsForPaths(documentsByPath, sourcePaths) {
   }));
 }
 
+async function loadRemoteGuidance(fetchImpl, repository, branch, headers, query, topicIds) {
+  const commit = await fetchJson(
+    fetchImpl,
+    `https://api.github.com/repos/${repository}/commits/${branch}`,
+    headers,
+  );
+  const revision = commit.sha;
+  if (typeof revision !== "string" || !revision)
+    throw new Error("GitHub did not return a branch revision.");
+
+  const guide = sanitizeGuidance(
+    await fetchRemoteDocument(fetchImpl, repository, revision, GUIDE_PATH, headers),
+  );
+  const sourcePaths = selectTopicPaths(parseTopicIndex(guide), { query, topicIds });
+  const documentsByPath = { [GUIDE_PATH]: guide };
+
+  for (const sourcePath of sourcePaths) {
+    documentsByPath[sourcePath] = sanitizeGuidance(
+      await fetchRemoteDocument(fetchImpl, repository, revision, sourcePath, headers),
+    );
+  }
+
+  return { revision, documentsByPath, sourcePaths };
+}
+
 export async function resolveGuidance({
   query = "",
   topicIds = [],
@@ -203,28 +232,30 @@ export async function resolveGuidance({
 
   try {
     const token = githubToken();
-    const headers = apiHeaders(token);
-    const commit = await fetchJson(
-      fetchImpl,
-      `https://api.github.com/repos/${repository}/commits/${branch}`,
-      headers,
-    );
-    const revision = commit.sha;
-    if (typeof revision !== "string" || !revision)
-      throw new Error("GitHub did not return a branch revision.");
+    let remote;
 
-    const guide = sanitizeGuidance(
-      await fetchRemoteDocument(fetchImpl, repository, revision, GUIDE_PATH, headers),
-    );
-    const sourcePaths = selectTopicPaths(parseTopicIndex(guide), { query, topicIds });
-    const documentsByPath = { [GUIDE_PATH]: guide };
-
-    for (const sourcePath of sourcePaths) {
-      documentsByPath[sourcePath] = sanitizeGuidance(
-        await fetchRemoteDocument(fetchImpl, repository, revision, sourcePath, headers),
+    try {
+      remote = await loadRemoteGuidance(
+        fetchImpl,
+        repository,
+        branch,
+        apiHeaders(token),
+        query,
+        topicIds,
+      );
+    } catch (error) {
+      if (!token || ![401, 403].includes(error.status)) throw error;
+      remote = await loadRemoteGuidance(
+        fetchImpl,
+        repository,
+        branch,
+        apiHeaders(),
+        query,
+        topicIds,
       );
     }
 
+    const { revision, documentsByPath, sourcePaths } = remote;
     const cache = { revision, fetchedAt: new Date().toISOString(), documentsByPath };
     await writeCache(cacheDirectory, cache);
     return {

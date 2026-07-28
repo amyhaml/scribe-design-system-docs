@@ -65,6 +65,25 @@ function mockGithub(revision, sourceDocuments = documents, fail = false) {
   };
 }
 
+function publicFallbackGithub(revision, sourceDocuments = documents) {
+  return async (url, options = {}) => {
+    if (options.headers?.Authorization) {
+      return new Response(JSON.stringify({ message: "Bad credentials" }), { status: 401 });
+    }
+
+    if (url.includes("/commits/"))
+      return new Response(JSON.stringify({ sha: revision }), { status: 200 });
+    const pathMatch = url.match(/\/contents\/content\/(.+)\?ref=/);
+    const filePath = decodeURIComponent(pathMatch?.[1] || "");
+    return new Response(
+      JSON.stringify({
+        content: Buffer.from(sourceDocuments[filePath] || "", "utf8").toString("base64"),
+      }),
+      { status: 200 },
+    );
+  };
+}
+
 test("loads the relevant approved Markdown from a live GitHub revision and strips code", async () => {
   const cacheDirectory = await mkdtemp(path.join(os.tmpdir(), "scribe-guidance-"));
   try {
@@ -135,6 +154,28 @@ test("discloses cached guidance when remote access is unavailable", async () => 
     assert.equal(result.revision, "cached-revision");
     assert.ok(result.cachedAt);
   } finally {
+    await rm(cacheDirectory, { recursive: true, force: true });
+  }
+});
+
+test("falls back to unauthenticated reads for a public repository when a local token is invalid", async () => {
+  const cacheDirectory = await mkdtemp(path.join(os.tmpdir(), "scribe-guidance-"));
+  const previousToken = process.env.GITHUB_TOKEN;
+  process.env.GITHUB_TOKEN = "invalid-token";
+
+  try {
+    const result = await resolveGuidance({
+      query: "switch",
+      cacheDirectory,
+      fetchImpl: publicFallbackGithub("public-revision"),
+      repository: "owner/public-repo",
+    });
+
+    assert.equal(result.source, "remote");
+    assert.equal(result.revision, "public-revision");
+  } finally {
+    if (previousToken === undefined) delete process.env.GITHUB_TOKEN;
+    else process.env.GITHUB_TOKEN = previousToken;
     await rm(cacheDirectory, { recursive: true, force: true });
   }
 });

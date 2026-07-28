@@ -92,7 +92,7 @@ Install it from a clone of this repository:
 node skills/scribe-design-guidance/scripts/install-skill.mjs
 ```
 
-The installation lives in the designer's `~/.codex/skills` directory, not in a Scribe checkout. For private-repository access, authenticate GitHub CLI with `gh auth login` or set `SCRIBE_DESIGN_GUIDANCE_TOKEN`. The skill caches the last successful revision and discloses when it must answer from that cache.
+The installation lives in the designer's `~/.codex/skills` directory, not in a Scribe checkout. Public repositories require no GitHub authentication; private repositories can use GitHub CLI authentication or `SCRIBE_DESIGN_GUIDANCE_TOKEN`. The skill also retries public reads without a locally configured token when that token is rejected, then caches the last successful revision for offline fallback.
 
 Designers can work normally in a Scribe checkout. For requests that clearly concern Scribe UI, Codex can load the skill implicitly; for vague requests or a deterministic check, invoke `$scribe-design-guidance` explicitly. Update [content/AI-DESIGN-GUIDE.md](content/AI-DESIGN-GUIDE.md) and the referenced vault pages, then push to `main`; designers do not need to reinstall the skill.
 

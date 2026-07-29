@@ -10,6 +10,8 @@ toc:
     label: Font sizes
 ---
 
+<!-- scribe-skill-guidance:start -->
+
 Use typography roles consistently rather than adjusting type by eye. The product uses three families for distinct content contexts:
 
 - **Tiempos Headline** for article titles, page headlines, and hero copy.
@@ -27,3 +29,5 @@ Use typography roles consistently rather than adjusting type by eye. The product
 - **Extra small**: badges, tags, status pills, and dense table metadata.
 
 Keep hierarchy deliberate: use a heading to introduce a surface or group, a label to identify a control, and body text to explain a task. Preserve the role's existing family, size, weight, and line-height instead of inventing one-off variants.
+
+<!-- scribe-skill-guidance:end -->

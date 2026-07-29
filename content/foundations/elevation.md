@@ -5,6 +5,8 @@ route: /foundations/elevation
 category: foundations
 ---
 
+<!-- scribe-skill-guidance:start -->
+
 Elevation communicates layering and temporary focus. Use it when a surface genuinely sits above another surface, not as decoration.
 
 ## Usage
@@ -15,3 +17,5 @@ Elevation communicates layering and temporary focus. Use it when a surface genui
 - **Top**: sticky headers, toasts, and top-most overlays that need maximum lift.
 
 Keep the elevation level proportional to the interaction. A persistent page section should not use dialog-level lift, and a floating interactive layer should not look flush with the page beneath it.
+
+<!-- scribe-skill-guidance:end -->

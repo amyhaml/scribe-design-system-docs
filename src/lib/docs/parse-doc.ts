@@ -28,11 +28,14 @@ export type ParsedDoc = {
 };
 
 const DEMO_MARKER = "<!-- demo -->";
+const SKILL_GUIDANCE_START_MARKER = "<!-- scribe-skill-guidance:start -->";
+const SKILL_GUIDANCE_END_MARKER = "<!-- scribe-skill-guidance:end -->";
+const SKILL_GUIDANCE_BLOCK_RE = /<!-- scribe-skill-guidance:start -->[\s\S]*?<!-- scribe-skill-guidance:end -->\s*/g;
 
 const HEADING_RE = /^## (.+?)(?:\s+\{#([a-z0-9-]+)\})?\s*$/;
 const FRONTMATTER_RE = /^---\s*\n([\s\S]*?)\n---\s*\n?/;
 
-export { DEMO_MARKER };
+export { DEMO_MARKER, SKILL_GUIDANCE_END_MARKER, SKILL_GUIDANCE_START_MARKER };
 
 export function sectionHasDemoMarker(section: DocSection): boolean {
   return section.content.includes(DEMO_MARKER);
@@ -167,12 +170,16 @@ function parseFrontmatter(raw: string): { frontmatter: DocFrontmatter; content: 
   };
 }
 
+export function stripSiteOnlySkillGuidance(content: string): string {
+  return content.replace(SKILL_GUIDANCE_BLOCK_RE, "").trim();
+}
+
 export function parseDoc(raw: string): ParsedDoc {
   const { frontmatter, content } = parseFrontmatter(raw);
 
   return {
     frontmatter,
-    sections: parseSections(content.trim()),
+    sections: parseSections(stripSiteOnlySkillGuidance(content)),
   };
 }
 

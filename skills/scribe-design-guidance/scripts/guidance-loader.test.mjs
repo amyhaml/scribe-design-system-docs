@@ -187,6 +187,21 @@ test("allows only guidance Markdown and rejects implementation paths", () => {
   assert.doesNotMatch(sanitizeGuidance("## Code\n```tsx\nimport x from 'y';\n```"), /import|Code/);
 });
 
+test("retains site-hidden skill guidance while removing its marker lines", () => {
+  const guidance = sanitizeGuidance(`---
+title: Foundation
+---
+
+<!-- scribe-skill-guidance:start -->
+
+Use the semantic color role for its defined meaning.
+
+<!-- scribe-skill-guidance:end -->`);
+
+  assert.match(guidance, /Use the semantic color role/);
+  assert.doesNotMatch(guidance, /scribe-skill-guidance/);
+});
+
 test("keeps the authoritative guide when a referenced visual foundation has no Markdown prose", async () => {
   const cacheDirectory = await mkdtemp(path.join(os.tmpdir(), "scribe-guidance-"));
   const visualFoundationDocuments = {

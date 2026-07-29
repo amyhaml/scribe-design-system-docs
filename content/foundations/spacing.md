@@ -5,6 +5,8 @@ route: /foundations/spacing
 category: foundations
 ---
 
+<!-- scribe-skill-guidance:start -->
+
 Use the spacing scale to establish rhythm across product workflows. Choose a scale value to group related controls, separate unrelated groups, and align repeated rows; do not introduce arbitrary local values to correct an isolated alignment issue.
 
 ## Scale
@@ -18,3 +20,5 @@ The application spacing scale is: `xxxs` 2px, `xxs` 4px, `xs` 8px, `s` 12px, `m`
 - Use `xl` and above to separate distinct sections, major page regions, or independent workflow groups.
 
 Dense product interfaces should remain compact but legible. Apply larger gaps to clarify a change in task or hierarchy, not simply to make a surface feel decorative.
+
+<!-- scribe-skill-guidance:end -->

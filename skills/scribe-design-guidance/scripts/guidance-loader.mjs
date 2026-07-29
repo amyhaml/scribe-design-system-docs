@@ -47,7 +47,7 @@ export function sanitizeGuidance(markdown) {
     }
 
     if (skippingCodeSection) continue;
-    if (/<!--\s*demo\s*-->/.test(line)) continue;
+    if (/<!--\s*(?:demo|scribe-skill-guidance:(?:start|end))\s*-->/.test(line)) continue;
     if (/^\s*(?:\/\/\s*)?Source:\s*(?:Scribe\/)?(?:src|packages)\//i.test(line)) continue;
     if (/^\s*(?:import|export)\s/.test(line)) continue;
 

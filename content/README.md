@@ -108,4 +108,6 @@ Overview and Logo resource-card titles and descriptions are also vault-owned. Ed
 
 Keep it design-focused: component purpose, decision criteria, and foundation usage belong there. Imports, implementation details, source paths, docs-only ports, and `## Code` content must stay out of the guide.
 
+When foundation guidance is useful to the skill but duplicates an existing visual docs page, keep it as normal Obsidian Markdown inside `<!-- scribe-skill-guidance:start -->` and `<!-- scribe-skill-guidance:end -->`. The published site omits marked blocks while the skill continues to read their content.
+
 The skill is installed per designer in `~/.codex/skills`, never in `Media-Platforms/scribe`. Implicit activation is best-effort; `$scribe-design-guidance` remains the deterministic fallback for vague prompts.

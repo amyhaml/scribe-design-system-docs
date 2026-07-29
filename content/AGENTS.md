@@ -14,6 +14,8 @@ Before adding or revising an entry in the `/templates` gallery, read `TEMPLATE-G
 
 Before creating or revising guidance intended for AI-assisted Scribe design work, read `AI-DESIGN-GUIDE.md`. Keep component-choice comparisons, foundation usage rules, and accessibility constraints in that readable vault document; do not turn docs-only ports, imports, or code paths into design guidance.
 
+For AI-facing guidance that should remain editable in Obsidian but not render on the docs site, wrap only that Markdown in `<!-- scribe-skill-guidance:start -->` and `<!-- scribe-skill-guidance:end -->`. The skill retains the enclosed content; the site omits it. Use this sparingly for supplemental skill rules, not reader-facing documentation.
+
 Use `_templates/component-page.md` for bespoke component pages with ported React demos. Use `_templates/component-page-storybook.md` for hybrid Storybook-backed component pages.
 
 ## Template Gallery Rules

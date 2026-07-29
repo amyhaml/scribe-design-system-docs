@@ -5,9 +5,9 @@ route: /
 category: getting-started
 ---
 
-## Scribe Design Guidance {#scribe-design-guidance}
+## Scribe Design Skill {#scribe-design-guidance}
 
-Install the Scribe Design Guidance skill once to keep normal Scribe UI work aligned with current component, typography, color, spacing, and accessibility guidance.
+The skill automatically retrieves Scribe guidance for component choice and other design guidance when an LLM makes UI decisions. To explicitly invoke this skill, use $scribe-design-guidance.
 
 ## Figma Component Library {#figma-component-library}
 

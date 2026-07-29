@@ -48,6 +48,7 @@ function IndexPage() {
       headerAlign="center"
     >
       <OverviewSkillGuidance copy={designGuidance} />
+      <div className="border-t" aria-hidden />
       <OverviewResourceCards cards={resourceCards} />
       <div className="border-t" aria-hidden />
       <ComponentOverviewGrid />
